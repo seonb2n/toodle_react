@@ -37,8 +37,8 @@ function Login() {
     const loginBtnClicked = async (event) => {
         event.preventDefault();
         const json = await (
-            await fetch("http://192.168.35.4:8080/", {
-                method: "POST",
+            await fetch("http://192.168.35.4:8080/api/v1/users/login", {
+                method: 'POST',
                 mode: 'cors',
                 cache: 'no-cache',
                 headers: {
@@ -50,7 +50,6 @@ function Login() {
                     password: userPwd,
                 }),
             }).then((response) => {
-                    console.log(response);
                     if (response.status !== 200) {
                         throw new Error();
                     }
@@ -60,6 +59,7 @@ function Login() {
         )
         setUserData(json.data);
         console.log(userData);
+        alert("Welcome! [" + userData.userNickName + "]");
     }
 
     return (
