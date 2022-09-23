@@ -6,23 +6,23 @@
     visibility: hidden;
 }
 
-.reset_wrapper {
+.login_wrapper {
     margin-top: 80px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.reset_title {
+.login_title {
     text-align: left;
     font-size: 18px;
     letter-spacing: -1px;
 }
 
-.reset_email {
+.login_email {
     margin-top: 18px;
 }
 
-.reset_email input {
+.login_email input {
     border: none;
     width: 100%;
     height: 22px;
@@ -30,7 +30,7 @@
     padding-bottom: 13px;
 }
 
-.reset_email input:focus {
+.login_email input:focus {
     outline: none;
 }
 
@@ -61,20 +61,20 @@
     padding-bottom: 13px;
 }
 
-.reset_info_text {
+.login_info_text {
     position: relative;
     margin-top: 20px;
     color: orange;
 }
 
-.reset_info_text p {
+.login_info_text p {
     padding-top: 10px;
     position: relative;
     color: orange;
     font-size: 13px;
 }
 
-.reset_form_submit_button {
+.login_form_submit_button {
     position: relative;
     z-index: 1;
     margin-top: 30px;
@@ -83,7 +83,7 @@
     border: none;
 }
 
-.reset_form_submit_button_text {
+.login_form_submit_button_text {
     z-index: 2;
     position: absolute;
     left: 50%;
@@ -99,14 +99,14 @@
     letter-spacing: -2px;
 }
 
-.reset_form_submit_button img {
+.login_form_submit_button img {
     width: 20px;
     margin-right: 10px;
     height: 20px;
     float: left;
 }
 
-.reset_form_submit_button input {
+.login_form_submit_button input {
     width: 100%;
     height: 100%;
     box-shadow: none;

@@ -1,5 +1,6 @@
 import "./loginStyle.css";
 import {useRef, useState} from "react";
+import {Link} from "react-router-dom";
 
 function Login() {
     const HIDDEN_CLASSNAME = "hidden";
@@ -69,12 +70,12 @@ function Login() {
 
     return (
         <div>
-            <div className="reset_wrapper">
-                <div className="reset_title">
+            <div className="login_wrapper">
+                <div className="login_title">
                     <h1>TOODLE</h1>
                 </div>
                 <form>
-                    <div className="reset_email">
+                    <div className="login_email">
                         <input onFocus={emailFocus} onBlur={emailFocus} onChange={onChangeEmail} className="login_email_input" type="email"
                                placeholder="이메일 입력"/>
                         <hr className={"login_email_focus_line " + (isEmailFocus ? '' : HIDDEN_CLASSNAME)}/>
@@ -86,11 +87,11 @@ function Login() {
                                type={showPassword ? "text" : "password"} placeholder="비밀번호 입력"/>
                         <hr className={"login_password_focus_line " + (isPwFocus ? '' : HIDDEN_CLASSNAME)}/>
                     </div>
-                    <div className={"reset_info_text " + (isLoginFailed ? '' : HIDDEN_CLASSNAME)}>
+                    <div className={"login_info_text " + (isLoginFailed ? '' : HIDDEN_CLASSNAME)}>
                         <p>아이디 또는 비밀번호가 옳바르지 않아요.</p>
                     </div>
-                    <div onClick={loginBtnClicked} className="reset_form_submit_button">
-                        <div className="reset_form_submit_button_text">
+                    <div onClick={loginBtnClicked} className="login_form_submit_button">
+                        <div className="login_form_submit_button_text">
                             <img src="img/login/ic_check_white.png"/>
                             <h3>로그인</h3>
                         </div>
@@ -100,10 +101,11 @@ function Login() {
             </div>
 
             <div className="findAndJoinBtnWrapper">
-                <div className="findPasswordBtn">
-                    비밀번호 찾기
-                </div>
-
+                <Link to="/passwordReset">
+                    <div className="findPasswordBtn">
+                        비밀번호 찾기
+                    </div>
+                </Link>
                 <hr/>
 
                 <div className="joinWithEmailBtn">
