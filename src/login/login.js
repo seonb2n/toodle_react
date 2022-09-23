@@ -34,8 +34,10 @@ function Login() {
         setUserPwd(event.target.value);
     }
 
+    const [isLoginFailed, setIsLoginFailed] = useState(false);
     const loginBtnClicked = async (event) => {
         event.preventDefault();
+        setIsLoginFailed(false);
         const json = await (
             await fetch("http://192.168.35.4:8080/api/v1/users/login", {
                 method: 'POST',
@@ -55,11 +57,14 @@ function Login() {
                     }
                     return response.json();
                 }
-            )
+            ).catch(error => {
+                setIsLoginFailed(true);
+                console.log(isLoginFailed);
+                console.log(error);
+            })
         )
         setUserData(json.data);
-        console.log(userData);
-        alert("Welcome! [" + userData.userNickName + "]");
+        alert("인증 토큰 : " + userData);
     }
 
     return (
@@ -81,7 +86,7 @@ function Login() {
                                type={showPassword ? "text" : "password"} placeholder="비밀번호 입력"/>
                         <hr className={"login_password_focus_line " + (isPwFocus ? '' : HIDDEN_CLASSNAME)}/>
                     </div>
-                    <div className="hidden reset_info_text">
+                    <div className={"reset_info_text " + (isLoginFailed ? '' : HIDDEN_CLASSNAME)}>
                         <p>아이디 또는 비밀번호가 옳바르지 않아요.</p>
                     </div>
                     <div onClick={loginBtnClicked} className="reset_form_submit_button">
