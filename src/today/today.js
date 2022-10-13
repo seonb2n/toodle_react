@@ -1,5 +1,6 @@
 import "./today.css";
 import TodayQuickPostIt from "./todayQuickPostIt";
+import TodayCard from "./todayCard";
 
 function Today() {
 
@@ -16,7 +17,13 @@ function Today() {
             </div>
 
             <div className="today_detail_cardSection">
-                CardSection
+                <div className="today_detail_card_top_img">
+
+                </div>
+                <div className="today_detail_card-top_time">
+
+                </div>
+                <TodayCard />
             </div>
 
             <div className="today_detail_footer">
