@@ -15,7 +15,8 @@ function TodayTime(props) {
             <div className="zIndex2 fBold fc_00">
                 {txtRes}
             </div>
-            <div className="w100 h10 bgpurple rad4 timeDecoBox zIndex1"></div>
+            <div className="w100 h10 bgPurple rad4 timeDecoBox zIndex1 opa20">
+            </div>
         </div>
         <div className="flexCenter">
         </div>

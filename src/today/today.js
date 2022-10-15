@@ -4,6 +4,22 @@ import TodayCard from "./todayCard";
 import TodayTime from "./todayTime";
 
 function Today() {
+    const todo1 = {
+        id: 1,
+        content : "로그인 버튼 시안 제작",
+        done: false
+    };
+    const todo2 = {
+        id: 2,
+        content : "모바일 메인 페이지 제작",
+        done: false
+    };
+    const todo3 = {
+        id: 3,
+        content : "포스트잇 페이지 제작",
+        done: true
+    };
+    const todoList = [todo1, todo2, todo3]
 
     return (
         <div>
@@ -24,7 +40,7 @@ function Today() {
                 <div className="today_detail_card_top_time">
                     <TodayTime time="1700" startTime="17:00" endTime="18:00"/>
                 </div>
-                <TodayCard />
+                <TodayCard importance="3" pjtName="포트폴리오" taskName="포트폴리오 웹사이트 제작" toDoList={todoList}/>
             </div>
 
             <div className="today_detail_footer">
