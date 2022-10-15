@@ -1,4 +1,4 @@
-function TodayCard() {
+function TodayCard(props) {
     return (
         <div className="card_wrapper">
 

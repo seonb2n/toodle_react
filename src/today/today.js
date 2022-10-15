@@ -1,6 +1,7 @@
 import "./today.css";
 import TodayQuickPostIt from "./todayQuickPostIt";
 import TodayCard from "./todayCard";
+import TodayTime from "./todayTime";
 
 function Today() {
 
@@ -20,15 +21,14 @@ function Today() {
                 <div className="today_detail_card_top_img">
 
                 </div>
-                <div className="today_detail_card-top_time">
-
+                <div className="today_detail_card_top_time">
+                    <TodayTime time="1700" startTime="17:00" endTime="18:00"/>
                 </div>
                 <TodayCard />
             </div>
 
             <div className="today_detail_footer">
                 <div className="today_detail_footer_workPlan">
-
                 </div>
                 <div className="today_detail_footer_menu">
 
