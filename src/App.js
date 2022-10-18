@@ -3,6 +3,7 @@ import Login from "./login/login";
 import PasswordReset from "./login/passwordReset/passwordReset";
 import PasswordResetResult from "./login/passwordReset/PasswordResetResult";
 import Today from "./today/today";
+import PostItList from "./postIt/postItList";
 
 function App() {
     return <Router>
@@ -18,6 +19,9 @@ function App() {
             </Route>
             <Route path="/today">
                 <Today />
+            </Route>
+            <Route path="/postit">
+                <PostItList />
             </Route>
         </Switch>
     </Router>

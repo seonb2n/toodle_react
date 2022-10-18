@@ -125,12 +125,14 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .fc_gr {color: #777;}
 .fc_rd {color: #cd0000;}
 .fc_bl {color: #0055c4;}
-.fc_pp {color: #5d5ce6}
+.fc_pp {color: #5d5ce6;}
+.fc_lg {color: #4e535e;}
 
 .fs12p {font-size: 12px;}
 .fs14p {font-size: 14px;}
 .fs18p {font-size: 18px;}
 .fs24p {font-size: 24px;}
+.fs32p {font-size: 32px;}
 
 .fc120p {font-size: 1.2rem; }
 .fc110p {font-size: 1.1rem; }
@@ -144,6 +146,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .bgPurple {background: #5d5ce6}
 .bgMidPurple {background: #B6B5DB}
 .bgLightPurple {background: #DAD9FF}
+.bgLightOrange {background: #ffd8c4}
 .bgTrans {background-color: transparent}
 
 .rad4 {border-radius: 4px}
@@ -168,3 +171,6 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .inputBorderBottom:focus {outline: none}
 
 .borderBtmGray {border-bottom: 1px solid #888c99}
+
+.back_button {height: 26px; width: 26px; margin-left: 20px;}
+.oval {width: 50px; height: 50px;border-radius: 50%;}
