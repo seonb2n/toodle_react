@@ -41,13 +41,38 @@ function Today() {
                     <TodayTime time="1700" startTime="17:00" endTime="18:00"/>
                 </div>
                 <TodayCard importance="3" pjtName="포트폴리오" taskName="포트폴리오 웹사이트 제작" toDoList={todoList}/>
+
+                <div className="today_seekBar">
+
+                </div>
             </div>
 
             <div className="today_detail_footer">
-                <div className="today_detail_footer_workPlan">
+                <div className="today_detail_footer_workPlan flexAlignHorizon">
+                    <div className="floatL w50p h100p flexCenter fs18p fBold">
+                        <div className="w40p h100p flexCenter border_top_selected">
+                            work
+                        </div>
+                    </div>
+                    <div className="floatR w50p h100p flexCenter fs18p fBold">
+                        <div className="w40p h100p flexCenter">
+                            plan
+                        </div>
+                    </div>
                 </div>
-                <div className="today_detail_footer_menu">
-
+                <div className="today_detail_footer_menu flexCenter">
+                    <div className="w25p flexCenter">
+                        <img src="img/today/ic_tab_today_active.png"></img>
+                    </div>
+                    <div className="w25p flexCenter">
+                        <img src="img/today/ic_tab_project_default.png"></img>
+                    </div>
+                    <div className="w25p flexCenter">
+                        <img src="img/today/ic_tab_calendar_default.png"></img>
+                    </div>
+                    <div className="w25p flexCenter">
+                        <img src="img/today/ic_tab_my_default.png"></img>
+                    </div>
                 </div>
             </div>
         </div>

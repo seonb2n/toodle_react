@@ -23,7 +23,7 @@
 
 .today_detail_add_btn {
     margin-right: 40px;
-    width: 74px;
+    width: 85px;
     height: 30px;
     border-radius: 16px;
     display: flex;
@@ -37,4 +37,30 @@
 .today_detail_quick_menu {
     margin-left: 10px;
     display: flex;
+}
+
+.today_seekBar {
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+}
+
+.today_detail_footer_workPlan {
+    position: fixed;
+    bottom: 56px;
+    width: 100%;
+    height: 39px;
+    border-radius: 12px;
+    border-top: 1px solid #eff4fa;
+}
+
+.today_detail_footer_menu {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 56px;
+}
+
+.border_top_selected {
+    border-top: 2px solid #000000;
 }
