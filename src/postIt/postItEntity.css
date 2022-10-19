@@ -1,0 +1,12 @@
+.w186 {width: 186px;}
+
+.date_content {
+    position: fixed;
+    right: 45px;
+}
+
+.done_btn {
+    position: fixed;
+    right: 15px;
+    border-bottom: 2px solid #000000;
+}

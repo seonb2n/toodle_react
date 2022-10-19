@@ -1,7 +1,23 @@
 import {Link} from "react-router-dom";
 import "./postItList.css";
+import "../css/base.css"
+import TodayTodoSection from "../today/todayTodoSection";
+import PostItEntity from "./postItEntity";
 
 function PostItList() {
+    const postIt1 = {
+        id: 1,
+        content: "일이삼",
+        data: "2020.03.03"
+    };
+    const postIt2 = {
+        id: 2,
+        content: "일이삼사",
+        data: "2020.03.04"
+    };
+
+    const postItList = [postIt1, postIt2];
+
     return (
         <div>
             <div className="w100p h50 flexAlignHorizon">
@@ -12,7 +28,7 @@ function PostItList() {
                         </div>
                     </Link>
                 </div>
-                <div className="w50p flexEnd mr15">
+                <div className="w50p flexEnd mr15 fBold">
                     저장
                 </div>
             </div>
@@ -34,9 +50,18 @@ function PostItList() {
                 </div>
             </div>
 
-            <div>
-
+            <div className="ml15 mr15 mt20 h42 top_input_box flexAlignHorizon">
+                <input className="borderNone h100p fs16p" placeholder="기억해야할 일 입력하기"></input>
+                <div className="add_btn mr15">
+                    <img src="img/postit/ic_add_section.png"></img>
+                </div>
             </div>
+
+            {
+                postItList.map(postIt => (
+                    <PostItEntity content={postIt.content} date={postIt.data} key={postIt.id}/>
+                ))
+            }
 
         </div>
     );

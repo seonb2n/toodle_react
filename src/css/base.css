@@ -82,6 +82,8 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .h20 {height: 20px !important;}
 .h25 {height: 25px !important;}
 .h32 {height: 32px !important;}
+.h42 {height: 42px !important;}
+.h46 {height: 46px !important;}
 .h50 {height: 50px !important;}
 .h60 {height: 60px !important;}
 .h70 {height: 70px !important;}
@@ -109,6 +111,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 
 .w10 {width: 10px !important;}
 .w20 {width: 20px !important;}
+.w25 {width: 25px !important;}
 .w30 {width: 30px !important;}
 .w50 {width: 50px !important;}
 .w80 {width: 80px !important;}
@@ -130,6 +133,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 
 .fs12p {font-size: 12px;}
 .fs14p {font-size: 14px;}
+.fs16p {font-size: 16px;}
 .fs18p {font-size: 18px;}
 .fs24p {font-size: 24px;}
 .fs32p {font-size: 32px;}
@@ -147,6 +151,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .bgMidPurple {background: #B6B5DB}
 .bgLightPurple {background: #DAD9FF}
 .bgLightOrange {background: #ffd8c4}
+.bgLightGray {background: #d9e1ed}
 .bgTrans {background-color: transparent}
 
 .rad4 {border-radius: 4px}
@@ -169,6 +174,8 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .inputBorderBottom {border: none; color: black;}
 .inputBorderBottom::placeholder {color: black}
 .inputBorderBottom:focus {outline: none}
+
+.borderNone {border: none}
 
 .borderBtmGray {border-bottom: 1px solid #888c99}
 
