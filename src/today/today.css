@@ -2,6 +2,11 @@
     margin: 0;
 }
 
+.today_body {
+    overflow: hidden;
+    touch-action: none;
+}
+
 .today_detail_header {
     margin-top: 24px;
     width: 100%;
@@ -36,6 +41,12 @@
 
 .today_detail_quick_menu {
     margin-left: 10px;
+    display: flex;
+}
+
+.scroll_view {
+    overflow: auto;
+    white-space: nowrap;
     display: flex;
 }
 

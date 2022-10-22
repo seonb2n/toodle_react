@@ -22,7 +22,7 @@ function Today() {
     const todoList = [todo1, todo2, todo3]
 
     return (
-        <div>
+        <div className="today_body">
             <div className="today_detail_header">
                 <div className="today_detail_title">today</div>
                 <div className="today_detail_add_btn">빠른 추가</div>
@@ -40,7 +40,15 @@ function Today() {
                 <div className="today_detail_card_top_time">
                     <TodayTime time="1700" startTime="17:00" endTime="18:00"/>
                 </div>
-                <TodayCard importance="3" pjtName="포트폴리오" taskName="포트폴리오 웹사이트 제작" toDoList={todoList}/>
+
+                <div className="scroll_view">
+                    <div className="ml30"></div>
+                    <TodayCard importance="3" pjtName="포트폴리오" taskName="포트폴리오 웹사이트 제작" toDoList={todoList}/>
+                    <TodayCard importance="2" pjtName="포트폴리오2" taskName="포트폴리오 웹사이트 제작2" toDoList={todoList}/>
+                    <TodayCard importance="1" pjtName="포트폴리오1" taskName="포트폴리오 웹사이트 제작1" toDoList={todoList}/>
+                    <div className="p15"></div>
+                </div>
+
 
                 <div className="today_seekBar">
 

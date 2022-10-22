@@ -167,6 +167,12 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .opa20 {opacity: 20%;}
 .opa100 {opacity: 100%;}
 
+.p10 {padding: 10px;}
+.p15 {padding: 15px;}
+.p20 {padding: 20px;}
+.p25 {padding: 25px;}
+.p30 {padding: 30px;}
+
 .pt5 {padding-top: 5px;}
 .pd5 {padding-bottom: 5px;}
 .pl15 {padding-left: 15px;}

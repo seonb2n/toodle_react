@@ -16,7 +16,7 @@ function TodayCard(props) {
     }
 
     return (
-        <div className="flexCenter">
+        <div className="flexCenter ml10 mr10">
             <div className="rad16 bgLightPurple card_wrapper w270 h360">
                 <div className="h100p ml15 mr15">
                     <div className="w100p h70">
