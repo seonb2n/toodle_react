@@ -1,11 +1,12 @@
 import "../css/base.css"
 import TodayTodoSection from "./todayTodoSection";
+import {useState} from "react";
 
 function TodayCard(props) {
     const importance = props.importance;
     const pjtName = props.pjtName;
     const taskName = props.taskName;
-    const todoList = props.toDoList;
+    const [toDoList, setToDoList] = useState(props.toDoList);
 
     let impImgRes = "img/today/ic_importance_low_black.png"
     if (importance === 3) {
@@ -13,6 +14,17 @@ function TodayCard(props) {
     }
     if (importance === 2) {
         impImgRes = "img/today/ic_importance_mid_black.png";
+    }
+
+    const onAddToDoBtn = (event) => {
+        const newId = toDoList.length;
+        const newToDo = {
+            id: newId,
+            content : document.getElementById("addToDoInput").value,
+            done: false
+        };
+        setToDoList([...toDoList, newToDo]);
+        document.getElementById("addToDoInput").value = "";
     }
 
     return (
@@ -38,19 +50,19 @@ function TodayCard(props) {
                         {taskName}
                     </div>
 
-                    <div className="mt20">
-                        {
-                            todoList.map(todo => (
-                                <TodayTodoSection content={todo.content} key={todo.id}/>
-                            ))
-                        }
+                    <div className="vertical_scroll_view h150">
+                        <div className="mt20">
+                            {
+                                toDoList.map(todo => (
+                                    <TodayTodoSection content={todo.content} key={todo.id}/>
+                                ))
+                            }
+                        </div>
                     </div>
-
-                    <div className="mt15 w100p flexAlignHorizon pt5 pd5 borderBtmGray">
-                        <input type="text" className="bgTrans w100p inputBorderBottom floatL" placeholder="추가할 액션 입력하기"/>
-                        <img className="w10 h10 floatR mr10" src="img/today/ic_add.png"></img>
+                    <div className="mt15 w100p h25 flexAlignHorizon pt5 pd5 borderBtmGray">
+                        <input type="text" id="addToDoInput" className="bgTrans w100p inputBorderBottom floatL" placeholder="추가할 액션 입력하기"/>
+                        <img className="w10 h10 floatR mr10" onClick={onAddToDoBtn} src="img/today/ic_add.png"></img>
                     </div>
-
                 </div>
             </div>
         </div>
