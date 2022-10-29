@@ -27,6 +27,11 @@ i{font-style:normal;}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
 figure{padding:0px; margin:0px;}
 
+/* 기본 함수 */
+.un_visible {
+    visibility: hidden;
+}
+
 /* 링크 기본값 */
 a:link{text-decoration:none; color:#444;}
 a:visited{text-decoration:none; color:#444;}
@@ -77,6 +82,8 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .mr15 {margin-right:15px !important;}
 .mr20 {margin-right:20px !important;}
 .mr5 {margin-right:5px !important;}
+
+.mra {margin-right: auto;}
 
 .h10 {height: 10px !important;}
 .h20 {height: 20px !important;}

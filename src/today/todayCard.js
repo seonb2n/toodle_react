@@ -20,7 +20,7 @@ function TodayCard(props) {
         const newId = toDoList.length;
         const newToDo = {
             id: newId,
-            content : document.getElementById("addToDoInput").value,
+            content: document.getElementById("addToDoInput").value,
             done: false
         };
         setToDoList([...toDoList, newToDo]);
@@ -54,13 +54,14 @@ function TodayCard(props) {
                         <div className="mt20">
                             {
                                 toDoList.map(todo => (
-                                    <TodayTodoSection content={todo.content} key={todo.id}/>
+                                    <TodayTodoSection content={todo.content} key={todo.id} completed={todo.done}/>
                                 ))
                             }
                         </div>
                     </div>
                     <div className="mt15 w100p h25 flexAlignHorizon pt5 pd5 borderBtmGray">
-                        <input type="text" id="addToDoInput" className="bgTrans w100p inputBorderBottom floatL" placeholder="추가할 액션 입력하기"/>
+                        <input type="text" id="addToDoInput" className="bgTrans w100p inputBorderBottom floatL"
+                               placeholder="추가할 액션 입력하기"/>
                         <img className="w10 h10 floatR mr10" onClick={onAddToDoBtn} src="img/today/ic_add.png"></img>
                     </div>
                 </div>
