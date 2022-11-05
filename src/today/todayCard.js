@@ -18,13 +18,19 @@ function TodayCard(props) {
 
     const onAddToDoBtn = (event) => {
         const newId = toDoList.length;
-        const newToDo = {
-            id: newId,
-            content: document.getElementById("addToDoInput").value,
-            done: false
-        };
-        setToDoList([...toDoList, newToDo]);
-        document.getElementById("addToDoInput").value = "";
+        const content = document.getElementById("addToDoInput").value;
+        if (!content) {
+            alert("값을 입력해야 추가할 수 있습니다.")
+        } else {
+            const newToDo = {
+                id: newId,
+                content: content,
+                done: false
+            };
+            setToDoList([...toDoList, newToDo]);
+            document.getElementById("addToDoInput").value = "";
+
+        }
     }
 
     return (

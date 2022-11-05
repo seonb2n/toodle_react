@@ -75,3 +75,11 @@
 .border_top_selected {
     border-top: 2px solid #000000;
 }
+
+.canceled_line {
+    position: relative;
+    top: 12px;
+    width: 100%;
+    background: black;
+    height: 1px;
+}

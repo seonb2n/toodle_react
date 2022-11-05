@@ -67,7 +67,9 @@ function Today() {
                                 height: 10,
                                 color: "#DAD9FF",
                                 '& .MuiSlider-thumb': {
-
+                                    height: 20,
+                                    width: 20,
+                                    backgroundColor: "#fff",
                                 }
                             }}
                         />
