@@ -2,21 +2,22 @@ import "./today.css";
 import TodayQuickPostIt from "./todayQuickPostIt";
 import TodayCard from "./todayCard";
 import TodayTime from "./todayTime";
+import {Slider} from "@mui/material";
 
 function Today() {
     const todo1 = {
         id: 1,
-        content : "로그인 버튼 시안 제작",
+        content: "로그인 버튼 시안 제작",
         done: false
     };
     const todo2 = {
         id: 2,
-        content : "모바일 메인 페이지 제작",
+        content: "모바일 메인 페이지 제작",
         done: false
     };
     const todo3 = {
         id: 3,
-        content : "포스트잇 페이지 제작",
+        content: "포스트잇 페이지 제작",
         done: true
     };
     const todoList = [todo1, todo2, todo3]
@@ -50,7 +51,30 @@ function Today() {
                 </div>
 
 
-                <div className="today_seekBar">
+                <div className="today_slider flex">
+                    <div className="w10p">
+                        <img className="w100p" src="img/today/ic_moon_24.png"/>
+                    </div>
+                    <div className="w80p pr10 pl10">
+                        <Slider
+                            aria-label="Temperature"
+                            defaultValue={30}
+                            step={1}
+                            marks
+                            min={0}
+                            max={12}
+                            sx={{
+                                height: 10,
+                                color: "#DAD9FF",
+                                '& .MuiSlider-thumb': {
+
+                                }
+                            }}
+                        />
+                    </div>
+                    <div className="w10p">
+                        <img className="w100p" src="img/today/ic_sun_24.png"/>
+                    </div>
 
                 </div>
             </div>

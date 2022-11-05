@@ -50,8 +50,8 @@
     display: flex;
 }
 
-.today_seekBar {
-    margin-top: 50px;
+.today_slider {
+    margin-top: 20px;
     width: 100%;
     height: 40px;
 }
