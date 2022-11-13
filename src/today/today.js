@@ -3,6 +3,7 @@ import TodayQuickPostIt from "./todayQuickPostIt";
 import TodayCard from "./todayCard";
 import TodayTime from "./todayTime";
 import {Slider} from "@mui/material";
+import {Link} from "react-router-dom";
 
 function Today() {
     const todo1 = {
@@ -26,7 +27,9 @@ function Today() {
         <div className="today_body">
             <div className="today_detail_header">
                 <div className="today_detail_title">today</div>
-                <div className="today_detail_add_btn">빠른 추가</div>
+                <Link to="/todayAdd">
+                    <div className="today_detail_add_btn">빠른 추가</div>
+                </Link>
             </div>
             <div className="today_detail_quick_menu">
                 <TodayQuickPostIt img="ic_quick_postit_ex.png" content="비타민"/>

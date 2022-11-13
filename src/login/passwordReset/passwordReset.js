@@ -1,17 +1,12 @@
 import "./passwordResetStyle.css";
 import "../../css/base.css"
 import {Link} from "react-router-dom";
+import BackButton from "../../common/backButton";
 
 function PasswordReset() {
     return (
         <div>
-            <div className="w100p h50 flexAlignHorizon">
-                <Link to="/login">
-                    <div className="back_button">
-                        <img src="img/login/ic_back_black.png"/>
-                    </div>
-                </Link>
-            </div>
+            <BackButton link="/login" />
 
             <div className="reset_wrapper">
                 <div className="reset_title">

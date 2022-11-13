@@ -3,6 +3,7 @@ import "./postItList.css";
 import "../css/base.css"
 import TodayTodoSection from "../today/todayTodoSection";
 import PostItEntity from "./postItEntity";
+import BackButton from "../common/backButton";
 
 function PostItList() {
     const postIt1 = {
@@ -22,11 +23,7 @@ function PostItList() {
         <div>
             <div className="w100p h50 flexAlignHorizon">
                 <div className="w50p flexAlignHorizon">
-                    <Link to="/login">
-                        <div className="back_button">
-                            <img src="img/login/ic_back_black.png"/>
-                        </div>
-                    </Link>
+                    <BackButton link="/login" />
                 </div>
                 <div className="w50p flexEnd mr15 fBold">
                     저장

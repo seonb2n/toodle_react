@@ -4,6 +4,7 @@ import PasswordReset from "./login/passwordReset/passwordReset";
 import PasswordResetResult from "./login/passwordReset/PasswordResetResult";
 import Today from "./today/today";
 import PostItList from "./postIt/postItList";
+import TodayAdd from "./today/todayAdd";
 
 function App() {
     return <Router>
@@ -19,6 +20,9 @@ function App() {
             </Route>
             <Route path="/today">
                 <Today />
+            </Route>
+            <Route path="/todayAdd">
+                <TodayAdd />
             </Route>
             <Route path="/postit">
                 <PostItList />
