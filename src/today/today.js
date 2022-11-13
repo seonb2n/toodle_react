@@ -84,32 +84,30 @@ function Today() {
                 </div>
             </div>
 
-            <div className="today_detail_footer">
-                <div className="today_detail_footer_workPlan flexAlignHorizon">
-                    <div className="floatL w50p h100p flexCenter fs18p fBold">
-                        <div className="w40p h100p flexCenter border_top_selected">
-                            work
-                        </div>
-                    </div>
-                    <div className="floatR w50p h100p flexCenter fs18p fBold">
-                        <div className="w40p h100p flexCenter">
-                            plan
-                        </div>
+            <div className="today_detail_footer_workPlan flexAlignHorizon">
+                <div className="floatL w50p h100p flexCenter fs18p fBold">
+                    <div className="w40p h100p flexCenter border_top_selected">
+                        work
                     </div>
                 </div>
-                <div className="today_detail_footer_menu flexCenter">
-                    <div className="w25p flexCenter">
-                        <img src="img/today/ic_tab_today_active.png"></img>
+                <div className="floatR w50p h100p flexCenter fs18p fBold">
+                    <div className="w40p h100p flexCenter">
+                        plan
                     </div>
-                    <div className="w25p flexCenter">
-                        <img src="img/today/ic_tab_project_default.png"></img>
-                    </div>
-                    <div className="w25p flexCenter">
-                        <img src="img/today/ic_tab_calendar_default.png"></img>
-                    </div>
-                    <div className="w25p flexCenter">
-                        <img src="img/today/ic_tab_my_default.png"></img>
-                    </div>
+                </div>
+            </div>
+            <div className="today_detail_footer_menu flexCenter">
+                <div className="w25p flexCenter">
+                    <img src="img/today/ic_tab_today_active.png"></img>
+                </div>
+                <div className="w25p flexCenter">
+                    <img src="img/today/ic_tab_project_default.png"></img>
+                </div>
+                <div className="w25p flexCenter">
+                    <img src="img/today/ic_tab_calendar_default.png"></img>
+                </div>
+                <div className="w25p flexCenter">
+                    <img src="img/today/ic_tab_my_default.png"></img>
                 </div>
             </div>
         </div>
