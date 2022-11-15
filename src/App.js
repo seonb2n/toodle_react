@@ -5,6 +5,7 @@ import PasswordResetResult from "./login/passwordReset/PasswordResetResult";
 import Today from "./today/today";
 import PostItList from "./postIt/postItList";
 import TodayAdd from "./today/todayAdd";
+import AddProjectPeriod from "./add/addProjectPeriod";
 
 function App() {
     return <Router>
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/postit">
                 <PostItList />
+            </Route>
+            <Route path="/addProjectPeriod">
+                <AddProjectPeriod />
             </Route>
         </Switch>
     </Router>
