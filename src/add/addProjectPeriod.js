@@ -3,6 +3,7 @@ import 'react-date-range/dist/theme/default.css';
 import {useState} from "react";
 import {addDays} from "date-fns";
 import DateRange from "react-date-range/dist/components/DateRange"; // theme css file
+import * as locales from 'react-date-range/dist/locale'
 import './addProjectPeriod.css';
 
 function AddProjectPeriod() {
@@ -17,7 +18,7 @@ function AddProjectPeriod() {
     return (
         <div>
             <DateRange
-                weekdayDisplayFormat='eee'
+                locale={locales["ko"]}
                 editableDateInputs={true}
                 onChange={(item) => setDayRange([item.selection])}
                 moveRangeOnFirstSelection={false}
