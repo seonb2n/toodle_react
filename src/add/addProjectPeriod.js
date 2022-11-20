@@ -5,6 +5,7 @@ import {addDays} from "date-fns";
 import DateRange from "react-date-range/dist/components/DateRange"; // theme css file
 import * as locales from 'react-date-range/dist/locale'
 import './addProjectPeriod.css';
+import {Link} from "react-router-dom";
 
 function AddProjectPeriod() {
     const [dayRange, setDayRange] = useState([
@@ -26,6 +27,11 @@ function AddProjectPeriod() {
 
     return (
         <div>
+            <div className="fs14p w100p mt10 cancelButton">
+                <div className="ml10 mt10">
+                    취소
+                </div>
+            </div>
             <DateRange
                 locale={locales["ko"]}
                 editableDateInputs={true}
@@ -37,12 +43,19 @@ function AddProjectPeriod() {
                 months={1}
                 dateDisplayFormat={'yyyy년 MM월 dd일 E'}
             />
-            <div className="w100p flexCenter">
-                <div className="addPeriodSubmitButton w90p h50 flexCenterAlignHorizon">
-                    <div>
-                        <p>{getDateDiff(dayRange[0].endDate, dayRange[0].startDate) + 1}일 동안 하기</p>
+            <div className="w100p">
+                <Link to={{
+                    pathname: "/addProject",
+                    state: {startDay: dayRange[0].startDate.toDateString(), endDay: dayRange[0].endDate.toDateString()}
+                }}>
+                    <div className="w100p flexCenter">
+                        <div className="addPeriodSubmitButton w90p h50 flexCenterAlignHorizon">
+                            <div>
+                                <p>{getDateDiff(dayRange[0].endDate, dayRange[0].startDate) + 1}일 동안 하기</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     )

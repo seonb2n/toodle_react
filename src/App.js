@@ -6,6 +6,7 @@ import Today from "./today/today";
 import PostItList from "./postIt/postItList";
 import TodayAdd from "./today/todayAdd";
 import AddProjectPeriod from "./add/addProjectPeriod";
+import AddProject from "./add/addProject";
 
 function App() {
     return <Router>
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/addProjectPeriod">
                 <AddProjectPeriod />
+            </Route>
+            <Route path="/addProject">
+                <AddProject />
             </Route>
         </Switch>
     </Router>

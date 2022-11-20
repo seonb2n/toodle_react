@@ -1,3 +1,8 @@
+.cancelButton {
+    border-top: 1px solid;
+    border-radius: 10px;
+}
+
 .rdrCalendarWrapper {
     width: 100%;
 }
