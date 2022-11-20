@@ -98,6 +98,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .h150 {height: 150px !important;}
 .h360 {height: 360px !important;}
 
+.h50p {height: 50% !important;}
 .h100p {height: 100% !important;}
 
 .w5p {width: 5% !important;}
@@ -124,6 +125,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .w30 {width: 30px !important;}
 .w35 {width: 35px !important;}
 .w50 {width: 50px !important;}
+.w70 {width: 70px !important;}
 .w80 {width: 80px !important;}
 .w90 {width: 90px !important;}
 .w100 {width: 100px !important;}
@@ -209,4 +211,12 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
     overflow-x: hidden;
     overflow-y: auto;
     text-align:justify;
+}
+
+.positionAbs {
+    position: absolute;
+}
+
+.positionRel {
+    position: relative;
 }

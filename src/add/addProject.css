@@ -1,0 +1,9 @@
+.projectNameInput {
+    border: none;
+    border-bottom: 1px solid #ededf2;
+}
+
+.projectNameInput::placeholder {
+    color: black;
+    font-size: 15px;
+}

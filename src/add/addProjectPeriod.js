@@ -46,7 +46,7 @@ function AddProjectPeriod() {
             <div className="w100p">
                 <Link to={{
                     pathname: "/addProject",
-                    state: {startDay: dayRange[0].startDate.toDateString(), endDay: dayRange[0].endDate.toDateString()}
+                    state: {startDay: dayRange[0].startDate.toISOString(), endDay: dayRange[0].endDate.toISOString()}
                 }}>
                     <div className="w100p flexCenter">
                         <div className="addPeriodSubmitButton w90p h50 flexCenterAlignHorizon">
