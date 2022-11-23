@@ -1,0 +1,92 @@
+.title_oval {
+    position: absolute;
+    left: 90px;
+    top: 46px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.title_txt {
+    font-size: 36px;
+    letter-spacing: -0.6px;
+    line-height: 44px;
+}
+
+.signup_email {
+    margin-top: 18px;
+    height: 56px;
+}
+
+.signup_email input {
+    border: none;
+    width: 100%;
+    height: 22px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.signup_email input:focus {
+    outline: none;
+}
+
+.signup_email input::placeholder {
+    color: #b6bbc7;
+}
+
+.signup_password {
+    position: relative;
+    height: 56px;
+}
+
+.signup_password_input {
+    z-index: 1;
+    width: 100%;
+    border: none;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.signup_password_input:focus {
+    outline: none;
+}
+
+.signup_password_input::placeholder {
+    color: #b6bbc7;
+}
+
+.signup_password img {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    width: 20px;
+    margin-left: 1px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+
+.signup_password_confirm {
+    position: relative;
+    height: 50px;
+}
+
+.signup_password_confirm img {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    width: 20px;
+    margin-left: 1px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.signup_info_text {
+    color: #888c99;
+    font-size: 13px;
+}
+
+.policyBox {
+    font-size: 13px;
+    color: #888c99;
+}

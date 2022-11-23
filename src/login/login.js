@@ -108,9 +108,12 @@ function Login() {
                 </Link>
                 <hr/>
 
-                <div className="joinWithEmailBtn">
-                    이메일 회원가입
-                </div>
+                <Link to="/signUp">
+                    <div className="joinWithEmailBtn">
+                        이메일 회원가입
+                    </div>
+                </Link>
+
             </div>
 
             <div className="socialLoginText">

@@ -7,12 +7,16 @@ import PostItList from "./postIt/postItList";
 import TodayAdd from "./today/todayAdd";
 import AddProjectPeriod from "./add/addProjectPeriod";
 import AddProject from "./add/addProject";
+import SignUpEmail from "./login/sighUp/signUpEmail";
 
 function App() {
     return <Router>
         <Switch>
             <Route path="/login">
                 <Login />
+            </Route>
+            <Route path="/signUp">
+                <SignUpEmail />
             </Route>
             <Route path="/passwordReset">
                 <PasswordReset />
