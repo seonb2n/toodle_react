@@ -32,6 +32,10 @@ figure{padding:0px; margin:0px;}
     visibility: hidden;
 }
 
+.display_none {
+    display: none;
+}
+
 /* 링크 기본값 */
 a:link{text-decoration:none; color:#444;}
 a:visited{text-decoration:none; color:#444;}
@@ -92,6 +96,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .h42 {height: 42px !important;}
 .h46 {height: 46px !important;}
 .h50 {height: 50px !important;}
+.h52 {height: 52px !important;}
 .h60 {height: 60px !important;}
 .h70 {height: 70px !important;}
 .h100 {height: 100px !important;}
@@ -144,6 +149,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .fc_bl {color: #0055c4;}
 .fc_pp {color: #5d5ce6;}
 .fc_lg {color: #4e535e;}
+.fc_lo {color: #ff8445;}
 
 .fs12p {font-size: 12px;}
 .fs14p {font-size: 14px;}

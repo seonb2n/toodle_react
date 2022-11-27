@@ -89,4 +89,35 @@
 .policyBox {
     font-size: 13px;
     color: #888c99;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.policy_radio {
+    accent-color: #ff8445;
+}
+
+.signup_policy_service_box div {
+    color: #ff8445;
+}
+
+.signup_policy_service_box img {
+    position: absolute;
+    right: 15px;
+}
+
+.signup_button {
+    width: calc(100% - 30px);
+    border: 2px solid #ededf2;
+    border-radius: 26px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.signup_button_clicked {
+    width: calc(100% - 30px);
+    border: 2px solid black;
+    border-radius: 26px;
+    position: absolute;
+    bottom: 5px;
 }
