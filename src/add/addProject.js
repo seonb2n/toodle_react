@@ -2,7 +2,8 @@ import {useLocation} from "react-router-dom";
 import "../css/base.css"
 import "./addProject.css"
 import DatePicker from "react-mobile-datepicker";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import SetColorDiv from "../common/setColorDiv";
 
 
 function AddProject(props) {
@@ -10,7 +11,6 @@ function AddProject(props) {
     let startDate = location.state?.startDay;
     let endDate = location.state?.endDay;
     const [endDay, setEndDay] = useState(new Date(endDate));
-    console.log(endDay);
     const [time, setTime] = useState(new Date());
     const [isOpen, setIsOpen] = useState(true);
 
@@ -29,6 +29,47 @@ function AddProject(props) {
         setIsOpen(false);
     };
 
+    // 색상 정하는 부분
+    const [color, setColor] = useState("#0054FF");
+
+    let colorSetArr = [];
+    colorSetArr[0] = "#007cff";
+    colorSetArr[1] = "#ff8600";
+    colorSetArr[2] = "#00cb48";
+    colorSetArr[3] = "#ff3a30";
+    colorSetArr[4] = "#43e4c0";
+    colorSetArr[5] = "#5d5ce6";
+    colorSetArr[6] = "#fe2987";
+    colorSetArr[7] = "#db6aff";
+    colorSetArr[8] = "#407190";
+    colorSetArr[9] = "#fec912";
+    const [isClickedArr, setIsClickedArr] = useState([
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ]);
+
+    const onSetColorClick = (e) => {
+        e.preventDefault();
+        const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`;
+        setColor(rgba2hex(e.target.style.backgroundColor));
+    }
+
+    useEffect(() => {
+        let tmpClickedArr = []
+        for (let i = 0; i < colorSetArr.length; i++) {
+            tmpClickedArr[i] = color === colorSetArr[i];
+        }
+        setIsClickedArr(tmpClickedArr);
+    }, [color])
+
     return (
         <div>
             <div className="h50 flex">
@@ -44,7 +85,7 @@ function AddProject(props) {
                     이름
                 </div>
                 <div className="h100p flexCenter">
-                    <input className="w270 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
+                    <input className="w250 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
                 </div>
             </div>
             <div className="h50 flex">
@@ -86,24 +127,59 @@ function AddProject(props) {
                     </div>
                 </div>
             </div>
-            <div>
-                <div className="floatL">
+            <div className="h50 flex">
+                <div className="ml20 w70 fBold">
                     색상
                 </div>
                 <div>
-                    색깔 선택
+                    <div className="flex">
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[0]} isClicked={isClickedArr[0]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[1]} isClicked={isClickedArr[1]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[2]} isClicked={isClickedArr[2]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[3]} isClicked={isClickedArr[3]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[4]} isClicked={isClickedArr[4]}/>
+                        </div>
+                    </div>
+                    <div className="flex">
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[5]} isClicked={isClickedArr[5]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[6]} isClicked={isClickedArr[6]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[7]} isClicked={isClickedArr[7]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[8]} isClicked={isClickedArr[8]}/>
+                        </div>
+                        <div onClick={onSetColorClick}>
+                            <SetColorDiv color={colorSetArr[9]} isClicked={isClickedArr[9]}/>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <div className="floatL">
+            <div className="h50 flex">
+                <div className="ml20 w70 fBold">
                     태스크 추가
                 </div>
                 <div>
                     태스크 입력
                 </div>
             </div>
-            <div>
-                다음
+            <div className="nextBtnWrapper flexCenterAlignHorizon">
+                <div className="nextBtn flexCenter fBold fs16p">
+                    다음
+                </div>
             </div>
         </div>
     );
