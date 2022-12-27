@@ -4,6 +4,7 @@ import "./addProject.css"
 import DatePicker from "react-mobile-datepicker";
 import {useEffect, useState} from "react";
 import SetColorDiv from "../common/setColorDiv";
+import AddProjectTask from "./addProjectTask";
 
 
 function AddProject(props) {
@@ -168,18 +169,30 @@ function AddProject(props) {
                     </div>
                 </div>
             </div>
-            <div className="h50 flex">
+            <div className="flex mt10">
                 <div className="ml20 w70 fBold">
                     태스크 추가
                 </div>
                 <div>
-                    태스크 입력
+                    <div className="h32">
+                        <AddProjectTask importance="HIGH" taskName="태스크를 입력한 상태입니다."/>
+                    </div>
+                    <div>
+                        <input />
+                        <div>
+                            <div>
+                                <img src="img/today/ic_importance_high_black.png"/>
+                                <p>높음</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="nextBtnWrapper flexCenterAlignHorizon">
                 <div className="nextBtn flexCenter fBold fs16p">
-                    다음
+                    추가하기
                 </div>
+                
             </div>
         </div>
     );
