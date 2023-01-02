@@ -129,6 +129,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .w25 {width: 25px !important;}
 .w30 {width: 30px !important;}
 .w35 {width: 35px !important;}
+.w40 {width: 40px !important;}
 .w50 {width: 50px !important;}
 .w60 {width: 60px !important;}
 .w70 {width: 70px !important;}
@@ -226,4 +227,11 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 
 .positionRel {
     position: relative;
+}
+
+.grayLine {
+    height: 1px;
+    background-color: rgba(136, 140, 153, 0.5);
+    margin-top: 3px;
+    margin-bottom: 3px;
 }

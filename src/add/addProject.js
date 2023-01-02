@@ -128,7 +128,7 @@ function AddProject(props) {
                     </div>
                 </div>
             </div>
-            <div className="h50 flex">
+            <div className="flex">
                 <div className="ml20 w70 fBold">
                     색상
                 </div>
@@ -174,15 +174,29 @@ function AddProject(props) {
                     태스크 추가
                 </div>
                 <div>
-                    <div className="h32">
+                    <div>
                         <AddProjectTask importance="HIGH" taskName="태스크를 입력한 상태입니다."/>
                     </div>
                     <div>
-                        <input />
-                        <div>
-                            <div>
-                                <img src="img/today/ic_importance_high_black.png"/>
-                                <p>높음</p>
+                        <div className="flex">
+                            <input className="h20 taskInputBox" placeholder="태스크와 중요도를 입력해주세요." />
+                            <img className="w10 h10" src="img/add/ic_task_input_cancel.png"/>
+                        </div>
+                        <div className="grayLine"></div>
+                        <div className="flex">
+                            <div className="taskImportanceSelectBox">
+                                <div>
+                                    <img src="img/today/ic_importance_high_black.png"/>
+                                    <p>높음</p>
+                                </div>
+                            </div>
+                            <div className="taskImportanceSelectBox">
+                                <img className="w40" src="img/today/ic_importance_mid_black.png"/>
+                                <p>중간</p>
+                            </div>
+                            <div className="taskImportanceSelectBox">
+                                <img src="img/today/ic_importance_low_black.png"/>
+                                <p>낮음</p>
                             </div>
                         </div>
                     </div>

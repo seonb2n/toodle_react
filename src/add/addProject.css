@@ -21,3 +21,31 @@
     border: 2px solid black;
     border-radius: 20px;
 }
+
+.taskInputBox {
+    border: none;
+    width: 100%;
+}
+
+.taskInputBox::placeholder {
+    color: #888c99;
+}
+
+.taskImportanceSelectBox {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.taskImportanceSelectBox div {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+}
+
