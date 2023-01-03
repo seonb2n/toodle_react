@@ -178,25 +178,29 @@ function AddProject(props) {
                         <AddProjectTask importance="HIGH" taskName="태스크를 입력한 상태입니다."/>
                     </div>
                     <div>
-                        <div className="flex">
-                            <input className="h20 taskInputBox" placeholder="태스크와 중요도를 입력해주세요." />
+                        <div className="flex mt10">
+                            <input className="h20 taskInputBox" placeholder="태스크와 중요도를 입력해주세요."/>
                             <img className="w10 h10" src="img/add/ic_task_input_cancel.png"/>
                         </div>
                         <div className="grayLine"></div>
-                        <div className="flex">
-                            <div className="taskImportanceSelectBox">
+                        <div className="flex mt10">
+                            <div className="taskImportanceSelectBox mr10">
                                 <div>
                                     <img src="img/today/ic_importance_high_black.png"/>
                                     <p>높음</p>
                                 </div>
                             </div>
-                            <div className="taskImportanceSelectBox">
-                                <img className="w40" src="img/today/ic_importance_mid_black.png"/>
-                                <p>중간</p>
+                            <div className="taskImportanceSelectBox mr10">
+                                <div>
+                                    <img className="w40" src="img/today/ic_importance_mid_black.png"/>
+                                    <p>중간</p>
+                                </div>
                             </div>
                             <div className="taskImportanceSelectBox">
-                                <img src="img/today/ic_importance_low_black.png"/>
-                                <p>낮음</p>
+                                <div>
+                                    <img src="img/today/ic_importance_low_black.png"/>
+                                    <p>낮음</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -206,7 +210,7 @@ function AddProject(props) {
                 <div className="nextBtn flexCenter fBold fs16p">
                     추가하기
                 </div>
-                
+
             </div>
         </div>
     );
