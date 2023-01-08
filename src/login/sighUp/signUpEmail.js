@@ -107,6 +107,7 @@ function SignUpEmail() {
 
         // fetch 를 통해 서버에 요청 전송
         // 가입된 이메일일 경우 error msg 출력
+        // todo 사용자 회원가입 요청 전송하기!
 
     }
 

@@ -1,6 +1,8 @@
 import "./loginStyle.css";
 import {useRef, useState} from "react";
 import {Link} from "react-router-dom";
+import AuthenticationService from "./AuthenticationService";
+import axios from 'axios'
 
 function Login() {
     const HIDDEN_CLASSNAME = "hidden";
@@ -39,33 +41,13 @@ function Login() {
     const loginBtnClicked = async (event) => {
         event.preventDefault();
         setIsLoginFailed(false);
-        const json = await (
-            await fetch("http://192.168.35.4:8080/api/v1/users/login", {
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                redirect: 'follow',
-                body: JSON.stringify({
-                    userEmail: userEmail,
-                    password: userPwd,
-                }),
-            }).then((response) => {
-                    if (response.status !== 200) {
-                        throw new Error();
-                    }
-                    return response.json();
-                }
-            ).catch(error => {
+        AuthenticationService.executeJwtAuthenticationService(userEmail, userPwd)
+            .then((response) => {
+                AuthenticationService.registerSuccessfulLoginForJwt(userEmail, response.data.jwtToken);
+                window.location.href = "/today";
+            }).catch(() => {
                 setIsLoginFailed(true);
-                console.log(isLoginFailed);
-                console.log(error);
-            })
-        )
-        setUserData(json.data);
-        alert("인증 토큰 : " + userData);
+        })
     }
 
     return (
