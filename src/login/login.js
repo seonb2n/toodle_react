@@ -43,8 +43,10 @@ function Login() {
         setIsLoginFailed(false);
         AuthenticationService.executeJwtAuthenticationService(userEmail, userPwd)
             .then((response) => {
+                console.log(response);
                 AuthenticationService.registerSuccessfulLoginForJwt(userEmail, response.data.jwtToken);
-                window.location.href = "/today";
+                AuthenticationService.executeTodayService();
+                // window.location.href = "/today";
             }).catch(() => {
                 setIsLoginFailed(true);
         })

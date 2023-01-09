@@ -3,7 +3,7 @@ import axios from 'axios'
 class AuthenticationService {
 
     executeJwtAuthenticationService(email, password) {
-        return axios.post('http://localhost:8080/authenticate', {
+        return axios.post('http://localhost:8080/api/v1/users/authenticate', {
             email,
             password
         });
@@ -19,10 +19,6 @@ class AuthenticationService {
         localStorage.setItem('token', token);
         localStorage.setItem('authenticatedUser', userEmail);
         this.setupAxiosInterceptors();
-    }
-
-    createJWTToken(token) {
-        return 'Bearer ' + token
     }
 
     setupAxiosInterceptors() {
