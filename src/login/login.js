@@ -38,6 +38,16 @@ function Login() {
     }
 
     const [isLoginFailed, setIsLoginFailed] = useState(false);
+
+    // todo 클라이언트에서 할거 with WEB
+    // 1. 아키텍쳐 - API call, dto, service pattern, routing, value preserve life cycle etc
+    // 2. 뷰 짜기 - 개인기(css)
+    // 3. 응용 - view recyclable : important!
+    // 4. 애니메이션, 유저 상호작용 : drag and drop, enter submit, swipe, scroll
+    // 5. 속도 : rendering speed, animation speed, device issue
+
+    //todo then 패턴은 탭의 증가가 있으니 탭을 부셔보자.
+    //status 코드를 기반으로 분기를 안하고, response 자체에 코드 값이 있어야 한다.
     const loginBtnClicked = async (event) => {
         event.preventDefault();
         setIsLoginFailed(false);

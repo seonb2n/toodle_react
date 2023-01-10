@@ -105,9 +105,8 @@ function SignUpEmail() {
         const policyAgree = document.getElementById("policy_agree").checked;
         const privateAgree = document.getElementById("private_agree").checked;
 
-        // fetch 를 통해 서버에 요청 전송
         // 가입된 이메일일 경우 error msg 출력
-        // todo 사용자 회원가입 요청 전송하기!
+        // todo 사용자 회원가입 요청 전송하기! fetch vs axios 머가 더 좋을까
 
     }
 
