@@ -34,10 +34,10 @@
 .taskImportanceSelectBox {
     width: 50px;
     height: 50px;
-    border: 1px solid black;
     border-radius: 10px;
     text-align: center;
     position: relative;
+    background-color: #ededf2;
 }
 
 .taskImportanceSelectBox div {
@@ -49,3 +49,20 @@
     margin: -20px 0 0 -20px;
 }
 
+.addTaskWindow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.addTaskWindowHeader {
+    border-top: 1px solid;
+    border-radius: 10px;
+}
+
+.addTaskWindowHeader .title {
+    width: 100%;
+}

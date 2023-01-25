@@ -63,6 +63,14 @@ function AddProject(props) {
         setColor(rgba2hex(e.target.style.backgroundColor));
     }
 
+    const onTaskCancelInputBtnClick = (e) => {
+        e.preventDefault();
+        document.getElementById("taskInput").value="";
+    }
+    let today = new Date();
+    today.setDate(today.getDate()+1);
+    const [taskEndDay, setTaskEndDay] = useState(today.toLocaleDateString() + '까지');
+
     useEffect(() => {
         let tmpClickedArr = []
         for (let i = 0; i < colorSetArr.length; i++) {
@@ -179,8 +187,8 @@ function AddProject(props) {
                     </div>
                     <div>
                         <div className="flex mt10">
-                            <input className="h20 taskInputBox" placeholder="태스크와 중요도를 입력해주세요."/>
-                            <img className="w10 h10" src="img/add/ic_task_input_cancel.png"/>
+                            <input id="taskInput" className="h20 taskInputBox" placeholder="태스크와 중요도를 입력해주세요."/>
+                            <img onClick={onTaskCancelInputBtnClick} className="w10 h10" src="img/add/ic_task_input_cancel.png"/>
                         </div>
                         <div className="grayLine"></div>
                         <div className="flex mt10">
@@ -210,7 +218,77 @@ function AddProject(props) {
                 <div className="nextBtn flexCenter fBold fs16p">
                     추가하기
                 </div>
+            </div>
+            //todo 버튼 클릭시 태스크 추가하는 창은 밑에서부터 자연스러운 애니메이션으로 올라온다.
+            <div className="addTaskWindow">
+                <div className="addTaskWindowHeader flexCenter w100p mt20 pt10">
+                    <div className="w40 ml10">
+                        취소
+                    </div>
+                    <div className="title flexCenter fBold">
+                        태스크 더 추가하기
+                    </div>
+                    <div className="w40 mr10 fBold">
+                        추가
+                    </div>
+                </div>
 
+                <div className="content mt20 ml10">
+                    <div className="flex h50">
+                        <div className="w70 fBold">
+                            이름
+                        </div>
+                        <div className="h100p flexCenter">
+                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요."/>
+                        </div>
+                    </div>
+                    <div className="flex mt10">
+                        <div className="w70 fBold">
+                            중요도
+                        </div>
+                        <div>
+                            <div>
+                                <div className="flex mt10">
+                                    <div className="taskImportanceSelectBox mr10">
+                                        <div>
+                                            <img src="img/today/ic_importance_high_black.png"/>
+                                            <p>높음</p>
+                                        </div>
+                                    </div>
+                                    <div className="taskImportanceSelectBox mr10">
+                                        <div>
+                                            <img className="w40" src="img/today/ic_importance_mid_black.png"/>
+                                            <p>중간</p>
+                                        </div>
+                                    </div>
+                                    <div className="taskImportanceSelectBox">
+                                        <div>
+                                            <img src="img/today/ic_importance_low_black.png"/>
+                                            <p>낮음</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex h50">
+                        <div className="w70">
+                            <div className="fBold">작업 기한</div>
+                            <div className="fs10p">{taskEndDay}</div>
+                        </div>
+                        //todo 버튼 클릭시 날짜가 변경된다.
+                        <div className="h100p flexCenter">
+                            <div className="flex">
+                                <div>오늘부터</div>
+                                <div>1일</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="footer">
+
+                </div>
             </div>
         </div>
     );

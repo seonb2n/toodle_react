@@ -137,6 +137,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .w90 {width: 90px !important;}
 .w100 {width: 100px !important;}
 .w200 {width: 200px !important;}
+.w250 {width: 250px !important;}
 .w270 {width: 270px !important;}
 
 .highlight {color: #0055c4; font-weight: 600;}
@@ -152,6 +153,7 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .fc_lg {color: #4e535e;}
 .fc_lo {color: #ff8445;}
 
+.fs10p {font-size: 10px;}
 .fs12p {font-size: 12px;}
 .fs14p {font-size: 14px;}
 .fs16p {font-size: 16px;}
@@ -194,6 +196,8 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 .p25 {padding: 25px;}
 .p30 {padding: 30px;}
 
+.pt5 {padding-top: 5px;}
+.pt10 {padding-top: 10px;}
 .pt5 {padding-top: 5px;}
 .pd5 {padding-bottom: 5px;}
 .pl5 {padding-left: 5px;}
