@@ -68,8 +68,15 @@ function AddProject(props) {
         document.getElementById("taskInput").value="";
     }
     let today = new Date();
-    today.setDate(today.getDate()+1);
-    const [taskEndDay, setTaskEndDay] = useState(today.toLocaleDateString() + '까지');
+    const [taskEndDay, setTaskEndDay] = useState(1);
+    today.setDate(today.getDate()+taskEndDay);
+
+    const onAddEndDayClick = (e) => {
+        setTaskEndDay(taskEndDay+1);
+    }
+    const onMinusEndDayClick = (e) => {
+        setTaskEndDay(taskEndDay-1);
+    }
 
     useEffect(() => {
         let tmpClickedArr = []
@@ -274,13 +281,14 @@ function AddProject(props) {
                     <div className="flex h50">
                         <div className="w70">
                             <div className="fBold">작업 기한</div>
-                            <div className="fs10p">{taskEndDay}</div>
+                            <div className="fs10p">{today.toLocaleDateString()}</div>
                         </div>
-                        //todo 버튼 클릭시 날짜가 변경된다.
                         <div className="h100p flexCenter">
                             <div className="flex">
                                 <div>오늘부터</div>
-                                <div>1일</div>
+                                <div>{taskEndDay} 일</div>
+                                <div className="ml10 w20 h20 flexCenter bgLightGray rad4" onClick={onAddEndDayClick}><img className="w50p" src="img/add/ic_add.png"/></div>
+                                <div className="ml5 w20 h20 flexCenter bgLightGray rad4" onClick={onMinusEndDayClick}><img className="w50p" src="img/add/ic_minus.png" /></div>
                             </div>
                         </div>
                     </div>
