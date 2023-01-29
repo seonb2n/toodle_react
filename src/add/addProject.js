@@ -82,6 +82,11 @@ function AddProject(props) {
         setTaskEndDay(taskEndDay+value);
     }
 
+    const [isAddTaskWindowOpen, setIsAddTaskWindowOpen] = useState(false);
+    const onAddTaskWindowOpenBtnClick = (props) => {
+        setIsAddTaskWindowOpen(!isAddTaskWindowOpen);
+    }
+
     useEffect(() => {
         let tmpClickedArr = []
         for (let i = 0; i < colorSetArr.length; i++) {
@@ -204,19 +209,19 @@ function AddProject(props) {
                         <div className="grayLine"></div>
                         <div className="flex mt10">
                             <div className="taskImportanceSelectBox mr10">
-                                <div>
+                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
                                     <img src="img/today/ic_importance_high_black.png"/>
                                     <p>높음</p>
                                 </div>
                             </div>
                             <div className="taskImportanceSelectBox mr10">
-                                <div>
+                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
                                     <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                     <p>중간</p>
                                 </div>
                             </div>
                             <div className="taskImportanceSelectBox">
-                                <div>
+                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
                                     <img src="img/today/ic_importance_low_black.png"/>
                                     <p>낮음</p>
                                 </div>
@@ -230,10 +235,9 @@ function AddProject(props) {
                     추가하기
                 </div>
             </div>
-            //todo 버튼 클릭시 태스크 추가하는 창은 밑에서부터 자연스러운 애니메이션으로 올라온다.
-            <div className="addTaskWindow">
+            <div className={isAddTaskWindowOpen ? "addTaskWindow addTaskWindow-open" : "addTaskWindow"}>
                 <div className="addTaskWindowHeader flexCenter w100p mt20 pt10">
-                    <div className="w40 ml10">
+                    <div className="w40 ml10" onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
                         취소
                     </div>
                     <div className="title flexCenter fBold">
