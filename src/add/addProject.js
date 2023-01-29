@@ -78,6 +78,10 @@ function AddProject(props) {
         setTaskEndDay(taskEndDay-1);
     }
 
+    const onAddBtnClick = (value) => {
+        setTaskEndDay(taskEndDay+value);
+    }
+
     useEffect(() => {
         let tmpClickedArr = []
         for (let i = 0; i < colorSetArr.length; i++) {
@@ -278,17 +282,26 @@ function AddProject(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex h50">
+                    <div className="flex h70">
                         <div className="w70">
                             <div className="fBold">작업 기한</div>
                             <div className="fs10p">{today.toLocaleDateString()}</div>
                         </div>
-                        <div className="h100p flexCenter">
-                            <div className="flex">
-                                <div>오늘부터</div>
-                                <div>{taskEndDay} 일</div>
-                                <div className="ml10 w20 h20 flexCenter bgLightGray rad4" onClick={onAddEndDayClick}><img className="w50p" src="img/add/ic_add.png"/></div>
-                                <div className="ml5 w20 h20 flexCenter bgLightGray rad4" onClick={onMinusEndDayClick}><img className="w50p" src="img/add/ic_minus.png" /></div>
+                        <div className="h100p">
+                            <div className="h100p flexCenterAlignHorizon">
+                                <div className="flexCenter">
+                                    <div className="mr5 h100p">오늘부터</div>
+                                    <div className="taskAddEndDayText w70 h100p">{taskEndDay} 일간</div>
+                                    <div className="ml10 w20 h20 flexCenter bgLightGray rad4" onClick={onAddEndDayClick}><img className="w50p" src="img/add/ic_add.png"/></div>
+                                    <div className="ml5 w20 h20 flexCenter bgLightGray rad4" onClick={onMinusEndDayClick}><img className="w50p" src="img/add/ic_minus.png" /></div>
+                                </div>
+                                <div className="taskAddEndDayBtnContainer flex w270">
+                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(0)}}>기간 설정 안함</div>
+                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(5)}}>5일</div>
+                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(10)}}>10일</div>
+                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(30)}}>30일</div>
+                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(60)}}>60일</div>
+                                </div>
                             </div>
                         </div>
                     </div>

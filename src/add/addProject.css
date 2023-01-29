@@ -66,3 +66,27 @@
 .addTaskWindowHeader .title {
     width: 100%;
 }
+
+.taskAddEndDayText {
+    font-weight: bold;
+    text-decoration: underline 2px;
+}
+
+.taskAddEndDayBtnContainer {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.taskAddEndDayBtnContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.taskAddEndDayBtn {
+    border-radius: 10px;
+    height: 20px;
+    background-color: #888c99;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
