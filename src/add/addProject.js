@@ -13,7 +13,7 @@ function AddProject(props) {
     let endDate = location.state?.endDay;
     const [endDay, setEndDay] = useState(new Date(endDate));
     const [time, setTime] = useState(new Date());
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
         setIsOpen(!isOpen);
@@ -83,9 +83,14 @@ function AddProject(props) {
     }
 
     const [isAddTaskWindowOpen, setIsAddTaskWindowOpen] = useState(false);
-    const onAddTaskWindowOpenBtnClick = (props) => {
+    const [selectedTaskImportance, setSelectedTaskImportance] = useState("");
+    const [selectedTaskName, setSelectedTaskName] = useState("");
+    const onAddTaskWindowOpenBtnClick = (importance) => {
         setIsAddTaskWindowOpen(!isAddTaskWindowOpen);
+        setSelectedTaskImportance(importance);
+        setSelectedTaskName(document.getElementById("taskInput").value);
     }
+
 
     useEffect(() => {
         let tmpClickedArr = []
@@ -209,19 +214,19 @@ function AddProject(props) {
                         <div className="grayLine"></div>
                         <div className="flex mt10">
                             <div className="taskImportanceSelectBox mr10">
-                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
+                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick("HIGH")}}>
                                     <img src="img/today/ic_importance_high_black.png"/>
                                     <p>높음</p>
                                 </div>
                             </div>
                             <div className="taskImportanceSelectBox mr10">
-                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
+                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick("MIDDLE")}}>
                                     <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                     <p>중간</p>
                                 </div>
                             </div>
                             <div className="taskImportanceSelectBox">
-                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
+                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick("LOW")}}>
                                     <img src="img/today/ic_importance_low_black.png"/>
                                     <p>낮음</p>
                                 </div>
@@ -254,7 +259,7 @@ function AddProject(props) {
                             이름
                         </div>
                         <div className="h100p flexCenter">
-                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요."/>
+                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요." value={selectedTaskName}/>
                         </div>
                     </div>
                     <div className="flex mt10">
@@ -264,19 +269,19 @@ function AddProject(props) {
                         <div>
                             <div>
                                 <div className="flex mt10">
-                                    <div className="taskImportanceSelectBox mr10">
+                                    <div className={selectedTaskImportance === "HIGH" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img src="img/today/ic_importance_high_black.png"/>
                                             <p>높음</p>
                                         </div>
                                     </div>
-                                    <div className="taskImportanceSelectBox mr10">
+                                    <div className={selectedTaskImportance === "MIDDLE" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                             <p>중간</p>
                                         </div>
                                     </div>
-                                    <div className="taskImportanceSelectBox">
+                                    <div className={selectedTaskImportance === "LOW" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img src="img/today/ic_importance_low_black.png"/>
                                             <p>낮음</p>

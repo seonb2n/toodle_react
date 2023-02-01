@@ -40,7 +40,26 @@
     background-color: #ededf2;
 }
 
+.taskImportanceSelectBox_selected {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    background-color: #ededf2;
+    border: 1px solid black;
+}
+
 .taskImportanceSelectBox div {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+}
+
+.taskImportanceSelectBox_selected div {
     width: 40px;
     height: 40px;
     position: absolute;
