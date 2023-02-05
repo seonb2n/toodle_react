@@ -10,9 +10,8 @@ class AuthenticationService {
      * @param password
      * @returns {Promise<axios.AxiosResponse<any>>}
      */
-    //todo 이 전에 email 과 password 형식에 대한 검증이 필요하다
     executeJwtAuthenticationService(email, password) {
-        return axios.post('http://localhost:8080/api/v1/users/authenticate', {
+        return axios.post('http://localhost:8080/api/v1/users/login', {
             email,
             password
         });
@@ -21,6 +20,11 @@ class AuthenticationService {
     executeTodayService() {
         console.log("===executeTodayService===");
         return axios.get('http://localhost:8080/today');
+    }
+
+    executePostItService() {
+        this.setupAxiosInterceptors();
+        return axios.get('http://localhost:8080/api/v1/postits');
     }
 
     registerSuccessfulLoginForJwt(userEmail, token) {
@@ -33,11 +37,12 @@ class AuthenticationService {
     setupAxiosInterceptors() {
         axios.interceptors.request.use(
             config => {
+                console.log("interceptor");
                 const token = localStorage.getItem('token');
                 if (token) {
                     config.headers['Authorization'] = 'Bearer ' + token;
                 }
-                // config.headers['Content-Type'] = 'application/json';
+                //= config.headers['Content-Type'] = 'application/json';
                 return config;
             },
             error => {

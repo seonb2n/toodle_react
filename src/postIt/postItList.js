@@ -4,20 +4,30 @@ import "../css/base.css"
 import TodayTodoSection from "../today/todayTodoSection";
 import PostItEntity from "./postItEntity";
 import BackButton from "../common/backButton";
+import {useEffect, useState} from "react";
+import AuthenticationService from "../login/AuthenticationService";
 
 function PostItList() {
-    const postIt1 = {
-        id: 1,
-        content: "일이삼",
-        data: "2020.03.03"
-    };
-    const postIt2 = {
-        id: 2,
-        content: "일이삼사",
-        data: "2020.03.04"
-    };
+    // const postIt1 = {
+    //     id: 1,
+    //     content: "일이삼",
+    //     data: "2020.03.03"
+    // };
+    // const postIt2 = {
+    //     id: 2,
+    //     content: "일이삼사",
+    //     data: "2020.03.04"
+    // };
+    const [postItList, setPostItList] = useState([]);
+    useEffect(() => {
+        AuthenticationService.executePostItService()
+            .then((response) => {
+                console.log(response);
+                setPostItList(response.data);
+            }).catch(() => {
+        })
+    }, []);
 
-    const postItList = [postIt1, postIt2];
 
     return (
         <div>

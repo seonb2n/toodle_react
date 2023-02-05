@@ -2,7 +2,6 @@ import "./loginStyle.css";
 import {useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import AuthenticationService from "./AuthenticationService";
-import axios from 'axios'
 
 function Login() {
     const HIDDEN_CLASSNAME = "hidden";
@@ -55,8 +54,7 @@ function Login() {
             .then((response) => {
                 console.log(response);
                 AuthenticationService.registerSuccessfulLoginForJwt(userEmail, response.data.jwtToken);
-                AuthenticationService.executeTodayService();
-                // window.location.href = "/today";
+                window.location.href = "/postit";
             }).catch(() => {
                 setIsLoginFailed(true);
         })
