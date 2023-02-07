@@ -28,6 +28,18 @@ function PostItList() {
         })
     }, []);
 
+    const onAddPostItBtnClick = (e) => {
+        const today = new Date();
+        const content = document.getElementById("postItContentInput").value;
+        const postItDto = {
+            "content" : content,
+            "endDay" : today,
+            "isDone" : false,
+            "id" : Math.random()
+        };
+        console.log(postItDto);
+        setPostItList([...postItList, postItDto]);
+    }
 
     return (
         <div>
@@ -58,8 +70,8 @@ function PostItList() {
             </div>
 
             <div className="ml15 mr15 mt20 h42 top_input_box flexAlignHorizon">
-                <input className="borderNone h100p fs16p" placeholder="기억해야할 일 입력하기"></input>
-                <div className="add_btn mr15">
+                <input id ="postItContentInput" className="borderNone h100p fs16p" placeholder="기억해야할 일 입력하기"></input>
+                <div onClick={onAddPostItBtnClick} className="add_btn mr15">
                     <img src="img/postit/ic_add_section.png"></img>
                 </div>
             </div>

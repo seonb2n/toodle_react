@@ -226,11 +226,11 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
 }
 
 .positionAbs {
-    position: absolute;
+    position: absolute !important;
 }
 
 .positionRel {
-    position: relative;
+    position: relative !important;
 }
 
 .grayLine {
@@ -238,4 +238,14 @@ body{-webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-ad
     background-color: rgba(136, 140, 153, 0.5);
     margin-top: 3px;
     margin-bottom: 3px;
+}
+
+.cancelMask_parent {
+    position: relative;
+}
+
+.cancelMask_child {
+    position: absolute;
+    height: 1px;
+    background-color: black;
 }
