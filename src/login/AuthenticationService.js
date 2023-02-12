@@ -22,9 +22,16 @@ class AuthenticationService {
         return axios.get('http://localhost:8080/today');
     }
 
-    executePostItService() {
+    executePostItGetService() {
         this.setupAxiosInterceptors();
         return axios.get('http://localhost:8080/api/v1/postits');
+    }
+
+    executePostItUpdateService(postItDtoList) {
+        this.setupAxiosInterceptors();
+        return axios.post('http://localhost:8080/api/v1/postits/update', {
+            postItDtoList
+        });
     }
 
     registerSuccessfulLoginForJwt(userEmail, token) {

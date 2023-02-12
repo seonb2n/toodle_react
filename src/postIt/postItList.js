@@ -6,6 +6,7 @@ import PostItEntity from "./postItEntity";
 import BackButton from "../common/backButton";
 import {useEffect, useState} from "react";
 import AuthenticationService from "../login/AuthenticationService";
+import {ToastNotification} from "../common/toastNotification";
 
 function PostItList() {
     // const postIt1 = {
@@ -19,26 +20,50 @@ function PostItList() {
     //     data: "2020.03.04"
     // };
     const [postItList, setPostItList] = useState([]);
+    const [toastState, setToastState] = useState(false);
+
+    let postItId = 0;
+
     useEffect(() => {
-        AuthenticationService.executePostItService()
+        AuthenticationService.executePostItGetService()
             .then((response) => {
                 console.log(response);
                 setPostItList(response.data);
+                for (let i = 0; i < postItList.length; i++) {
+                    postItId = Math.max(postItId, postItList[i].id);
+                }
             }).catch(() => {
         })
     }, []);
 
     const onAddPostItBtnClick = (e) => {
-        const today = new Date();
         const content = document.getElementById("postItContentInput").value;
+        if (content === "" || content === null) {
+            setToastState(true);
+            return
+        }
+
+        postItId++;
+        const today = new Date();
+        document.getElementById("postItContentInput").value = "";
         const postItDto = {
+            "id" : postItId,
             "content" : content,
             "endDay" : today,
             "isDone" : false,
-            "id" : Math.random()
         };
         console.log(postItDto);
         setPostItList([...postItList, postItDto]);
+    }
+
+    const onSavePostItBtnClick = (e) => {
+        e.preventDefault();
+        AuthenticationService.executePostItUpdateService(postItList)
+            .then((response) => {
+                if (response.status === 200) {
+
+                }
+            })
     }
 
     return (
@@ -47,7 +72,7 @@ function PostItList() {
                 <div className="w50p flexAlignHorizon">
                     <BackButton link="/login" />
                 </div>
-                <div className="w50p flexEnd mr15 fBold">
+                <div className="w50p flexEnd mr15 fBold" onClick={onSavePostItBtnClick}>
                     저장
                 </div>
             </div>
@@ -80,6 +105,12 @@ function PostItList() {
                 postItList.map(postIt => (
                     <PostItEntity content={postIt.content} date={postIt.data} key={postIt.id}/>
                 ))
+            }
+
+            {
+                toastState === true ? (
+                    <ToastNotification setToastState={setToastState} content="포스트잇에는 내용이 필요합니다!" />
+                ) : null
             }
 
         </div>
