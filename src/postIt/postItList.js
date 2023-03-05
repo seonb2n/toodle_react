@@ -5,7 +5,8 @@ import TodayTodoSection from "../today/todayTodoSection";
 import PostItEntity from "./postItEntity";
 import BackButton from "../common/backButton";
 import {useEffect, useState} from "react";
-import AuthenticationService from "../login/AuthenticationService";
+import AuthenticationService from "../service/AuthenticationService";
+import PostItService from "../service/PostItService";
 import {ToastNotification} from "../common/toastNotification";
 
 function PostItList() {
@@ -23,7 +24,7 @@ function PostItList() {
     const [toastState, setToastState] = useState(false);
 
     useEffect(() => {
-        AuthenticationService.executePostItGetService()
+        PostItService.executePostItGetService()
             .then((response) => {
                 console.log(response);
                 setPostItList(response.data);
@@ -38,7 +39,7 @@ function PostItList() {
             return
         }
 
-        const postItId = AuthenticationService.generateUUID();
+        const postItId = PostItService.generateUUID();
         const today = new Date();
         document.getElementById("postItContentInput").value = "";
         const postItDto = {
@@ -53,7 +54,7 @@ function PostItList() {
 
     const onSavePostItBtnClick = (e) => {
         e.preventDefault();
-        AuthenticationService.executePostItUpdateService(postItList)
+        PostItService.executePostItUpdateService(postItList)
             .then((response) => {
                 if (response.status === 200) {
 

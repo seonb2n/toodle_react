@@ -1,7 +1,7 @@
 import "./loginStyle.css";
 import {useRef, useState} from "react";
 import {Link} from "react-router-dom";
-import AuthenticationService from "./AuthenticationService";
+import AuthenticationService from "../service/AuthenticationService";
 
 function Login() {
     const HIDDEN_CLASSNAME = "hidden";

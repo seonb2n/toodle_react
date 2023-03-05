@@ -17,35 +17,12 @@ class AuthenticationService {
         });
     }
 
-    executeTodayService() {
-        console.log("===executeTodayService===");
-        return axios.get('http://localhost:8080/today');
-    }
-
-    executePostItGetService() {
-        this.setupAxiosInterceptors();
-        return axios.get('http://localhost:8080/api/v1/postits');
-    }
-
-    executePostItUpdateService(postItDtoList) {
-        this.setupAxiosInterceptors();
-        return axios.post('http://localhost:8080/api/v1/postits/update', {
-            postItDtoList
-        });
-    }
-
     registerSuccessfulLoginForJwt(userEmail, token) {
         console.log("===registerSuccessfulLoginForJwt===");
         localStorage.setItem('token', token);
         localStorage.setItem('authenticatedUser', userEmail);
         this.setupAxiosInterceptors();
     }
-
-    executeProjectGetService() {
-        this.setupAxiosInterceptors();
-        return axios.get('http://localhost:8080/api/v1/projects');
-    }
-
 
     setupAxiosInterceptors() {
         axios.interceptors.request.use(
@@ -86,16 +63,6 @@ class AuthenticationService {
         let user = localStorage.getItem('authenticatedUser');
         if(user===null) return '';
         return user;
-    }
-
-    /**
-     * generate UUID V4
-     * @returns {*}
-     */
-    generateUUID() {
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        );
     }
 }
 
