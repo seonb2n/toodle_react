@@ -22,16 +22,11 @@ function PostItList() {
     const [postItList, setPostItList] = useState([]);
     const [toastState, setToastState] = useState(false);
 
-    let postItId = 0;
-
     useEffect(() => {
         AuthenticationService.executePostItGetService()
             .then((response) => {
                 console.log(response);
                 setPostItList(response.data);
-                for (let i = 0; i < postItList.length; i++) {
-                    postItId = Math.max(postItId, postItList[i].id);
-                }
             }).catch(() => {
         })
     }, []);
@@ -43,13 +38,13 @@ function PostItList() {
             return
         }
 
-        postItId++;
+        const postItId = AuthenticationService.generateUUID();
         const today = new Date();
         document.getElementById("postItContentInput").value = "";
         const postItDto = {
-            "id" : postItId,
+            "postItId" : postItId,
             "content" : content,
-            "endDay" : today,
+            "endTime" : toStringByFormatting(today),
             "isDone" : false,
         };
         console.log(postItDto);
@@ -103,7 +98,7 @@ function PostItList() {
 
             {
                 postItList.map(postIt => (
-                    <PostItEntity content={postIt.content} date={postIt.data} key={postIt.id}/>
+                    <PostItEntity content={postIt.content} date={postIt.endTime} key={postIt.postItId}/>
                 ))
             }
 
@@ -115,6 +110,26 @@ function PostItList() {
 
         </div>
     );
+}
+
+/**
+ * 날짜를 YYYY-MM-dd 로 바꿔준다.
+ * @param date
+ */
+function toStringByFormatting(source, delimiter = '-') {
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+
+    return [year, month, day].join(delimiter);
 }
 
 export default PostItList;
