@@ -4,7 +4,8 @@ import TodayCard from "./todayCard";
 import TodayTime from "./todayTime";
 import {Slider} from "@mui/material";
 import {Link} from "react-router-dom";
-
+import {useEffect, useState} from "react";
+import TodayService from "../service/TodayService";
 function Today() {
     const todo1 = {
         id: 1,
@@ -22,6 +23,16 @@ function Today() {
         done: true
     };
     const todoList = [todo1, todo2, todo3]
+
+    const [projectDtoList, setProjectDtoList] = useState([]);
+    useEffect(() => {
+        TodayService.executeProjectGetService()
+            .then((response) => {
+                setProjectDtoList(response.data.projectDtoList);
+                console.log(response.data.projectDtoList);
+            }).catch(() => {
+        })
+    }, []);
 
     return (
         <div className="today_body">
@@ -47,9 +58,13 @@ function Today() {
 
                 <div className="scroll_view">
                     <div className="ml30"></div>
-                    <TodayCard importance="3" pjtName="포트폴리오" taskName="포트폴리오 웹사이트 제작" toDoList={todoList}/>
-                    <TodayCard importance="2" pjtName="포트폴리오2" taskName="포트폴리오 웹사이트 제작2" toDoList={todoList}/>
-                    <TodayCard importance="1" pjtName="포트폴리오1" taskName="포트폴리오 웹사이트 제작1" toDoList={todoList}/>
+                    {
+                        projectDtoList.map(project => (
+                            project.taskDtoSet.map(task => (
+                                <TodayCard importance="3" pjtName={project.projectName} taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}/>
+                            ))
+                        ))
+                    }
                     <div className="p15"></div>
                 </div>
 

@@ -60,7 +60,7 @@ function TodayCard(props) {
                         <div className="mt20">
                             {
                                 toDoList.map(todo => (
-                                    <TodayTodoSection content={todo.content} key={todo.id} completed={todo.done}/>
+                                    <TodayTodoSection content={todo.content} key={todo.actionId} completed={todo.isDone}/>
                                 ))
                             }
                         </div>
