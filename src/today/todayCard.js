@@ -1,6 +1,9 @@
 import "../css/base.css"
 import TodayTodoSection from "./todayTodoSection";
 import {useState} from "react";
+import AuthenticationService from "../service/AuthenticationService";
+import TodayService from "../service/TodayService";
+import ActionDto from "../dto/ActionDto";
 
 function TodayCard(props) {
     const importance = props.importance;
@@ -17,16 +20,18 @@ function TodayCard(props) {
     }
 
     const onAddToDoBtn = (event) => {
-        const newId = toDoList.length;
+        const newId = TodayService.generateUUID();
         const content = document.getElementById("addToDoInput").value;
         if (!content) {
             alert("값을 입력해야 추가할 수 있습니다.")
         } else {
-            const newToDo = {
-                id: newId,
-                content: content,
-                done: false
+            const data = {
+                "actionId" : newId,
+                "content"  : content,
+                "dueDate"  : new Date(),
+                "isDone"   :  false
             };
+            const newToDo = new ActionDto(data);
             setToDoList([...toDoList, newToDo]);
             document.getElementById("addToDoInput").value = "";
 
