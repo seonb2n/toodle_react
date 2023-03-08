@@ -6,30 +6,35 @@ import {Slider} from "@mui/material";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TodayService from "../service/TodayService";
+import ProjectDto from "../dto/ProjectDto";
 function Today() {
-    const todo1 = {
-        id: 1,
-        content: "로그인 버튼 시안 제작",
-        done: false
-    };
-    const todo2 = {
-        id: 2,
-        content: "모바일 메인 페이지 제작",
-        done: false
-    };
-    const todo3 = {
-        id: 3,
-        content: "포스트잇 페이지 제작",
-        done: true
-    };
-    const todoList = [todo1, todo2, todo3]
+    // const todo1 = {
+    //     id: 1,
+    //     content: "로그인 버튼 시안 제작",
+    //     done: false
+    // };
+    // const todo2 = {
+    //     id: 2,
+    //     content: "모바일 메인 페이지 제작",
+    //     done: false
+    // };
+    // const todo3 = {
+    //     id: 3,
+    //     content: "포스트잇 페이지 제작",
+    //     done: true
+    // };
+    // const todoList = [todo1, todo2, todo3]
 
     const [projectDtoList, setProjectDtoList] = useState([]);
     useEffect(() => {
         TodayService.executeProjectGetService()
             .then((response) => {
-                setProjectDtoList(response.data.projectDtoList);
-                console.log(response.data.projectDtoList);
+                const projectDtoList = response.data.projectDtoList;
+                let projectList = [];
+                projectDtoList.map(projectDto => (
+                    projectList.push(new ProjectDto(projectDto))
+                ))
+                setProjectDtoList(projectList);
             }).catch(() => {
         })
     }, []);
