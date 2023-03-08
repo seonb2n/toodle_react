@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import AuthenticationService from "../service/AuthenticationService";
 import PostItService from "../service/PostItService";
 import {ToastNotification} from "../common/toastNotification";
+import PostItDto from "../dto/PostItDto";
 
 function PostItList() {
     // const postIt1 = {
@@ -26,8 +27,13 @@ function PostItList() {
     useEffect(() => {
         PostItService.executePostItGetService()
             .then((response) => {
-                console.log(response);
-                setPostItList(response.data);
+                console.log(response.data);
+                const postItList = response.data;
+                let postItDtos = [];
+                postItList.map(postItDto => (
+                    postItDtos.push(new PostItDto(postItDto))
+                ))
+                setPostItList(postItDtos);
             }).catch(() => {
         })
     }, []);
@@ -99,7 +105,7 @@ function PostItList() {
 
             {
                 postItList.map(postIt => (
-                    <PostItEntity content={postIt.content} date={postIt.endTime} key={postIt.postItId}/>
+                    <PostItEntity content={postIt.content} date={postIt.createdTime} key={postIt.postItId}/>
                 ))
             }
 
