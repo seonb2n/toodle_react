@@ -51,11 +51,11 @@ function PostItList() {
         const postItDto = {
             "postItId" : postItId,
             "content" : content,
-            "endTime" : toStringByFormatting(today),
+            "createdTime" : toStringByFormatting(today),
             "isDone" : false,
         };
-        console.log(postItDto);
-        setPostItList([...postItList, postItDto]);
+
+        setPostItList([...postItList, new PostItDto(postItDto)]);
     }
 
     const onSavePostItBtnClick = (e) => {
