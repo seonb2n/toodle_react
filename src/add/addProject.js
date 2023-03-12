@@ -5,6 +5,8 @@ import DatePicker from "react-mobile-datepicker";
 import {useEffect, useState} from "react";
 import SetColorDiv from "../common/setColorDiv";
 import AddProjectTask from "./addProjectTask";
+import TaskDto from "../dto/TaskDto";
+import TodayService from "../service/TodayService";
 
 
 function AddProject(props) {
@@ -82,6 +84,7 @@ function AddProject(props) {
         setTaskEndDay(taskEndDay+value);
     }
 
+
     const [isAddTaskWindowOpen, setIsAddTaskWindowOpen] = useState(false);
     const [selectedTaskImportance, setSelectedTaskImportance] = useState("");
     const [selectedTaskName, setSelectedTaskName] = useState("");
@@ -91,6 +94,34 @@ function AddProject(props) {
         setSelectedTaskName(document.getElementById("taskInput").value);
     }
 
+    const [taskList, setTaskList] = useState([]);
+    const onTaskAddBtnClick = (e) => {
+        setIsAddTaskWindowOpen(!isAddTaskWindowOpen);
+        const registeredTask = new TaskDto({
+            "taskId" : TodayService.generateUUID(),
+            "content" : selectedTaskName,
+            "importance" : selectedTaskImportance,
+            "actionDtoSet" : []
+        });
+        setTaskList([...taskList, registeredTask]);
+        setSelectedTaskName("");
+        setSelectedTaskImportance("MEDIUM");
+        setTaskEndDay(1);
+    }
+
+    const onSelectTaskImportanceBtnClick = (importance) => {
+        setSelectedTaskImportance(importance);
+    }
+
+    const onChangeTaskName = (e) => {
+        setSelectedTaskName(e.target.value);
+    }
+
+    const onRemoveTaskFunction = (e) => {
+        console.log(taskList);
+        console.log(e);
+        setTaskList(taskList.filter((taskDto) => taskDto.taskId !== e));
+    }
 
     useEffect(() => {
         let tmpClickedArr = []
@@ -204,7 +235,9 @@ function AddProject(props) {
                 </div>
                 <div>
                     <div>
-                        <AddProjectTask importance="HIGH" taskName="태스크를 입력한 상태입니다."/>
+                        {taskList.map(taskDto => (
+                            <AddProjectTask importance={taskDto.importance} taskName={taskDto.content} key={taskDto.taskId} onRemoveFunction={onRemoveTaskFunction} uuid={taskDto.taskId} />
+                        ))}
                     </div>
                     <div>
                         <div className="flex mt10">
@@ -248,7 +281,7 @@ function AddProject(props) {
                     <div className="title flexCenter fBold">
                         태스크 더 추가하기
                     </div>
-                    <div className="w40 mr10 fBold">
+                    <div className="w40 mr10 fBold" onClick={(e) => {onTaskAddBtnClick()}}>
                         추가
                     </div>
                 </div>
@@ -259,7 +292,7 @@ function AddProject(props) {
                             이름
                         </div>
                         <div className="h100p flexCenter">
-                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요." value={selectedTaskName}/>
+                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요." defaultValue={selectedTaskName} onChange={onChangeTaskName} />
                         </div>
                     </div>
                     <div className="flex mt10">
@@ -269,19 +302,19 @@ function AddProject(props) {
                         <div>
                             <div>
                                 <div className="flex mt10">
-                                    <div className={selectedTaskImportance === "HIGH" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                    <div onClick={(e) => {onSelectTaskImportanceBtnClick("HIGH")}} className={selectedTaskImportance === "HIGH" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img src="img/today/ic_importance_high_black.png"/>
                                             <p>높음</p>
                                         </div>
                                     </div>
-                                    <div className={selectedTaskImportance === "MIDDLE" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                    <div onClick={(e) => {onSelectTaskImportanceBtnClick("MIDDLE")}} className={selectedTaskImportance === "MIDDLE" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                             <p>중간</p>
                                         </div>
                                     </div>
-                                    <div className={selectedTaskImportance === "LOW" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                    <div onClick={(e) => {onSelectTaskImportanceBtnClick("LOW")}} className={selectedTaskImportance === "LOW" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img src="img/today/ic_importance_low_black.png"/>
                                             <p>낮음</p>

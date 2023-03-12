@@ -24,10 +24,12 @@ function AddProjectTask(props) {
                 <div className="w30 h100p flexCenter importanceImgWrapper">
                     <img className="w100p" src={imgSrc}/>
                 </div>
-                <p className="h100p flexCenter ml5">
-                    {taskName}
+                <p className="h100p w100p flexCenter ml5">
+                    <div className="w100p w100p">
+                        {taskName}
+                    </div>
                 </p>
-                <div className="h100p flexCenter ml5">
+                <div onClick={(e) => props.onRemoveFunction(props.uuid)} className="h100p flexCenter ml5">
                     <img className="w10 h10" src="img/today/ic_minus.png"/>
                 </div>
             </div>

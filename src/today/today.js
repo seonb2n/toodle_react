@@ -66,7 +66,7 @@ function Today() {
                     {
                         projectDtoList.map(project => (
                             project.taskDtoSet.map(task => (
-                                <TodayCard importance="3" pjtName={project.projectName} taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}/>
+                                <TodayCard importance={task.importance} pjtName={project.projectName} taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}/>
                             ))
                         ))
                     }
