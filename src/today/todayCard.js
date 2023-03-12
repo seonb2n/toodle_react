@@ -12,10 +12,10 @@ function TodayCard(props) {
     const [toDoList, setToDoList] = useState(props.toDoList);
 
     let impImgRes = "img/today/ic_importance_low_black.png"
-    if (importance === 3) {
+    if (importance === "HIGH") {
         impImgRes = "img/today/ic_importance_high_black.png";
     }
-    if (importance === 2) {
+    if (importance === "MIDDLE") {
         impImgRes = "img/today/ic_importance_mid_black.png";
     }
 
