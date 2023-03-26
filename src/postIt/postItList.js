@@ -23,12 +23,13 @@ function PostItList() {
     // };
     const [postItList, setPostItList] = useState([]);
     const [toastState, setToastState] = useState(false);
+    const [isCategoryDivShown, setIsCategoryDivShown] = useState(false);
 
     useEffect(() => {
         PostItService.executePostItGetService()
             .then((response) => {
-                console.log(response.data);
                 const postItList = response.data;
+                console.log(postItList);
                 let postItDtos = [];
                 postItList.map(postItDto => (
                     postItDtos.push(new PostItDto(postItDto))
@@ -44,7 +45,7 @@ function PostItList() {
             setToastState(true);
             return
         }
-
+        setIsCategoryDivShown(!isCategoryDivShown);
         const postItId = PostItService.generateUUID();
         const today = new Date();
         document.getElementById("postItContentInput").value = "";
@@ -54,6 +55,8 @@ function PostItList() {
             "createdTime" : toStringByFormatting(today),
             "isDone" : false,
         };
+
+
 
         setPostItList([...postItList, new PostItDto(postItDto)]);
     }
@@ -68,8 +71,25 @@ function PostItList() {
             })
     }
 
+    const onSetCategoryBtnClick = (e) => {
+        e.preventDefault();
+        setIsCategoryDivShown(!isCategoryDivShown);
+    }
+
     return (
         <div>
+
+            <div className={"center w65p h65p " + (isCategoryDivShown ? "" : "display_none")}>
+                <div className="w100p">
+                    <div onClick={onSetCategoryBtnClick} className=" w20 h20 positionAbs right0 mr10 mt10">
+                        <img className="w100p" src="img/postit/ic_postit_set_category_cancel.png"/>
+                    </div>
+                </div>
+
+                <div className="mt30 w100p h80p">
+
+                </div>
+            </div>
             <div className="w100p h50 flexAlignHorizon">
                 <div className="w50p flexAlignHorizon">
                     <BackButton link="/login" />
