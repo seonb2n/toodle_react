@@ -286,6 +286,10 @@ body {
     margin-left: 40px !important;
 }
 
+.ml10p {
+    margin-left: 10%;
+}
+
 .mr10 {
     margin-right: 10px !important;
 }
@@ -300,6 +304,10 @@ body {
 
 .mr5 {
     margin-right: 5px !important;
+}
+
+.mr10p {
+    margin-right: 10%;
 }
 
 .mra {
@@ -667,6 +675,10 @@ body {
     opacity: 100%;
 }
 
+.p5 {
+    padding: 5px;
+}
+
 .p10 {
     padding: 10px;
 }
@@ -693,6 +705,14 @@ body {
 
 .pt10 {
     padding-top: 10px;
+}
+
+.pt20 {
+    padding-top: 20px;
+}
+
+.pt40 {
+    padding-top: 40px;
 }
 
 .pt5 {

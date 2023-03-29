@@ -118,8 +118,6 @@ function AddProject(props) {
     }
 
     const onRemoveTaskFunction = (e) => {
-        console.log(taskList);
-        console.log(e);
         setTaskList(taskList.filter((taskDto) => taskDto.taskId !== e));
     }
 

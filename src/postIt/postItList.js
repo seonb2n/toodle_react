@@ -9,6 +9,9 @@ import AuthenticationService from "../service/AuthenticationService";
 import PostItService from "../service/PostItService";
 import {ToastNotification} from "../common/toastNotification";
 import PostItDto from "../dto/PostItDto";
+import postItCategoryDto from "../dto/PostItCategoryDto";
+import PostItCategoryDto from "../dto/PostItCategoryDto";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
 function PostItList() {
     // const postIt1 = {
@@ -21,6 +24,7 @@ function PostItList() {
     //     content: "일이삼사",
     //     data: "2020.03.04"
     // };
+    const [postItCategoryList, setPostItCategoryList] = useState([]);
     const [postItList, setPostItList] = useState([]);
     const [toastState, setToastState] = useState(false);
     const [isCategoryDivShown, setIsCategoryDivShown] = useState(false);
@@ -28,10 +32,15 @@ function PostItList() {
     useEffect(() => {
         PostItService.executePostItGetService()
             .then((response) => {
-                const postItList = response.data;
-                console.log(postItList);
+                const postItListPageDto = response.data;
+                console.log(postItListPageDto);
+                let postItCategoryDtos = [];
+                postItListPageDto.postItCategoryDtoList.map(postItCategoryDto => (
+                    postItCategoryDtos.push(new PostItCategoryDto(postItCategoryDto))
+                ))
+                setPostItCategoryList(postItCategoryDtos);
                 let postItDtos = [];
-                postItList.map(postItDto => (
+                postItListPageDto.postItDtoList.map(postItDto => (
                     postItDtos.push(new PostItDto(postItDto))
                 ))
                 setPostItList(postItDtos);
@@ -76,13 +85,38 @@ function PostItList() {
         setIsCategoryDivShown(!isCategoryDivShown);
     }
 
+    const [selectedCategory, setSelectedCategory] = useState();
+
+    const onSelectCategory = (e) => {
+        console.log(selectedCategory);
+        setSelectedCategory(setSelectedCategory);
+    }
+
     return (
         <div>
 
-            <div className={"center w65p h65p " + (isCategoryDivShown ? "" : "display_none")}>
-                <div className="w100p">
+            <div className={"center w65p h65p" + (isCategoryDivShown ? "" : "display_none")}>
+                <div className="bgLightGray pl5 pr5 h100p">
                     <div onClick={onSetCategoryBtnClick} className=" w20 h20 positionAbs right0 mr10 mt10">
                         <img className="w100p" src="img/postit/ic_postit_set_category_cancel.png"/>
+                    </div>
+                    <div className="w100p h70 pt40">
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">카테고리 선택</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={selectedCategory}
+                            label="category"
+                            onChange={onSelectCategory}
+                        >
+                            {
+                                postItCategoryList.map(category => (
+                                    <MenuItem value={category.postItCategoryId} key={category.postItCategoryId}>{category.title}</MenuItem>
+                                ))
+                            }
+                        </Select>
+                    </FormControl>
                     </div>
                 </div>
 
