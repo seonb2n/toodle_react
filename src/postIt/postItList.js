@@ -59,12 +59,11 @@ function PostItList() {
         const today = new Date();
         document.getElementById("postItContentInput").value = "";
         const postItDto = {
-            "postItId" : postItId,
-            "content" : content,
-            "createdTime" : toStringByFormatting(today),
-            "isDone" : false,
+            "postItId": postItId,
+            "content": content,
+            "createdTime": toStringByFormatting(today),
+            "isDone": false,
         };
-
 
 
         setPostItList([...postItList, new PostItDto(postItDto)]);
@@ -92,31 +91,43 @@ function PostItList() {
         setSelectedCategory(setSelectedCategory);
     }
 
+    const onAddCategoryBtnClick = (e) => {
+        console.log()
+    }
+
     return (
         <div>
 
-            <div className={"center w65p h65p" + (isCategoryDivShown ? "" : "display_none")}>
-                <div className="bgLightGray pl5 pr5 h100p">
+            <div
+                className={"bgLightOrange center rad16 w65p h50p zIndex3 " + (isCategoryDivShown ? "" : "display_none")}>
+                <div className="pl5 pr5 h100p">
                     <div onClick={onSetCategoryBtnClick} className=" w20 h20 positionAbs right0 mr10 mt10">
                         <img className="w100p" src="img/postit/ic_postit_set_category_cancel.png"/>
                     </div>
                     <div className="w100p h70 pt40">
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">카테고리 선택</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={selectedCategory}
-                            label="category"
-                            onChange={onSelectCategory}
-                        >
-                            {
-                                postItCategoryList.map(category => (
-                                    <MenuItem value={category.postItCategoryId} key={category.postItCategoryId}>{category.title}</MenuItem>
-                                ))
-                            }
-                        </Select>
-                    </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">카테고리 선택</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={selectedCategory}
+                                label="category"
+                                onChange={onSelectCategory}
+                            >
+                                {
+                                    postItCategoryList.map(category => (
+                                        <MenuItem value={category.postItCategoryId}
+                                                  key={category.postItCategoryId}>{category.title}</MenuItem>
+                                    ))
+                                }
+                            </Select>
+                        </FormControl>
+                        <div className="mt40 w100p h50 flex">
+                            <input id="postItCategoryInput" placeholder="새 카테고리 추가하기" />
+                            <div onClick={onAddCategoryBtnClick} className="w20 h20 positionAbs right0 mr15">
+                                <img src="img/postit/ic_add_section.png" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -126,7 +137,7 @@ function PostItList() {
             </div>
             <div className="w100p h50 flexAlignHorizon">
                 <div className="w50p flexAlignHorizon">
-                    <BackButton link="/login" />
+                    <BackButton link="/login"/>
                 </div>
                 <div className="w50p flexEnd mr15 fBold" onClick={onSavePostItBtnClick}>
                     저장
@@ -151,24 +162,24 @@ function PostItList() {
             </div>
 
             <div className="ml15 mr15 mt20 h42 top_input_box flexAlignHorizon">
-                <input id ="postItContentInput" className="borderNone h100p fs16p" placeholder="기억해야할 일 입력하기"></input>
+                <input id="postItContentInput" className="borderNone h100p fs16p" placeholder="기억해야할 일 입력하기"></input>
                 <div onClick={onAddPostItBtnClick} className="add_btn mr15">
                     <img src="img/postit/ic_add_section.png"></img>
                 </div>
             </div>
 
-            {
-                postItList.map(postIt => (
-                    <PostItEntity content={postIt.content} date={postIt.createdTime} key={postIt.postItId}/>
-                ))
-            }
-
+            <div>
+                {
+                    postItList.map(postIt => (
+                        <PostItEntity content={postIt.content} date={postIt.createdTime} key={postIt.postItId}/>
+                    ))
+                }
+            </div>
             {
                 toastState === true ? (
-                    <ToastNotification setToastState={setToastState} content="포스트잇에는 내용이 필요합니다!" />
+                    <ToastNotification setToastState={setToastState} content="포스트잇에는 내용이 필요합니다!"/>
                 ) : null
             }
-
         </div>
     );
 }

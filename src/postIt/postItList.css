@@ -15,3 +15,17 @@
 input::placeholder {
     color: orange;
 }
+
+#postItCategoryInput {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 40px;
+    width: 100%;
+    background: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#postItCategoryInput::placeholder {
+    color: black;
+}
