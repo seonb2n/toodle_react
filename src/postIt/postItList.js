@@ -29,6 +29,8 @@ function PostItList() {
     const [toastState, setToastState] = useState(false);
     const [isCategoryDivShown, setIsCategoryDivShown] = useState(false);
 
+    let addPostIt;
+
     useEffect(() => {
         PostItService.executePostItGetService()
             .then((response) => {
@@ -48,6 +50,19 @@ function PostItList() {
         })
     }, []);
 
+    function createNewPostIt(categoryDto, content, today) {
+        //todo categoryDto 가 이미 존재하는 카테고리인지 검증
+        const postItDto = {
+            "postItId": PostItService.generateUUID(),
+            "categoryDto": categoryDto,
+            "content": content,
+            "createdTime": toStringByFormatting(today),
+            "isDone": false,
+        }
+        document.getElementById("postItContentInput").value = "";
+        setPostItList([...postItList, postItDto]);
+    }
+
     const onAddPostItBtnClick = (e) => {
         const content = document.getElementById("postItContentInput").value;
         if (content === "" || content === null) {
@@ -55,18 +70,18 @@ function PostItList() {
             return
         }
         setIsCategoryDivShown(!isCategoryDivShown);
-        const postItId = PostItService.generateUUID();
-        const today = new Date();
-        document.getElementById("postItContentInput").value = "";
-        const postItDto = {
-            "postItId": postItId,
-            "content": content,
-            "createdTime": toStringByFormatting(today),
-            "isDone": false,
-        };
-
-
-        setPostItList([...postItList, new PostItDto(postItDto)]);
+        // const postItId = PostItService.generateUUID();
+        // const today = new Date();
+        // document.getElementById("postItContentInput").value = "";
+        // const postItDto = {
+        //     "postItId": postItId,
+        //     "content": content,
+        //     "createdTime": toStringByFormatting(today),
+        //     "isDone": false,
+        // };
+        //
+        //
+        // setPostItList([...postItList, new PostItDto(postItDto)]);
     }
 
     const onSavePostItBtnClick = (e) => {
@@ -84,15 +99,24 @@ function PostItList() {
         setIsCategoryDivShown(!isCategoryDivShown);
     }
 
-    const [selectedCategory, setSelectedCategory] = useState();
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     const onSelectCategory = (e) => {
-        console.log(selectedCategory);
-        setSelectedCategory(setSelectedCategory);
+        console.log(e.target.value);
+        const selectedCategoryId = e.target.value;
+        setSelectedCategory(selectedCategory);
+        setIsCategoryDivShown(!isCategoryDivShown);
     }
 
     const onAddCategoryBtnClick = (e) => {
-        console.log()
+        setIsCategoryDivShown(!isCategoryDivShown);
+        const categoryTitle = document.getElementById("postItCategoryInput").value;
+        const categoryDto = new PostItCategoryDto({
+            "postItCategoryId" : PostItService.generateUUID(),
+            "title" : categoryTitle
+        });
+        console.log(categoryDto);
+        createNewPostIt(categoryDto, document.getElementById("postItContentInput").value, new Date());
     }
 
     return (
