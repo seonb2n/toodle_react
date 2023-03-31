@@ -50,8 +50,24 @@ function PostItList() {
         })
     }, []);
 
+    function createNewCategory(uuid, title) {
+        let result = postItCategoryList.filter(category => category.postItCategoryId === uuid);
+        if (result.length > 0) {
+            return result[0];
+        }
+        result = postItCategoryList.filter(category => category.title === title);
+        if (result.length > 0) {
+            return result[0];
+        }
+        const categoryDto = new PostItCategoryDto({
+            "postItCategoryId" : PostItService.generateUUID(),
+            "title" : title
+        });
+        setPostItCategoryList([...postItCategoryList, categoryDto]);
+        return categoryDto;
+    }
+
     function createNewPostIt(categoryDto, content, today) {
-        //todo categoryDto 가 이미 존재하는 카테고리인지 검증
         const postItDto = {
             "postItId": PostItService.generateUUID(),
             "categoryDto": categoryDto,
@@ -70,18 +86,6 @@ function PostItList() {
             return
         }
         setIsCategoryDivShown(!isCategoryDivShown);
-        // const postItId = PostItService.generateUUID();
-        // const today = new Date();
-        // document.getElementById("postItContentInput").value = "";
-        // const postItDto = {
-        //     "postItId": postItId,
-        //     "content": content,
-        //     "createdTime": toStringByFormatting(today),
-        //     "isDone": false,
-        // };
-        //
-        //
-        // setPostItList([...postItList, new PostItDto(postItDto)]);
     }
 
     const onSavePostItBtnClick = (e) => {
@@ -99,24 +103,20 @@ function PostItList() {
         setIsCategoryDivShown(!isCategoryDivShown);
     }
 
-    const [selectedCategory, setSelectedCategory] = useState("");
-
     const onSelectCategory = (e) => {
         console.log(e.target.value);
         const selectedCategoryId = e.target.value;
-        setSelectedCategory(selectedCategory);
+        const categoryDto = createNewCategory(selectedCategoryId, null);
+        createNewPostIt(categoryDto, document.getElementById("postItContentInput").value, new Date());
         setIsCategoryDivShown(!isCategoryDivShown);
     }
 
     const onAddCategoryBtnClick = (e) => {
-        setIsCategoryDivShown(!isCategoryDivShown);
         const categoryTitle = document.getElementById("postItCategoryInput").value;
-        const categoryDto = new PostItCategoryDto({
-            "postItCategoryId" : PostItService.generateUUID(),
-            "title" : categoryTitle
-        });
+        const categoryDto = createNewCategory(null, categoryTitle);
         console.log(categoryDto);
         createNewPostIt(categoryDto, document.getElementById("postItContentInput").value, new Date());
+        setIsCategoryDivShown(!isCategoryDivShown);
     }
 
     return (
@@ -134,7 +134,7 @@ function PostItList() {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={selectedCategory}
+                                value=""
                                 label="category"
                                 onChange={onSelectCategory}
                             >
