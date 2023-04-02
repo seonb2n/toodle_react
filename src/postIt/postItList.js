@@ -90,7 +90,7 @@ function PostItList() {
 
     const onSavePostItBtnClick = (e) => {
         e.preventDefault();
-        PostItService.executePostItUpdateService(postItList)
+        PostItService.executePostItUpdateService(postItCategoryList,postItList)
             .then((response) => {
                 if (response.status === 200) {
 

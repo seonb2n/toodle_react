@@ -8,9 +8,10 @@ class PostItService {
         return axios.get('http://localhost:8080/api/v1/postits');
     }
 
-    executePostItUpdateService(postItDtoList) {
+    executePostItUpdateService(postItCategoryDtoList ,postItDtoList) {
         this.setUpAxiosInterceptors();
         return axios.post('http://localhost:8080/api/v1/postits/update', {
+            postItCategoryDtoList,
             postItDtoList
         });
     }
