@@ -29,8 +29,6 @@ function PostItList() {
     const [toastState, setToastState] = useState(false);
     const [isCategoryDivShown, setIsCategoryDivShown] = useState(false);
 
-    let addPostIt;
-
     useEffect(() => {
         PostItService.executePostItGetService()
             .then((response) => {
@@ -42,9 +40,11 @@ function PostItList() {
                 ))
                 setPostItCategoryList(postItCategoryDtos);
                 let postItDtos = [];
-                postItListPageDto.postItDtoList.map(postItDto => (
-                    postItDtos.push(new PostItDto(postItDto))
-                ))
+                postItListPageDto.postItDtoList.map(postItDto => {
+                        const categoryDto = postItCategoryDtos.filter(categoryDto => categoryDto.postItCategoryId === postItDto.categoryDto.postItCategoryId);
+                        return postItDtos.push(new PostItDto(postItDto, categoryDto[0]));
+                    }
+                )
                 setPostItList(postItDtos);
             }).catch(() => {
         })
@@ -60,8 +60,8 @@ function PostItList() {
             return result[0];
         }
         const categoryDto = new PostItCategoryDto({
-            "postItCategoryId" : PostItService.generateUUID(),
-            "title" : title
+            "postItCategoryId": PostItService.generateUUID(),
+            "title": title
         });
         setPostItCategoryList([...postItCategoryList, categoryDto]);
         return categoryDto;
@@ -76,6 +76,7 @@ function PostItList() {
             "isDone": false,
         }
         document.getElementById("postItContentInput").value = "";
+        console.log(postItDto);
         setPostItList([...postItList, postItDto]);
     }
 
@@ -90,7 +91,7 @@ function PostItList() {
 
     const onSavePostItBtnClick = (e) => {
         e.preventDefault();
-        PostItService.executePostItUpdateService(postItCategoryList,postItList)
+        PostItService.executePostItUpdateService(postItCategoryList, postItList)
             .then((response) => {
                 if (response.status === 200) {
 
@@ -147,9 +148,9 @@ function PostItList() {
                             </Select>
                         </FormControl>
                         <div className="mt40 w100p h50 flex">
-                            <input id="postItCategoryInput" placeholder="새 카테고리 추가하기" />
+                            <input id="postItCategoryInput" placeholder="새 카테고리 추가하기"/>
                             <div onClick={onAddCategoryBtnClick} className="w20 h20 positionAbs right0 mr15">
-                                <img src="img/postit/ic_add_section.png" />
+                                <img src="img/postit/ic_add_section.png"/>
                             </div>
                         </div>
                     </div>

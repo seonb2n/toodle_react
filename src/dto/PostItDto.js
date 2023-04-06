@@ -7,10 +7,9 @@ class PostItDto {
     createdTime;
     isDone;
 
-    constructor(data) {
+    constructor(data, categoryDtoData) {
         this.postItId = data.postItId;
-        this.categoryDto =
-            new PostItCategoryDto(data.categoryDto.postItCategoryId, data.categoryDto.title);
+        this.categoryDto = new PostItCategoryDto(categoryDtoData);
         this.content = data.content;
         this.createdTime = data.createdTime;
         this.isDone = data.isDone;
