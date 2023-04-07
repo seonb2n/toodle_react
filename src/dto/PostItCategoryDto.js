@@ -1,9 +1,9 @@
 class PostItCategoryDto {
-    postItCategoryId;
+    postItCategoryClientId;
     title;
 
     constructor(data) {
-        this.postItCategoryId = data.postItCategoryId;
+        this.postItCategoryClientId = data.postItCategoryClientId;
         this.title = data.title;
     }
 }

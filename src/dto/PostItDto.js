@@ -1,14 +1,14 @@
 import PostItCategoryDto from "./PostItCategoryDto";
 
 class PostItDto {
-    postItId;
+    postItClientId;
     categoryDto;
     content;
     createdTime;
     isDone;
 
     constructor(data, categoryDtoData) {
-        this.postItId = data.postItId;
+        this.postItClientId = data.postItClientId;
         this.categoryDto = new PostItCategoryDto(categoryDtoData);
         this.content = data.content;
         this.createdTime = data.createdTime;
