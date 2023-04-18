@@ -1,17 +1,16 @@
-import {Link} from "react-router-dom";
 import "./postItList.css";
 import "../css/base.css"
-import TodayTodoSection from "../today/todayTodoSection";
 import PostItEntity from "./postItEntity";
 import BackButton from "../common/backButton";
 import {useEffect, useState} from "react";
-import AuthenticationService from "../service/AuthenticationService";
 import PostItService from "../service/PostItService";
 import {ToastNotification} from "../common/toastNotification";
 import PostItDto from "../dto/PostItDto";
-import postItCategoryDto from "../dto/PostItCategoryDto";
 import PostItCategoryDto from "../dto/PostItCategoryDto";
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function PostItList() {
     // const postIt1 = {
@@ -41,7 +40,7 @@ function PostItList() {
                 setPostItCategoryList(postItCategoryDtos);
                 let postItDtos = [];
                 postItListPageDto.postItDtoList.map(postItDto => {
-                        const categoryDto = postItCategoryDtos.filter(categoryDto => categoryDto.postItCategoryId === postItDto.categoryDto.postItCategoryId);
+                        const categoryDto = postItCategoryDtos.filter(categoryDto => categoryDto.postItCategoryClientId === postItDto.categoryDto.postItCategoryClientId);
                         return postItDtos.push(new PostItDto(postItDto, categoryDto[0]));
                     }
                 )
@@ -51,7 +50,7 @@ function PostItList() {
     }, []);
 
     function createNewCategory(uuid, title) {
-        let result = postItCategoryList.filter(category => category.postItCategoryId === uuid);
+        let result = postItCategoryList.filter(category => category.postItCategoryClientId === uuid);
         if (result.length > 0) {
             return result[0];
         }
@@ -60,7 +59,7 @@ function PostItList() {
             return result[0];
         }
         const categoryDto = new PostItCategoryDto({
-            "postItCategoryId": PostItService.generateUUID(),
+            "postItCategoryClientId": PostItService.generateUUID(),
             "title": title
         });
         setPostItCategoryList([...postItCategoryList, categoryDto]);
@@ -69,7 +68,7 @@ function PostItList() {
 
     function createNewPostIt(categoryDto, content, today) {
         const postItDto = {
-            "postItId": PostItService.generateUUID(),
+            "postItClientId": PostItService.generateUUID(),
             "categoryDto": categoryDto,
             "content": content,
             "createdTime": toStringByFormatting(today),
@@ -100,12 +99,12 @@ function PostItList() {
     }
 
     const onSetCategoryBtnClick = (e) => {
+        console.log(e.target.value);
         e.preventDefault();
         setIsCategoryDivShown(!isCategoryDivShown);
     }
 
     const onSelectCategory = (e) => {
-        console.log(e.target.value);
         const selectedCategoryId = e.target.value;
         const categoryDto = createNewCategory(selectedCategoryId, null);
         createNewPostIt(categoryDto, document.getElementById("postItContentInput").value, new Date());
@@ -141,8 +140,8 @@ function PostItList() {
                             >
                                 {
                                     postItCategoryList.map(category => (
-                                        <MenuItem value={category.postItCategoryId}
-                                                  key={category.postItCategoryId}>{category.title}</MenuItem>
+                                        <MenuItem value={category.postItCategoryClientId}
+                                                  key={category.postItCategoryClientId}>{category.title}</MenuItem>
                                     ))
                                 }
                             </Select>
@@ -196,7 +195,7 @@ function PostItList() {
             <div>
                 {
                     postItList.map(postIt => (
-                        <PostItEntity content={postIt.content} date={postIt.createdTime} key={postIt.postItId}/>
+                        <PostItEntity content={postIt.content} date={postIt.createdTime} key={postIt.postItClientId}/>
                     ))
                 }
             </div>
