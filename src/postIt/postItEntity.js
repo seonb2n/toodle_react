@@ -5,12 +5,13 @@ import {useState} from "react";
 function PostItEntity(props) {
     const content = props.content;
     const date = props.date;
-
+    const postItClientId = props.postItClientId;
     const [isDone, setIsDone] = useState(props.done);
 
     const onDoneBtnClick = (e) => {
         e.preventDefault();
         setIsDone(!isDone);
+        props.onPostItDoneClick(postItClientId);
     }
 
     return (

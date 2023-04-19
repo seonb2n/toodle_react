@@ -119,6 +119,14 @@ function PostItList() {
         setIsCategoryDivShown(!isCategoryDivShown);
     }
 
+    const onPostItEntityDoneClick = (postItClientId) => {
+        const newPostItList = [...postItList];
+        const clickedPostIt = newPostItList.find(postIt => postIt.postItClientId === postItClientId);
+        clickedPostIt.isDone = !clickedPostIt.isDone;
+        console.log(newPostItList);
+        setPostItList(newPostItList);
+    }
+
     return (
         <div>
 
@@ -195,7 +203,7 @@ function PostItList() {
             <div>
                 {
                     postItList.map(postIt => (
-                        <PostItEntity content={postIt.content} date={postIt.createdTime} key={postIt.postItClientId}/>
+                        <PostItEntity onPostItDoneClick={onPostItEntityDoneClick} postItClientId={postIt.postItClientId} content={postIt.content} date={postIt.createdTime} key={postIt.postItClientId}/>
                     ))
                 }
             </div>
