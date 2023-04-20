@@ -25,7 +25,8 @@ function PostItList() {
     // };
     const [postItCategoryList, setPostItCategoryList] = useState([]);
     const [postItList, setPostItList] = useState([]);
-    const [toastState, setToastState] = useState(false);
+    const [postItInputNullToast, setPostItInputNullToast] = useState(false);
+    const [postItSaveDoneToast, setPostItSaveDoneToast] = useState(false);
     const [isCategoryDivShown, setIsCategoryDivShown] = useState(false);
 
     useEffect(() => {
@@ -82,7 +83,7 @@ function PostItList() {
     const onAddPostItBtnClick = (e) => {
         const content = document.getElementById("postItContentInput").value;
         if (content === "" || content === null) {
-            setToastState(true);
+            setPostItInputNullToast(true);
             return
         }
         setIsCategoryDivShown(!isCategoryDivShown);
@@ -93,13 +94,12 @@ function PostItList() {
         PostItService.executePostItUpdateService(postItCategoryList, postItList)
             .then((response) => {
                 if (response.status === 200) {
-
+                    setPostItSaveDoneToast(true);
                 }
             })
     }
 
     const onSetCategoryBtnClick = (e) => {
-        console.log(e.target.value);
         e.preventDefault();
         setIsCategoryDivShown(!isCategoryDivShown);
     }
@@ -114,7 +114,6 @@ function PostItList() {
     const onAddCategoryBtnClick = (e) => {
         const categoryTitle = document.getElementById("postItCategoryInput").value;
         const categoryDto = createNewCategory(null, categoryTitle);
-        console.log(categoryDto);
         createNewPostIt(categoryDto, document.getElementById("postItContentInput").value, new Date());
         setIsCategoryDivShown(!isCategoryDivShown);
     }
@@ -123,7 +122,6 @@ function PostItList() {
         const newPostItList = [...postItList];
         const clickedPostIt = newPostItList.find(postIt => postIt.postItClientId === postItClientId);
         clickedPostIt.isDone = !clickedPostIt.isDone;
-        console.log(newPostItList);
         setPostItList(newPostItList);
     }
 
@@ -208,8 +206,13 @@ function PostItList() {
                 }
             </div>
             {
-                toastState === true ? (
-                    <ToastNotification setToastState={setToastState} content="포스트잇에는 내용이 필요합니다!"/>
+                postItInputNullToast === true ? (
+                    <ToastNotification setToastState={setPostItInputNullToast} content="포스트잇에는 내용이 필요합니다!"/>
+                ) : null
+            }
+            {
+                postItSaveDoneToast === true ? (
+                    <ToastNotification setToastState={setPostItSaveDoneToast} content="포스트잇 저장 완료!"/>
                 ) : null
             }
         </div>
