@@ -8,6 +8,7 @@ import TodayAdd from "./today/todayAdd";
 import AddProjectPeriod from "./add/addProjectPeriod";
 import AddProject from "./add/addProject";
 import SignUpEmail from "./login/sighUp/signUpEmail";
+import SignUpNickName from "./login/sighUp/signUpNickName";
 
 function App() {
     return <Router>
@@ -17,6 +18,9 @@ function App() {
             </Route>
             <Route path="/signUp">
                 <SignUpEmail />
+            </Route>
+            <Route path="/signUpNickName">
+                <SignUpNickName />
             </Route>
             <Route path="/passwordReset">
                 <PasswordReset />

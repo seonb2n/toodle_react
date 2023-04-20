@@ -3,16 +3,20 @@ import "../../css/base.css";
 import "./signUpEmail.css";
 import {useRef, useState} from "react";
 import {Radio} from "@mui/material";
+import {useHistory} from "react-router-dom";
+import AuthenticationService from "../../service/AuthenticationService";
 
 function SignUpEmail() {
+    const history = useHistory();
     const HIDDEN_CLASSNAME = "hidden";
     const dropdownDownImg = "img/signup/ic_dropdowndown.png";
     const dropdownUpImg = "img/signup/ic_dropdownup.png";
 
     const emailErrorMsg = "이메일 형식이 옳지 않습니다.";
-    const pwErrorMsg = "비밀번호 형태가 옳지 않습니다..";
+    const pwErrorMsg = "비밀번호 형태가 옳지 않습니다.";
     const pwConfirmErrorMsg = "비밀번호가 일치하지 않습니다.";
     const emailConfirmErrorMsg = "이미 가입된 적이 있는 이메일입니다.";
+    const policyErrorMsg = "모든 이용 약관에 동의해주셔야 합니다.";
 
     const [errorShown, setErrorShown] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -48,6 +52,7 @@ function SignUpEmail() {
     const [isShowPolicy, setIsShowPolicy] = useState(false);
     const [policyDropDownImgSrc, setPolicyDropDownImgSrc] = useState(dropdownDownImg);
     const showPolicyBtnClicked = () => {
+        setIsShowPrivate(false);
         setIsShowPolicy(!isShowPolicy);
         if (policyDropDownImgSrc === dropdownDownImg) {
             setPolicyDropDownImgSrc(dropdownUpImg);
@@ -59,6 +64,7 @@ function SignUpEmail() {
     const [isShowPrivate, setIsShowPrivate] = useState(false);
     const [privateDropDownImgSrc, setPrivateDropDownImgSrc] = useState(dropdownDownImg);
     const showPrivateBtnClicked = () => {
+        setIsShowPolicy(false);
         setIsShowPrivate(!isShowPrivate);
         if (privateDropDownImgSrc === dropdownDownImg) {
             setPrivateDropDownImgSrc(dropdownUpImg);
@@ -68,12 +74,12 @@ function SignUpEmail() {
     }
 
     function email_check(email) {
-        const regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        const regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         return (email !== '' && email !== 'undefined' && regex.test(email));
     }
 
     function pw_check(pw) {
-        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,20}$/;
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{4,20}$/;
         return (pw !== '' && pw !== 'undefined' && pwRegex.test(pw));
     }
 
@@ -105,9 +111,23 @@ function SignUpEmail() {
         const policyAgree = document.getElementById("policy_agree").checked;
         const privateAgree = document.getElementById("private_agree").checked;
 
-        // 가입된 이메일일 경우 error msg 출력
-        // todo 사용자 회원가입 요청 전송하기! fetch vs axios 머가 더 좋을까
+        if (!policyAgree || !privateAgree) {
+            setErrorShown(true);
+            setErrorMessage(policyErrorMsg);
+            return;
+        }
 
+        // 가입된 이메일일 경우 error msg 출력
+        AuthenticationService.checkUserEmailIsPresent(idVal)
+            .then(data => {
+                if (!data) {
+                    history.push('/signUpNickName');
+                }
+                else {
+                    setErrorShown(true);
+                    setErrorMessage(emailErrorMsg);
+                }
+            });
     }
 
     return (
@@ -144,7 +164,7 @@ function SignUpEmail() {
                             <hr className={"login_password_focus_line " + (isPwConfirmFocus ? '' : HIDDEN_CLASSNAME)}/>
                         </div>
                         <div className={"signup_info_text " + (!isSignUpFailed ? '' : HIDDEN_CLASSNAME)}>
-                            <p>비밀번호는 4자 이상 20자 미만, 영문과 숫자를 포함해주세요.</p>
+                            <p>비밀번호는 4자 이상 20자 미만, 영문과 숫자, 1개 이상의 특수문자를 포함해주세요.</p>
                             <p>입력 시, 대소문자를 구별하며</p>
                             <p>특수문자는 ~!@#$%^&*_-를 입력할 수 있어요.</p>
                         </div>
@@ -183,7 +203,8 @@ function SignUpEmail() {
                                 '&.Mui-checked': {
                                     color: '#ff8445'
                                 }
-                            }}/>                            <div className="fs16p">*</div>
+                            }}/>
+                            <div className="fs16p">*</div>
                             <p className="fs16p">개인정보 처리 방침 동의</p>
                             <img className="w25 h20" src={privateDropDownImgSrc} onClick={showPrivateBtnClicked}/>
                         </div>
@@ -202,9 +223,12 @@ function SignUpEmail() {
                 </div>
             </div>
 
-            <div className={signUpBtnClick ? "signup_button_clicked h52 flexCenterAlignHorizon ml15 mr15" : "signup_button h52 flexCenterAlignHorizon ml15 mr15"} onClick={signupBtnClicked}>
+            <div
+                className={signUpBtnClick ? "signup_button_clicked h52 flexCenterAlignHorizon ml15 mr15" : "signup_button h52 flexCenterAlignHorizon ml15 mr15"}
+                onClick={signupBtnClicked}>
                 <div className="flex fBold fs16p">
-                    <img className="mr5" src={signUpBtnClick ? "img/signup/ic_check_orange.png" :"img/signup/ic_check_white.png"}/>
+                    <img className="mr5"
+                         src={signUpBtnClick ? "img/signup/ic_check_orange.png" : "img/signup/ic_check_white.png"}/>
                     <p>회원가입하기</p>
                 </div>
             </div>

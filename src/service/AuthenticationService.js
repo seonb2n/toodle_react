@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class AuthenticationService {
+class UserAccountService {
     /**
      * 서비스 내에서 execute 함수는 하나의 api 통신이다.
      * input param 은 검증이 끝난 상태,
@@ -15,6 +15,20 @@ class AuthenticationService {
             email,
             password
         });
+    }
+
+    checkUserEmailIsPresent(userEmail) {
+        return axios.get("http://localhost:8080/api/v1/users/checkEmail", {
+            params: {
+                "userEmail": userEmail
+            }
+        })
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     registerSuccessfulLoginForJwt(userEmail, token) {
@@ -61,9 +75,9 @@ class AuthenticationService {
     getLoggedInUserName() {
         //let user = sessionStorage.getItem('authenticatedUser')
         let user = localStorage.getItem('authenticatedUser');
-        if(user===null) return '';
+        if (user === null) return '';
         return user;
     }
 }
 
-export default new AuthenticationService();
+export default new UserAccountService();
