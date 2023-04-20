@@ -201,7 +201,9 @@ function PostItList() {
             <div>
                 {
                     postItList.map(postIt => (
-                        <PostItEntity onPostItDoneClick={onPostItEntityDoneClick} postItClientId={postIt.postItClientId} content={postIt.content} date={postIt.createdTime} key={postIt.postItClientId}/>
+                        <PostItEntity onPostItDoneClick={onPostItEntityDoneClick} postItClientId={postIt.postItClientId}
+                                      content={postIt.content} done={postIt.isDone} date={postIt.createdTime}
+                                      key={postIt.postItClientId}/>
                     ))
                 }
             </div>
