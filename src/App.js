@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Login from "./login/login";
 import PasswordReset from "./login/passwordReset/passwordReset";
 import PasswordResetResult from "./login/passwordReset/PasswordResetResult";
@@ -12,38 +12,18 @@ import SignUpNickName from "./login/sighUp/signUpNickName";
 
 function App() {
     return <Router>
-        <Switch>
-            <Route path="/login">
-                <Login />
-            </Route>
-            <Route path="/signUp">
-                <SignUpEmail />
-            </Route>
-            <Route path="/signUpNickName">
-                <SignUpNickName />
-            </Route>
-            <Route path="/passwordReset">
-                <PasswordReset />
-            </Route>
-            <Route path="/passwordResetResult">
-                <PasswordResetResult />
-            </Route>
-            <Route path="/today">
-                <Today />
-            </Route>
-            <Route path="/todayAdd">
-                <TodayAdd />
-            </Route>
-            <Route path="/postit">
-                <PostItList />
-            </Route>
-            <Route path="/addProjectPeriod">
-                <AddProjectPeriod />
-            </Route>
-            <Route path="/addProject">
-                <AddProject />
-            </Route>
-        </Switch>
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUpEmail />}/>
+            <Route path="/signUpNickName" element={<SignUpNickName />}/>
+            <Route path="/passwordReset" element={<PasswordReset />} />
+            <Route path="/passwordResetResult" element={<PasswordResetResult />} />
+            <Route path="/today" element={<Today />} />
+            <Route path="/todayAdd" element={<TodayAdd />} />
+            <Route path="/postit" element={<PostItList />} />
+            <Route path="/addProjectPeriod" element={<AddProjectPeriod />} />
+            <Route path="/addProject" element={<AddProject />} />
+        </Routes>
     </Router>
 }
 
