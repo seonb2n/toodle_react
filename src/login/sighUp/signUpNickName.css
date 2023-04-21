@@ -1,0 +1,22 @@
+.title_area {
+    margin-top: 56px;
+    margin-left: 20px;
+    width: 180px;
+    height: 90px;
+}
+
+.title_txt {
+    font-size: 36px;
+    letter-spacing: -0.6px;
+    line-height: 44px;
+}
+
+.title_dot_container {
+    margin-top: 22px;
+}
+
+.title_dot {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+}

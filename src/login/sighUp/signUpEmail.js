@@ -3,11 +3,11 @@ import "../../css/base.css";
 import "./signUpEmail.css";
 import {useRef, useState} from "react";
 import {Radio} from "@mui/material";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import AuthenticationService from "../../service/AuthenticationService";
 
 function SignUpEmail() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const HIDDEN_CLASSNAME = "hidden";
     const dropdownDownImg = "img/signup/ic_dropdowndown.png";
     const dropdownUpImg = "img/signup/ic_dropdownup.png";
@@ -121,9 +121,13 @@ function SignUpEmail() {
         AuthenticationService.checkUserEmailIsPresent(idVal)
             .then(data => {
                 if (!data) {
-                    history.push('/signUpNickName');
-                }
-                else {
+                    navigate('/signUpNickName', {
+                        state: {
+                            userEmail: idVal,
+                            userPW: pwVal
+                        }
+                    });
+                } else {
                     setErrorShown(true);
                     setErrorMessage(emailErrorMsg);
                 }

@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
-
+import "../../css/base.css";
+import "./signUpNickName.css";
 
 function SignUpNickName() {
 
@@ -12,9 +13,14 @@ function SignUpNickName() {
 
     return (
         <div>
-            <div>
-                <div className="bgLightOrange title_oval zIndex1"></div>
-                <p className="fBold zIndex2 positionRel title_txt">Sign up</p>
+            <div className="title_area">
+                <p className="fBold title_txt">Welcome</p>
+                <div className="flex w100p">
+                    <div className="fBold title_txt">TOODLE</div>
+                    <div className="ml10 title_dot_container">
+                        <div className="bgLightOrange title_dot"></div>
+                    </div>
+                </div>
             </div>
         </div>
     );
