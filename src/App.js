@@ -9,6 +9,7 @@ import AddProjectPeriod from "./add/addProjectPeriod";
 import AddProject from "./add/addProject";
 import SignUpEmail from "./login/sighUp/signUpEmail";
 import SignUpNickName from "./login/sighUp/signUpNickName";
+import SignUpSetDate from "./login/sighUp/signUpSetDate";
 
 function App() {
     return <Router>
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUpEmail />}/>
             <Route path="/signUpNickName" element={<SignUpNickName />}/>
+            <Route path="/signUpSetDate" element={<SignUpSetDate />} />
             <Route path="/passwordReset" element={<PasswordReset />} />
             <Route path="/passwordResetResult" element={<PasswordResetResult />} />
             <Route path="/today" element={<Today />} />
