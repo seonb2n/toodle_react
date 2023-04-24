@@ -10,21 +10,41 @@ class UserAccountService {
      * @param password
      * @returns {Promise<axios.AxiosResponse<any>>}
      */
+    API_SERVER_URL;
+
+    constructor() {
+        this.API_SERVER_URL = 'http://localhost:8080';
+    }
+
     executeJwtAuthenticationService(email, password) {
-        return axios.post('http://localhost:8080/api/v1/users/login', {
+        return axios.post(this.API_SERVER_URL + '/api/v1/users/login', {
             email,
             password
         });
     }
 
     checkUserEmailIsPresent(userEmail) {
-        return axios.get("http://localhost:8080/api/v1/users/checkEmail", {
+        return axios.get(this.API_SERVER_URL + '/api/v1/users/checkEmail', {
             params: {
                 "userEmail": userEmail
             }
         })
             .then(response => {
                 return response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    registerUserAccount(userEmail, userPassword, userNickName) {
+        return axios.post(this.API_SERVER_URL + '/api/v1/users/register', {
+            "userEmail": userEmail,
+            "userPassword": userPassword,
+            "userNickName": userNickName
+        })
+            .then(response => {
+                return response;
             })
             .catch(error => {
                 console.log(error);

@@ -1,13 +1,15 @@
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import "../../css/base.css"
 import {useState} from "react";
 import {TimePicker} from 'react-ios-time-picker';
+import AuthenticationService from "../../service/AuthenticationService";
 
 function SignUpSetDate() {
     const location = useLocation();
     const userEmail = location.state.userEmail;
     const userPW = location.state.userPW;
     const userNickName = location.state.userNickName;
+    const navigate = useNavigate();
 
     const [startTime, setStartTime] = useState('09:00');
     const onChangeStartTime = (timeValue) => {
@@ -40,7 +42,20 @@ function SignUpSetDate() {
         if (!checkStartEndTimeDiff()) {
             setIsNextBtnClick(true);
         }
-        // todo 서버로 회원 가입 요청 보냄
+        AuthenticationService.registerUserAccount(userEmail, userPW, userNickName)
+            .then(response => {
+               if (response.status === 200) {
+                   const userEmail = response.data.userEmail;
+                   const userPassword = response.data.userPassword;
+                   const userNickName = response.data.userNickName;
+                   const token = response.data.token;
+                   AuthenticationService.registerSuccessfulLoginForJwt(userEmail, token);
+                   navigate('/postit')
+               }
+               else {
+                   console.log(response);
+               }
+            });
     }
 
     return (
