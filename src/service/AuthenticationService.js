@@ -14,8 +14,7 @@ class UserAccountService {
     API_SERVER_URL;
 
     constructor() {
-        const ipSetService = new IPSetService();
-        this.API_SERVER_URL = ipSetService.API_IP;
+        this.API_SERVER_URL = IPSetService.API_IP;
     }
 
     executeJwtAuthenticationService(email, password) {

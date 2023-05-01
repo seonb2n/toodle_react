@@ -5,7 +5,6 @@ class IPSetService {
 
     API_IP;
 
-
     constructor() {
         const ipAddress = window.location.hostname;
 
@@ -17,3 +16,5 @@ class IPSetService {
         }
     }
 }
+
+export default new IPSetService();
