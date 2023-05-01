@@ -3,14 +3,20 @@ import axios from "axios";
 
 class PostItService {
 
+    API_SERVER_URL;
+
+    constructor() {
+        this.API_SERVER_URL = 'http://localhost:8080';
+    }
+
     executePostItGetService() {
         this.setUpAxiosInterceptors();
-        return axios.get('http://localhost:8080/api/v1/postits');
+        return axios.get(this.API_SERVER_URL + '/api/v1/postits');
     }
 
     executePostItUpdateService(postItCategoryDtoList ,postItDtoList) {
         this.setUpAxiosInterceptors();
-        return axios.post('http://localhost:8080/api/v1/postits/update', {
+        return axios.post(this.API_SERVER_URL + '/api/v1/postits/update', {
             postItCategoryDtoList,
             postItDtoList
         });
