@@ -1,4 +1,5 @@
 import axios from 'axios'
+import IPSetService from "../service/IPSetService"
 
 class UserAccountService {
     /**
@@ -13,7 +14,8 @@ class UserAccountService {
     API_SERVER_URL;
 
     constructor() {
-        this.API_SERVER_URL = 'http://localhost:8080';
+        const ipSetService = new IPSetService();
+        this.API_SERVER_URL = ipSetService.API_IP;
     }
 
     executeJwtAuthenticationService(email, password) {
