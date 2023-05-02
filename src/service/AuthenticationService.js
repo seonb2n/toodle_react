@@ -1,7 +1,7 @@
 import axios from 'axios'
 import IPSetService from "../service/IPSetService"
 
-class UserAccountService {
+class AuthenticationService {
     /**
      * 서비스 내에서 execute 함수는 하나의 api 통신이다.
      * input param 은 검증이 끝난 상태,
@@ -36,6 +36,12 @@ class UserAccountService {
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    changeUserPassword(userEmail) {
+        return axios.post(this.API_SERVER_URL + '/api/v1/users/changePassword', {
+            "userEmail": userEmail
+            });
     }
 
     registerUserAccount(userEmail, userPassword, userNickName) {
@@ -101,4 +107,4 @@ class UserAccountService {
     }
 }
 
-export default new UserAccountService();
+export default new AuthenticationService();

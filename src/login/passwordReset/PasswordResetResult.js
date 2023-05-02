@@ -1,4 +1,5 @@
 import "./passwordResetResultStyle.css";
+import "../../css/base.css"
 import {Link} from "react-router-dom";
 
 function PasswordResetResult() {
@@ -14,7 +15,7 @@ function PasswordResetResult() {
 
             </div>
         </div>
-        <div className="reset_email">
+        <div className="mt10 reset_email">
             <p>가입한 이메일로</p>
             <p>비밀번호 변경 링크를 보내드렸어요.</p>
         </div>
