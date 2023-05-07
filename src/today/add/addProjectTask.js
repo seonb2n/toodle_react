@@ -1,5 +1,4 @@
 import "./addProjectTask.css"
-import {useState} from "react";
 
 function AddProjectTask(props) {
     const importance = props.importance;

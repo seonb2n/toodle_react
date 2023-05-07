@@ -1,7 +1,6 @@
 import "../css/base.css"
 import TodayTodoSection from "./todayTodoSection";
 import {useState} from "react";
-import AuthenticationService from "../service/AuthenticationService";
 import TodayService from "../service/TodayService";
 import ActionDto from "../dto/ActionDto";
 
@@ -38,6 +37,16 @@ function TodayCard(props) {
         }
     }
 
+    const onEditBtn = () => {
+        const editData = {
+            "taskName" : taskName,
+            "pjtName" : pjtName,
+            "importance" : importance,
+            "actionList" : toDoList
+        }
+        props.onEditEvent(editData);
+    }
+
     return (
         <div className="flexCenter ml10 mr10">
             <div className="rad16 bgLightPurple card_wrapper w270 h360">
@@ -47,7 +56,7 @@ function TodayCard(props) {
                             <img src={impImgRes}></img>
                         </div>
 
-                        <div className="mt15 w50 h25 bgMidPurple floatR rad16 flexCenter fs12p">
+                        <div onClick={onEditBtn} className="mt15 w50 h25 bgMidPurple floatR rad16 flexCenter fs12p">
                             <img src="img/today/ic_task_edit.png"/>
                             수정
                         </div>

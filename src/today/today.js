@@ -7,23 +7,24 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TodayService from "../service/TodayService";
 import ProjectDto from "../dto/ProjectDto";
+
 function Today() {
-    // const todo1 = {
-    //     id: 1,
-    //     content: "로그인 버튼 시안 제작",
-    //     done: false
-    // };
-    // const todo2 = {
-    //     id: 2,
-    //     content: "모바일 메인 페이지 제작",
-    //     done: false
-    // };
-    // const todo3 = {
-    //     id: 3,
-    //     content: "포스트잇 페이지 제작",
-    //     done: true
-    // };
-    // const todoList = [todo1, todo2, todo3]
+    const todo1 = {
+        id: 1,
+        content: "로그인 버튼 시안 제작",
+        done: false
+    };
+    const todo2 = {
+        id: 2,
+        content: "모바일 메인 페이지 제작",
+        done: false
+    };
+    const todo3 = {
+        id: 3,
+        content: "포스트잇 페이지 제작",
+        done: true
+    };
+    const todoList = [todo1, todo2, todo3]
 
     const [projectDtoList, setProjectDtoList] = useState([]);
     useEffect(() => {
@@ -38,6 +39,12 @@ function Today() {
             }).catch(() => {
         })
     }, []);
+
+    const onShowEditTodayBtnClick = (data) => {
+        console.log("클릭된 태스크 : " + data.taskName);
+        console.log("show Edit Page!");
+
+    };
 
     return (
         <div className="today_body">
@@ -66,7 +73,7 @@ function Today() {
                     {
                         projectDtoList.map(project => (
                             project.taskDtoSet.map(task => (
-                                <TodayCard importance={task.importance} pjtName={project.projectName} taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}/>
+                                <TodayCard importance={task.importance} pjtName={project.projectName} taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId} onEditEvent={onShowEditTodayBtnClick}/>
                             ))
                         ))
                     }

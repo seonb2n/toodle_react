@@ -1,12 +1,12 @@
 import {useLocation} from "react-router-dom";
-import "../css/base.css"
+import "../../css/base.css"
 import "./addProject.css"
 import DatePicker from "react-mobile-datepicker";
 import {useEffect, useState} from "react";
-import SetColorDiv from "../common/setColorDiv";
+import SetColorDiv from "../../common/setColorDiv";
 import AddProjectTask from "./addProjectTask";
-import TaskDto from "../dto/TaskDto";
-import TodayService from "../service/TodayService";
+import TaskDto from "../../dto/TaskDto";
+import TodayService from "../../service/TodayService";
 
 
 function AddProject(props) {
