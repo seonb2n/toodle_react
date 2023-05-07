@@ -12,12 +12,10 @@ function EditTask(props) {
     // const [actionList, setActionList] = useState(props.actionList);
 
 
-
-
     return (
         <div>
             <div className="h50 flex">
-                <div className="positionAbs ml20 w70 fs14p">
+                <div onClick={props.onEditCancelBtnClick} className="positionAbs ml20 w70 fs14p">
                     취소
                 </div>
                 <div className="w100p flexCenter fs14p fBold">

@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TodayService from "../service/TodayService";
 import ProjectDto from "../dto/ProjectDto";
+import EditTask from "./edit/editTask";
 
 function Today() {
     const todo1 = {
@@ -40,11 +41,15 @@ function Today() {
         })
     }, []);
 
+    const [editPageVisible, setEditPageVisible] = useState(false);
     const onShowEditTodayBtnClick = (data) => {
         console.log("클릭된 태스크 : " + data.taskName);
         console.log("show Edit Page!");
-
+        setEditPageVisible(true);
     };
+    const onHideEditTodayBtnClick = () => {
+        setEditPageVisible(false);
+    }
 
     return (
         <div className="today_body">
@@ -136,6 +141,10 @@ function Today() {
                 <div className="w25p flexCenter">
                     <img src="img/today/ic_tab_my_default.png"></img>
                 </div>
+            </div>
+
+            <div className={`animation_bottom_up_container ${editPageVisible ? 'visible' : ''}`}>
+                <EditTask onEditCancelBtnClick={onHideEditTodayBtnClick} />
             </div>
         </div>
     )
