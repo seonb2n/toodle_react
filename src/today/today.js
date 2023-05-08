@@ -47,7 +47,11 @@ function Today() {
         console.log("show Edit Page!");
         setEditPageVisible(true);
     };
-    const onHideEditTodayBtnClick = () => {
+    const onEditTaskCancelClicked = () => {
+        setEditPageVisible(false);
+    }
+
+    const onEditTaskCompleteClicked = () => {
         setEditPageVisible(false);
     }
 
@@ -144,7 +148,7 @@ function Today() {
             </div>
 
             <div className={`animation_bottom_up_container ${editPageVisible ? 'visible' : ''}`}>
-                <EditTask onEditCancelBtnClick={onHideEditTodayBtnClick} />
+                <EditTask onEditCancelBtnClick={onEditTaskCancelClicked} onEditCompleteBtnClick={onEditTaskCompleteClicked} />
             </div>
         </div>
     )
