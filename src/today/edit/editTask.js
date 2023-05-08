@@ -3,6 +3,8 @@ import "./editTask.css";
 import Select from '@mui/material/Select';
 import MenuItem from "@mui/material/MenuItem";
 import {useState} from "react";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function EditTask(props) {
 
@@ -19,6 +21,17 @@ function EditTask(props) {
     const onChangeSelectedProject = (event) => {
         setSelectedProject(event.target.value);
     }
+
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const handleStartDateChange = (date) => {
+        setStartDate(date);
+    };
+
+    const handleEndDateChange = (date) => {
+        setEndDate(date);
+    };
 
     return (
         <div>
@@ -85,6 +98,26 @@ function EditTask(props) {
                                     <img src="img/today/ic_importance_low_black.png"/>
                                     <p>낮음</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex h100">
+                    <div className="w70 fBold">
+                        작업 기간
+                    </div>
+                    <div className="h100p flexCenter">
+                        <div>
+                            <div className="flex w250">
+                                <label className="w70">시작일: </label>
+                                <DatePicker selected={startDate} onChange={handleStartDateChange} />
+                                <label className="w40"> 부터</label>
+                            </div>
+
+                            <div className="flex w250">
+                                <label className="w70">종료일: </label>
+                                <DatePicker selected={endDate} onChange={handleEndDateChange} />
+                                <label className="w40"> 까지</label>
                             </div>
                         </div>
                     </div>
