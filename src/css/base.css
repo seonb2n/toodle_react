@@ -907,3 +907,7 @@ body {
 .animation_bottom_up_container.visible {
     transform: translateY(0);
 }
+
+.overflow_auto {
+    overflow: auto;
+}

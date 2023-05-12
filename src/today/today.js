@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import TodayService from "../service/TodayService";
 import ProjectDto from "../dto/ProjectDto";
 import EditTask from "./edit/editTask";
+import TaskDto from "../dto/TaskDto";
 
 function Today() {
     const todo1 = {
@@ -42,17 +43,26 @@ function Today() {
     }, []);
 
     const [editPageVisible, setEditPageVisible] = useState(false);
-    const [clickedEditTask, setClickedEditTask] = useState(null);
+    const [lastEditTodayData, setLastEditTodayData] = useState({
+        "taskId" : "",
+        "taskName" : "",
+        "content" : "",
+        "pjtName" : "",
+        "importance" : "",
+        "actionDtoSet" : []
+    });
+
     const onShowEditTodayBtnClick = (data) => {
         console.log("클릭된 태스크 : " + data.taskName);
-        console.log("show Edit Page!");
-        setClickedEditTask(data);
         setEditPageVisible(true);
+        setLastEditTodayData(data);
     };
+    const onChangeEditToday = (data) => {
+        //data 를 taskDtoSet 에서 찾아서 변경해줘야 한다.
+    }
     const onEditTaskCancelClicked = () => {
         setEditPageVisible(false);
     }
-
     const onEditTaskCompleteClicked = () => {
         setEditPageVisible(false);
     }
@@ -62,7 +72,9 @@ function Today() {
             <div className="today_detail_header">
                 <div className="today_detail_title">today</div>
                 <Link to="/todayAdd">
-                    <div className="today_detail_add_btn">빠른 추가</div>
+                    <div className="overflow_auto w90">
+                        <div className="today_detail_add_btn">빠른 추가</div>
+                    </div>
                 </Link>
             </div>
             <div className="today_detail_quick_menu">
@@ -93,7 +105,7 @@ function Today() {
 
 
                 <div className="today_slider flex">
-                    <div className="w10p">
+                    <div className="w35">
                         <img className="w100p" src="img/today/ic_moon_24.png"/>
                     </div>
                     <div className="w80p pr10 pl10">
@@ -115,7 +127,7 @@ function Today() {
                             }}
                         />
                     </div>
-                    <div className="w10p">
+                    <div className="w35">
                         <img className="w100p" src="img/today/ic_sun_24.png"/>
                     </div>
 
@@ -150,7 +162,7 @@ function Today() {
             </div>
 
             <div className={`animation_bottom_up_container ${editPageVisible ? 'visible' : ''}`}>
-                <EditTask onEditCancelBtnClick={onEditTaskCancelClicked} onEditCompleteBtnClick={onEditTaskCompleteClicked} />
+                <EditTask onEditCancelBtnClick={onEditTaskCancelClicked} onChangeEditToday={onChangeEditToday} editData={lastEditTodayData} projectData={projectDtoList} onEditCompleteBtnClick={onEditTaskCompleteClicked}/>
             </div>
         </div>
     )

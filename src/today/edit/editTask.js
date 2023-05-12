@@ -8,16 +8,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function EditTask(props) {
 
-    const taskName = props.taskName;
-    // const projectList = props.projectList;
-    // const selectedProject = props.selectedProject;
-    const importance = props.importance;
-    // const startDay = props.startDay;
-    // const endDay = props.endDay;
-    const [actionList, setActionList] = useState(props.actionList);
+    console.log(props.editData);
 
-    const [selectedProject, setSelectedProject] = useState("A");
-
+    const [selectedProject, setSelectedProject] = useState(props.editData.pjtName);
     const onChangeSelectedProject = (event) => {
         setSelectedProject(event.target.value);
     }
@@ -52,7 +45,7 @@ function EditTask(props) {
                         이름
                     </div>
                     <div className="h100p flexCenter">
-                        <input className="w250 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
+                        <input defaultValue={props.editData.taskName} className="w250 h50p projectNameInput" placeholder={props.editData.taskName} />
                     </div>
                 </div>
 
@@ -64,13 +57,13 @@ function EditTask(props) {
                         <Select
                             labelId="selectedProjectName"
                             id="selectedProjectName"
-                            value={selectedProject}
+                            value={props.editData.pjtName}
                             label="selectedProjectName"
                             onChange={onChangeSelectedProject}
                         >
-                            <MenuItem value={"A"}>ProjectA</MenuItem>
-                            <MenuItem value={"B"}>ProjectB</MenuItem>
-                            <MenuItem value={"C"}>ProjectC</MenuItem>
+                            {props.projectData.map(project => (
+                                <MenuItem key={project.projectId} value={project.projectName}>{project.projectName}</MenuItem>
+                            ))}
                         </Select>
                     </div>
                 </div>

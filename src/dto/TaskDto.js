@@ -14,7 +14,6 @@ class TaskDto {
         data.actionDtoSet.map(actionDto => (
             this.actionDtoSet.push(new ActionDto(actionDto))
         ))
-
     }
 }
 
