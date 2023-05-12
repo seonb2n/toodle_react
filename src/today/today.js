@@ -42,12 +42,18 @@ function Today() {
     }, []);
 
     const [editPageVisible, setEditPageVisible] = useState(false);
+    const [clickedEditTask, setClickedEditTask] = useState(null);
     const onShowEditTodayBtnClick = (data) => {
         console.log("클릭된 태스크 : " + data.taskName);
         console.log("show Edit Page!");
+        setClickedEditTask(data);
         setEditPageVisible(true);
     };
-    const onHideEditTodayBtnClick = () => {
+    const onEditTaskCancelClicked = () => {
+        setEditPageVisible(false);
+    }
+
+    const onEditTaskCompleteClicked = () => {
         setEditPageVisible(false);
     }
 
@@ -144,7 +150,7 @@ function Today() {
             </div>
 
             <div className={`animation_bottom_up_container ${editPageVisible ? 'visible' : ''}`}>
-                <EditTask onEditCancelBtnClick={onHideEditTodayBtnClick} />
+                <EditTask onEditCancelBtnClick={onEditTaskCancelClicked} onEditCompleteBtnClick={onEditTaskCompleteClicked} />
             </div>
         </div>
     )
