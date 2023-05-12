@@ -8,13 +8,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function EditTask(props) {
 
-    // const taskName = props.taskName;
+    const taskName = props.taskName;
     // const projectList = props.projectList;
     // const selectedProject = props.selectedProject;
-    // const importance = props.importance;
+    const importance = props.importance;
     // const startDay = props.startDay;
     // const endDay = props.endDay;
-    // const [actionList, setActionList] = useState(props.actionList);
+    const [actionList, setActionList] = useState(props.actionList);
 
     const [selectedProject, setSelectedProject] = useState("A");
 

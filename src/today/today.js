@@ -42,9 +42,11 @@ function Today() {
     }, []);
 
     const [editPageVisible, setEditPageVisible] = useState(false);
+    const [clickedEditTask, setClickedEditTask] = useState(null);
     const onShowEditTodayBtnClick = (data) => {
         console.log("클릭된 태스크 : " + data.taskName);
         console.log("show Edit Page!");
+        setClickedEditTask(data);
         setEditPageVisible(true);
     };
     const onEditTaskCancelClicked = () => {
