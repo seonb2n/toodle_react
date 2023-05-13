@@ -8,6 +8,8 @@ function TodayCard(props) {
     const importance = props.importance;
     const pjtName = props.pjtName;
     const taskName = props.taskName;
+    const startAt = props.startAt;
+    const endAt = props.endAt;
     const [toDoList, setToDoList] = useState(props.toDoList);
 
     let impImgRes = "img/today/ic_importance_low_black.png"
@@ -42,6 +44,8 @@ function TodayCard(props) {
             "taskName" : taskName,
             "pjtName" : pjtName,
             "importance" : importance,
+            "startAt" : startAt,
+            "endAt" : endAt,
             "actionList" : toDoList
         }
         props.onEditEvent(editData);

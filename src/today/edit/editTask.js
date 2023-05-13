@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import {useState} from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import CommonConverter from "../../common/commonConverter";
 
 function EditTask(props) {
 
@@ -15,8 +16,8 @@ function EditTask(props) {
         setSelectedProject(event.target.value);
     }
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState(CommonConverter.convertJavaLocalDateTimeToReactDate(props.editData.startAt));
+    const [endDate, setEndDate] = useState(CommonConverter.convertJavaLocalDateTimeToReactDate(props.editData.endAt));
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -25,6 +26,12 @@ function EditTask(props) {
     const handleEndDateChange = (date) => {
         setEndDate(date);
     };
+
+    const [editTaskImportance, setEditTaskImportance] = useState(props.editData.importance)
+    // let editTaskImportance = ;
+    const onSelectTaskImportanceBtnClick = (importance) => {
+        setEditTaskImportance(importance);
+    }
 
     return (
         <div>
@@ -45,7 +52,8 @@ function EditTask(props) {
                         이름
                     </div>
                     <div className="h100p flexCenter">
-                        <input defaultValue={props.editData.taskName} className="w250 h50p projectNameInput" placeholder={props.editData.taskName} />
+                        <input defaultValue={props.editData.taskName} className="w250 h50p projectNameInput"
+                               placeholder={props.editData.taskName}/>
                     </div>
                 </div>
 
@@ -62,7 +70,8 @@ function EditTask(props) {
                             onChange={onChangeSelectedProject}
                         >
                             {props.projectData.map(project => (
-                                <MenuItem key={project.projectId} value={project.projectName}>{project.projectName}</MenuItem>
+                                <MenuItem key={project.projectId}
+                                          value={project.projectName}>{project.projectName}</MenuItem>
                             ))}
                         </Select>
                     </div>
@@ -74,20 +83,29 @@ function EditTask(props) {
                     </div>
                     <div className="h100p flexCenter">
                         <div className="mt10 flex">
-                            <div className="taskImportanceSelectBox mr10">
+                            <div onClick={(e) => {
+                                onSelectTaskImportanceBtnClick("HIGH")
+                            }}
+                                 className={editTaskImportance === "HIGH" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                 <div>
                                     <img src="img/today/ic_importance_high_black.png"/>
                                     <p>높음</p>
                                 </div>
                             </div>
-                            <div className="taskImportanceSelectBox mr10">
+                            <div onClick={(e) => {
+                                onSelectTaskImportanceBtnClick("MIDDLE")
+                            }}
+                                 className={editTaskImportance === "MIDDLE" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                 <div>
                                     <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                     <p>중간</p>
                                 </div>
                             </div>
-                            <div className="taskImportanceSelectBox">
-                                <div >
+                            <div onClick={(e) => {
+                                onSelectTaskImportanceBtnClick("LOW")
+                            }}
+                                 className={editTaskImportance === "LOW" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                <div>
                                     <img src="img/today/ic_importance_low_black.png"/>
                                     <p>낮음</p>
                                 </div>
@@ -103,13 +121,13 @@ function EditTask(props) {
                         <div>
                             <div className="flex w250">
                                 <label className="w70">시작일: </label>
-                                <DatePicker selected={startDate} onChange={handleStartDateChange} />
+                                <DatePicker selected={startDate} onChange={handleStartDateChange}/>
                                 <label className="w40"> 부터</label>
                             </div>
 
                             <div className="flex w250">
                                 <label className="w70">종료일: </label>
-                                <DatePicker selected={endDate} onChange={handleEndDateChange} />
+                                <DatePicker selected={endDate} onChange={handleEndDateChange}/>
                                 <label className="w40"> 까지</label>
                             </div>
                         </div>

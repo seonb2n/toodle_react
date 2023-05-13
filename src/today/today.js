@@ -44,12 +44,14 @@ function Today() {
 
     const [editPageVisible, setEditPageVisible] = useState(false);
     const [lastEditTodayData, setLastEditTodayData] = useState({
-        "taskId" : "",
-        "taskName" : "",
-        "content" : "",
-        "pjtName" : "",
-        "importance" : "",
-        "actionDtoSet" : []
+        "taskId": "",
+        "taskName": "",
+        "content": "",
+        "pjtName": "",
+        "importance": "",
+        "startAt": "",
+        "endAt": "",
+        "actionDtoSet": []
     });
 
     const onShowEditTodayBtnClick = (data) => {
@@ -96,7 +98,10 @@ function Today() {
                     {
                         projectDtoList.map(project => (
                             project.taskDtoSet.map(task => (
-                                <TodayCard importance={task.importance} pjtName={project.projectName} taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId} onEditEvent={onShowEditTodayBtnClick}/>
+                                <TodayCard importance={task.importance} pjtName={project.projectName}
+                                           startAt={task.startAt} endAt={task.endAt}
+                                           taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}
+                                           onEditEvent={onShowEditTodayBtnClick}/>
                             ))
                         ))
                     }
@@ -162,7 +167,11 @@ function Today() {
             </div>
 
             <div className={`animation_bottom_up_container ${editPageVisible ? 'visible' : ''}`}>
-                <EditTask onEditCancelBtnClick={onEditTaskCancelClicked} onChangeEditToday={onChangeEditToday} editData={lastEditTodayData} projectData={projectDtoList} onEditCompleteBtnClick={onEditTaskCompleteClicked}/>
+                {editPageVisible &&
+                    <EditTask onEditCancelBtnClick={onEditTaskCancelClicked} onChangeEditToday={onChangeEditToday}
+                              editData={lastEditTodayData} projectData={projectDtoList}
+                              onEditCompleteBtnClick={onEditTaskCompleteClicked}/>
+                }
             </div>
         </div>
     )
