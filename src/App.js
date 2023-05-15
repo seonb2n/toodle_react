@@ -10,10 +10,12 @@ import AddProject from "./today/add/addProject";
 import SignUpEmail from "./login/sighUp/signUpEmail";
 import SignUpNickName from "./login/sighUp/signUpNickName";
 import SignUpSetDate from "./login/sighUp/signUpSetDate";
+import Cors from "./cors";
 
 function App() {
     return <Router>
         <Routes>
+            <Route path="/cors" element={<Cors />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUpEmail />}/>
             <Route path="/signUpNickName" element={<SignUpNickName />}/>
