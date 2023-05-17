@@ -7,14 +7,14 @@ class TaskDto {
     startAt;
     endAt;
     actionDtoSet;
-    constructor(data) {
-        this.taskId = data.taskId;
-        this.content = data.content;
-        this.importance = data.importance;
-        this.startAt = data.startAt;
-        this.endAt = data.endAt;
+    constructor({taskId, content, importance, startAt, endAt, actionDtoSet}) {
+        this.taskId = taskId;
+        this.content = content;
+        this.importance = importance;
+        this.startAt = startAt;
+        this.endAt = endAt;
         this.actionDtoSet = []
-        data.actionDtoSet.map(actionDto => (
+        actionDtoSet.map(actionDto => (
             this.actionDtoSet.push(new ActionDto(actionDto))
         ))
     }

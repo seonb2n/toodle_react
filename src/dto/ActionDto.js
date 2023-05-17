@@ -4,11 +4,11 @@ class ActionDto {
     dueDate;
     isDone;
 
-    constructor(data) {
-        this.actionId = data.actionId;
-        this.content = data.content;
-        this.dueDate = data.dueDate;
-        this.isDone = data.isDone;
+    constructor({actionId, content, dueDate, isDone}) {
+        this.actionId = actionId;
+        this.content = content;
+        this.dueDate = dueDate;
+        this.isDone = isDone;
     }
 }
 

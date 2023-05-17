@@ -5,11 +5,11 @@ class ProjectDto {
     projectName;
     taskDtoSet;
 
-    constructor(data) {
-        this.projectId = data.projectId;
-        this.projectName = data.projectName;
+    constructor({projectId, projectName, taskDtoSet}) {
+        this.projectId = projectId;
+        this.projectName = projectName;
         this.taskDtoSet = [];
-        data.taskDtoSet.map(taskDto => (
+        taskDtoSet.map(taskDto => (
             this.taskDtoSet.push(new TaskDto(taskDto))
         ))
     }
