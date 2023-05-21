@@ -117,9 +117,12 @@ function Login() {
                     <img src="img/login/m_ic_sn_google.png"/>
                 </div>
 
-                <div className="naverLoginBtn">
-                    <img src="img/login/m_ic_sn_naver.png"/>
-                </div>
+                <a href={AuthenticationService.API_SERVER_URL + "/oauth2/authorization/naver"}>
+                    <div className="naverLoginBtn">
+                        <img src="img/login/m_ic_sn_naver.png"/>
+                    </div>
+                </a>
+
 
                 <div className="kakaoLoginBtn">
                     <img src="img/login/m_ic_sn_kakao.png"/>
