@@ -10,6 +10,7 @@ import AddProject from "./today/add/addProject";
 import SignUpEmail from "./login/sighUp/signUpEmail";
 import SignUpNickName from "./login/sighUp/signUpNickName";
 import SignUpSetDate from "./login/sighUp/signUpSetDate";
+import NaverLoginRedirect from "./login/NaverLoginRedirect";
 
 function App() {
     return <Router>
@@ -25,6 +26,7 @@ function App() {
             <Route path="/postit" element={<PostItList />} />
             <Route path="/addProjectPeriod" element={<AddProjectPeriod />} />
             <Route path="/addProject" element={<AddProject />} />
+            <Route path="/oauth2/naver/redirect/" element={<NaverLoginRedirect />}/>
         </Routes>
     </Router>
 }
