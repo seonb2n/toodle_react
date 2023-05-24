@@ -51,7 +51,7 @@ function reducer(state, action) {
             return {
                 ...state,
                 users: state.users.map(user =>
-                    user.id === action.id ? { ...user, active: !user.active } : user
+                    user.id === action.id ? {...user, active: !user.active} : user
                 )
             };
         case 'REMOVE_USER':
@@ -64,15 +64,71 @@ function reducer(state, action) {
     }
 }
 
-function MyUserReducer() {
+function User({ user }) {
+    return (
+        <div>
+            <b>{user.username}</b> <span>({user.email})</span>
+        </div>
+    );
+}
+
+function CreateUser({username, email, onChange, onCreate}) {
+    return (
+        <div>
+            <input
+                name="username"
+                placeholder="계정명"
+                onChange={onChange}
+                value={username}
+            />
+            <input
+                name="email"
+                placeholder="이메일"
+                onChange={onChange}
+                value={email}
+            />
+            <button onClick={onCreate}>등록</button>
+        </div>
+    );
+}
+
+function UserList() {
+    const users = [
+        {
+            id: 1,
+            username: 'velopert',
+            email: 'public.velopert@gmail.com'
+        },
+        {
+            id: 2,
+            username: 'tester',
+            email: 'tester@example.com'
+        },
+        {
+            id: 3,
+            username: 'liz',
+            email: 'liz@example.com'
+        }
+    ];
+
+    return (
+        <div>
+            {users.map(user => (
+                <User user={user} key={user.id}/>
+            ))}
+        </div>
+    );
+}
+
+export default function MyUserReducer() {
     const [state, dispatch] = useReducer(reducer, initialState);
     const nextId = useRef(4);
 
-    const { users } = state;
-    const { username, email } = state.inputs;
+    const {users} = state;
+    const {username, email} = state.inputs;
 
     const onChange = useCallback(e => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         dispatch({
             type: 'CHANGE_INPUT',
             name,
@@ -115,10 +171,8 @@ function MyUserReducer() {
                 onChange={onChange}
                 onCreate={onCreate}
             />
-            <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
+            <UserList users={users} onToggle={onToggle} onRemove={onRemove}/>
             <div>활성사용자 수 : {count}</div>
         </>
     );
 }
-
-export default MyUserReducer;
