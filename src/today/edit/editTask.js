@@ -6,18 +6,23 @@ import {useState} from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CommonConverter from "../../common/commonConverter";
+import EditAction from "./editAction";
+import {Checkbox, Input} from "@mui/material";
+import AddActionInput from "../../common/addActionInput";
 
 function EditTask(props) {
 
-    console.log(props.editData);
-
     const [selectedProject, setSelectedProject] = useState(props.editData.pjtName);
+    const [startDate, setStartDate] = useState(CommonConverter.convertJavaLocalDateTimeToReactDate(props.editData.startAt));
+    const [endDate, setEndDate] = useState(CommonConverter.convertJavaLocalDateTimeToReactDate(props.editData.endAt));
+    const [editTaskImportance, setEditTaskImportance] = useState(props.editData.importance)
+
+    const [editActionDtoList, setEditActionDtoList] = useState(props.editData.actionList);
+
     const onChangeSelectedProject = (event) => {
         setSelectedProject(event.target.value);
     }
 
-    const [startDate, setStartDate] = useState(CommonConverter.convertJavaLocalDateTimeToReactDate(props.editData.startAt));
-    const [endDate, setEndDate] = useState(CommonConverter.convertJavaLocalDateTimeToReactDate(props.editData.endAt));
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -27,7 +32,6 @@ function EditTask(props) {
         setEndDate(date);
     };
 
-    const [editTaskImportance, setEditTaskImportance] = useState(props.editData.importance)
     // let editTaskImportance = ;
     const onSelectTaskImportanceBtnClick = (importance) => {
         setEditTaskImportance(importance);
@@ -130,6 +134,23 @@ function EditTask(props) {
                                 <DatePicker selected={endDate} onChange={handleEndDateChange}/>
                                 <label className="w40"> 까지</label>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex">
+                    <div className="w70 fBold">
+                        액션
+                    </div>
+                    <div>
+                        <div>
+                            {editActionDtoList.map(actionDto =>
+                                (<EditAction key={actionDto.actionId} actionId={actionDto.actionId}
+                                             actionContent={actionDto.content} actionIsDone={actionDto.isDone}/>)
+                            )}
+                        </div>
+                        <div>
+                            <AddActionInput actionListState={editActionDtoList} setActionListState={setEditActionDtoList} myInputId={"editTask"+props.taskId} />
                         </div>
                     </div>
                 </div>

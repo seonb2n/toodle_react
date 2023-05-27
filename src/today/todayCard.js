@@ -3,6 +3,7 @@ import TodayTodoSection from "./todayTodoSection";
 import {useState} from "react";
 import TodayService from "../service/TodayService";
 import ActionDto from "../dto/ActionDto";
+import AddActionInput from "../common/addActionInput";
 
 function TodayCard(props) {
     const importance = props.importance;
@@ -83,11 +84,7 @@ function TodayCard(props) {
                             }
                         </div>
                     </div>
-                    <div className="mt15 w100p h25 flexAlignHorizon pt5 pd5 borderBtmGray">
-                        <input type="text" id="addToDoInput" className="bgTrans w100p inputBorderBottom floatL"
-                               placeholder="추가할 액션 입력하기"/>
-                        <img className="w10 h10 floatR mr10" onClick={onAddToDoBtn} src="img/today/ic_add.png"></img>
-                    </div>
+                        <AddActionInput actionListState={toDoList} setActionListState={setToDoList} myInputId={"todayCard"+props.taskId} />
                 </div>
             </div>
         </div>
