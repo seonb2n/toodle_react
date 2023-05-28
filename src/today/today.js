@@ -60,6 +60,7 @@ function Today() {
         setLastEditTodayData(data);
     };
     const onChangeEditToday = (data) => {
+        console.log(data);
         //data 를 taskDtoSet 에서 찾아서 변경해줘야 한다.
     }
     const onEditTaskCancelClicked = () => {

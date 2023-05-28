@@ -9,6 +9,7 @@ import CommonConverter from "../../common/commonConverter";
 import EditAction from "./editAction";
 import {Checkbox, Input} from "@mui/material";
 import AddActionInput from "../../common/addActionInput";
+import TaskDto from "../../dto/TaskDto";
 
 function EditTask(props) {
 
@@ -37,6 +38,19 @@ function EditTask(props) {
         setEditTaskImportance(importance);
     }
 
+    const onCompleteBtnClick = () => {
+        const taskDto = new TaskDto({
+                taskId: props.editData.taskId,
+                content: props.editData.content,
+                importance: editTaskImportance,
+                startAt: startDate,
+                endAt: endDate,
+                actionDtoSet: editActionDtoList
+            }
+        );
+        props.onChangeEditToday(taskDto);
+    }
+
     return (
         <div>
             <div className="h50 flex">
@@ -46,7 +60,7 @@ function EditTask(props) {
                 <div className="w100p flexCenter fs14p fBold">
                     태스크 수정
                 </div>
-                <div onClick={props.onEditCompleteBtnClick} className="positionAbs right0 mr20 w70 fs14p alignR">
+                <div onClick={onCompleteBtnClick} className="positionAbs right0 mr20 w70 fs14p alignR">
                     완료
                 </div>
             </div>
@@ -150,7 +164,9 @@ function EditTask(props) {
                             )}
                         </div>
                         <div>
-                            <AddActionInput actionListState={editActionDtoList} setActionListState={setEditActionDtoList} myInputId={"editTask"+props.taskId} />
+                            <AddActionInput actionListState={editActionDtoList}
+                                            setActionListState={setEditActionDtoList}
+                                            myInputId={"editTask" + props.taskId}/>
                         </div>
                     </div>
                 </div>
