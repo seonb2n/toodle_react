@@ -62,6 +62,10 @@ function Today() {
     const onChangeEditToday = (data) => {
         console.log(data);
         //data 를 taskDtoSet 에서 찾아서 변경해줘야 한다.
+        projectDtoList.forEach(projectDto => {
+            projectDto.taskDtoSet = projectDto.taskDtoSet.filter(taskDto => taskDto.taskId === data.taskId);
+            projectDto.taskDtoSet = [...projectDto.taskDtoSet, data];
+        })
     }
     const onEditTaskCancelClicked = () => {
         setEditPageVisible(false);
