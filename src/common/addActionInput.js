@@ -21,7 +21,7 @@ export default function AddActionInput(props) {
             };
             const newToDo = new ActionDto(data);
             setActionListState([...actionListState, newToDo]);
-            document.getElementById("addToDoInput").value = "";
+            document.getElementById(myInputId).value = "";
 
         }
     }

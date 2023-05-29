@@ -7,6 +7,10 @@ import SetColorDiv from "../../common/setColorDiv";
 import AddProjectTask from "./addProjectTask";
 import TaskDto from "../../dto/TaskDto";
 import TodayService from "../../service/TodayService";
+import AddActionInput from "../../common/addActionInput";
+import TodayTodoSection from "../todayTodoSection";
+import EditAction from "../edit/editAction";
+import AddAction from "./addAction";
 
 
 function AddProject(props) {
@@ -67,21 +71,21 @@ function AddProject(props) {
 
     const onTaskCancelInputBtnClick = (e) => {
         e.preventDefault();
-        document.getElementById("taskInput").value="";
+        document.getElementById("taskInput").value = "";
     }
     let today = new Date();
     const [taskEndDay, setTaskEndDay] = useState(1);
-    today.setDate(today.getDate()+taskEndDay);
+    today.setDate(today.getDate() + taskEndDay);
 
     const onAddEndDayClick = (e) => {
-        setTaskEndDay(taskEndDay+1);
+        setTaskEndDay(taskEndDay + 1);
     }
     const onMinusEndDayClick = (e) => {
-        setTaskEndDay(taskEndDay-1);
+        setTaskEndDay(taskEndDay - 1);
     }
 
     const onAddBtnClick = (value) => {
-        setTaskEndDay(taskEndDay+value);
+        setTaskEndDay(taskEndDay + value);
     }
 
 
@@ -98,11 +102,12 @@ function AddProject(props) {
     const onTaskAddBtnClick = (e) => {
         setIsAddTaskWindowOpen(!isAddTaskWindowOpen);
         const registeredTask = new TaskDto({
-            "taskId" : TodayService.generateUUID(),
-            "content" : selectedTaskName,
-            "importance" : selectedTaskImportance,
-            "actionDtoSet" : []
+            "taskId": TodayService.generateUUID(),
+            "content": selectedTaskName,
+            "importance": selectedTaskImportance,
+            "actionDtoSet": actionList
         });
+        setActionList([]);
         setTaskList([...taskList, registeredTask]);
         setSelectedTaskName("");
         setSelectedTaskImportance("MEDIUM");
@@ -129,6 +134,20 @@ function AddProject(props) {
         setIsClickedArr(tmpClickedArr);
     }, [color])
 
+    const onAddProjectBtnClick = () => {
+        let newProjectId = document.getElementById("projectNaumeInputId").value;
+        console.log(endDay);
+        console.log(taskList);
+    }
+
+    const [actionList, setActionList] = useState([]);
+    const addTaskActionInputId = "addTaskActionInputId";
+
+    const removeActionFunction = (actionId) => {
+        let filteredActionList = actionList.filter(actionDto => actionDto.actionId !== actionId);
+        setActionList(filteredActionList);
+    }
+
     return (
         <div>
             <div className="h50 flex">
@@ -144,7 +163,7 @@ function AddProject(props) {
                     이름
                 </div>
                 <div className="h100p flexCenter">
-                    <input className="w250 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
+                    <input id="projectNaumeInputId" className="w250 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
                 </div>
             </div>
             <div className="h50 flex">
@@ -234,30 +253,39 @@ function AddProject(props) {
                 <div>
                     <div>
                         {taskList.map(taskDto => (
-                            <AddProjectTask importance={taskDto.importance} taskName={taskDto.content} key={taskDto.taskId} onRemoveFunction={onRemoveTaskFunction} uuid={taskDto.taskId} />
+                            <AddProjectTask importance={taskDto.importance} taskName={taskDto.content}
+                                            key={taskDto.taskId} onRemoveFunction={onRemoveTaskFunction}
+                                            uuid={taskDto.taskId}/>
                         ))}
                     </div>
                     <div>
                         <div className="flex mt10">
                             <input id="taskInput" className="h20 taskInputBox" placeholder="태스크와 중요도를 입력해주세요."/>
-                            <img onClick={onTaskCancelInputBtnClick} className="w10 h10" src="img/add/ic_task_input_cancel.png"/>
+                            <img onClick={onTaskCancelInputBtnClick} className="w10 h10"
+                                 src="img/add/ic_task_input_cancel.png"/>
                         </div>
                         <div className="grayLine"></div>
                         <div className="flex mt10">
                             <div className="taskImportanceSelectBox mr10">
-                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick("HIGH")}}>
+                                <div onClick={(e) => {
+                                    onAddTaskWindowOpenBtnClick("HIGH")
+                                }}>
                                     <img src="img/today/ic_importance_high_black.png"/>
                                     <p>높음</p>
                                 </div>
                             </div>
                             <div className="taskImportanceSelectBox mr10">
-                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick("MIDDLE")}}>
+                                <div onClick={(e) => {
+                                    onAddTaskWindowOpenBtnClick("MIDDLE")
+                                }}>
                                     <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                     <p>중간</p>
                                 </div>
                             </div>
                             <div className="taskImportanceSelectBox">
-                                <div onClick={(e) => {onAddTaskWindowOpenBtnClick("LOW")}}>
+                                <div onClick={(e) => {
+                                    onAddTaskWindowOpenBtnClick("LOW")
+                                }}>
                                     <img src="img/today/ic_importance_low_black.png"/>
                                     <p>낮음</p>
                                 </div>
@@ -266,20 +294,24 @@ function AddProject(props) {
                     </div>
                 </div>
             </div>
-            <div className="nextBtnWrapper flexCenterAlignHorizon">
+            <div className="nextBtnWrapper flexCenterAlignHorizon" onClick={onAddProjectBtnClick}>
                 <div className="nextBtn flexCenter fBold fs16p">
                     추가하기
                 </div>
             </div>
             <div className={isAddTaskWindowOpen ? "addTaskWindow addTaskWindow-open" : "addTaskWindow"}>
                 <div className="addTaskWindowHeader flexCenter w100p mt20 pt10">
-                    <div className="w40 ml10" onClick={(e) => {onAddTaskWindowOpenBtnClick()}}>
+                    <div className="w40 ml10" onClick={(e) => {
+                        onAddTaskWindowOpenBtnClick()
+                    }}>
                         취소
                     </div>
                     <div className="title flexCenter fBold">
                         태스크 더 추가하기
                     </div>
-                    <div className="w40 mr10 fBold" onClick={(e) => {onTaskAddBtnClick()}}>
+                    <div className="w40 mr10 fBold" onClick={(e) => {
+                        onTaskAddBtnClick()
+                    }}>
                         추가
                     </div>
                 </div>
@@ -290,7 +322,8 @@ function AddProject(props) {
                             이름
                         </div>
                         <div className="h100p flexCenter">
-                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요." defaultValue={selectedTaskName} onChange={onChangeTaskName} />
+                            <input className="w250 h50p projectNameInput" placeholder="이름을 입력하세요."
+                                   value={selectedTaskName} onChange={onChangeTaskName}/>
                         </div>
                     </div>
                     <div className="flex mt10">
@@ -300,19 +333,28 @@ function AddProject(props) {
                         <div>
                             <div>
                                 <div className="flex mt10">
-                                    <div onClick={(e) => {onSelectTaskImportanceBtnClick("HIGH")}} className={selectedTaskImportance === "HIGH" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                    <div onClick={(e) => {
+                                        onSelectTaskImportanceBtnClick("HIGH")
+                                    }}
+                                         className={selectedTaskImportance === "HIGH" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img src="img/today/ic_importance_high_black.png"/>
                                             <p>높음</p>
                                         </div>
                                     </div>
-                                    <div onClick={(e) => {onSelectTaskImportanceBtnClick("MIDDLE")}} className={selectedTaskImportance === "MIDDLE" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                    <div onClick={(e) => {
+                                        onSelectTaskImportanceBtnClick("MIDDLE")
+                                    }}
+                                         className={selectedTaskImportance === "MIDDLE" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img className="w40" src="img/today/ic_importance_mid_black.png"/>
                                             <p>중간</p>
                                         </div>
                                     </div>
-                                    <div onClick={(e) => {onSelectTaskImportanceBtnClick("LOW")}} className={selectedTaskImportance === "LOW" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
+                                    <div onClick={(e) => {
+                                        onSelectTaskImportanceBtnClick("LOW")
+                                    }}
+                                         className={selectedTaskImportance === "LOW" ? "taskImportanceSelectBox_selected mr10" : "taskImportanceSelectBox mr10"}>
                                         <div>
                                             <img src="img/today/ic_importance_low_black.png"/>
                                             <p>낮음</p>
@@ -332,19 +374,57 @@ function AddProject(props) {
                                 <div className="flexCenter">
                                     <div className="mr5 h100p">오늘부터</div>
                                     <div className="taskAddEndDayText w70 h100p">{taskEndDay} 일간</div>
-                                    <div className="ml10 w20 h20 flexCenter bgLightGray rad4" onClick={onAddEndDayClick}><img className="w50p" src="img/add/ic_add.png"/></div>
-                                    <div className="ml5 w20 h20 flexCenter bgLightGray rad4" onClick={onMinusEndDayClick}><img className="w50p" src="img/add/ic_minus.png" /></div>
+                                    <div className="ml10 w20 h20 flexCenter bgLightGray rad4"
+                                         onClick={onAddEndDayClick}><img className="w50p" src="img/add/ic_add.png"/>
+                                    </div>
+                                    <div className="ml5 w20 h20 flexCenter bgLightGray rad4"
+                                         onClick={onMinusEndDayClick}><img className="w50p" src="img/add/ic_minus.png"/>
+                                    </div>
                                 </div>
                                 <div className="taskAddEndDayBtnContainer flex w270">
-                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(0)}}>기간 설정 안함</div>
-                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(5)}}>5일</div>
-                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(10)}}>10일</div>
-                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(30)}}>30일</div>
-                                    <div className="taskAddEndDayBtn" onClick={(e)=>{onAddBtnClick(60)}}>60일</div>
+                                    <div className="taskAddEndDayBtn" onClick={(e) => {
+                                        onAddBtnClick(0)
+                                    }}>기간 설정 안함
+                                    </div>
+                                    <div className="taskAddEndDayBtn" onClick={(e) => {
+                                        onAddBtnClick(5)
+                                    }}>5일
+                                    </div>
+                                    <div className="taskAddEndDayBtn" onClick={(e) => {
+                                        onAddBtnClick(10)
+                                    }}>10일
+                                    </div>
+                                    <div className="taskAddEndDayBtn" onClick={(e) => {
+                                        onAddBtnClick(30)
+                                    }}>30일
+                                    </div>
+                                    <div className="taskAddEndDayBtn" onClick={(e) => {
+                                        onAddBtnClick(60)
+                                    }}>60일
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div className="flex">
+                        <div className="w70 fBold">
+                            액션
+                        </div>
+                        <div>
+                            <div>
+                                {actionList.map(actionDto =>
+                                    (<AddAction key={actionDto.actionId} actionId={actionDto.actionId}
+                                                actionContent={actionDto.content}
+                                                removeActionFn={removeActionFunction}/>)
+                                )}
+                            </div>
+                            <AddActionInput actionListState={actionList} setActionListState={setActionList}
+                                            myInputId={addTaskActionInputId}/>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <div className="footer">
