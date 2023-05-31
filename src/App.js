@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./login/login";
 import PasswordReset from "./login/passwordReset/passwordReset";
 import PasswordResetResult from "./login/passwordReset/PasswordResetResult";
@@ -13,7 +13,7 @@ import SignUpSetDate from "./login/sighUp/signUpSetDate";
 import NaverLoginRedirect from "./login/NaverLoginRedirect";
 
 function App() {
-    return <Router>
+    return <BrowserRouter>
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUpEmail />}/>
@@ -28,7 +28,7 @@ function App() {
             <Route path="/addProject" element={<AddProject />} />
             <Route path="/oauth2/naver/redirect/" element={<NaverLoginRedirect />}/>
         </Routes>
-    </Router>
+    </BrowserRouter>
 }
 
 export default App;

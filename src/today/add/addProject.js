@@ -15,8 +15,9 @@ import AddAction from "./addAction";
 
 function AddProject(props) {
     const location = useLocation();
-    let startDate = location.state?.startDay;
-    let endDate = location.state?.endDay;
+    const params = new URLSearchParams(location.search);
+    let startDate = params.get("startDay");
+    let endDate = params.get("endDay");
     const [endDay, setEndDay] = useState(new Date(endDate));
     const [time, setTime] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
