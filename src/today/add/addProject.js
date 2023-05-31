@@ -8,16 +8,16 @@ import AddProjectTask from "./addProjectTask";
 import TaskDto from "../../dto/TaskDto";
 import TodayService from "../../service/TodayService";
 import AddActionInput from "../../common/addActionInput";
-import TodayTodoSection from "../todayTodoSection";
-import EditAction from "../edit/editAction";
 import AddAction from "./addAction";
 
 
 function AddProject(props) {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    let startDate = params.get("startDay");
-    let endDate = params.get("endDay");
+    // let startDate = params.get("startDay");
+    // let endDate = params.get("endDay");
+    let startDate = location.state?.startDay;
+    let endDate = location.state?.endDay;
     const [endDay, setEndDay] = useState(new Date(endDate));
     const [time, setTime] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
