@@ -9,6 +9,7 @@ import TaskDto from "../../dto/TaskDto";
 import TodayService from "../../service/TodayService";
 import AddActionInput from "../../common/addActionInput";
 import AddAction from "./addAction";
+import ProjectDto from "../../dto/ProjectDto";
 
 
 function AddProject(props) {
@@ -136,9 +137,14 @@ function AddProject(props) {
     }, [color])
 
     const onAddProjectBtnClick = () => {
-        let newProjectId = document.getElementById("projectNaumeInputId").value;
-        console.log(endDay);
-        console.log(taskList);
+        const projectName = document.getElementById("projectNameInputId").value;
+        const projectId = TodayService.generateUUID();
+        const startPjtDate = new Date(startDate);
+        const endPjtDate = new Date(endDate);
+        const taskDtoSet = taskList;
+        const projectDto = new ProjectDto({projectId, projectName, taskDtoSet})
+        console.log(projectDto);
+        TodayService.executeProjectRegisterService(projectDto);
     }
 
     const [actionList, setActionList] = useState([]);
@@ -164,7 +170,7 @@ function AddProject(props) {
                     이름
                 </div>
                 <div className="h100p flexCenter">
-                    <input id="projectNaumeInputId" className="w250 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
+                    <input id="projectNameInputId" className="w250 h50p projectNameInput" placeholder="입력을 완료 했습니다."/>
                 </div>
             </div>
             <div className="h50 flex">
