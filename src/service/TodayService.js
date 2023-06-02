@@ -11,7 +11,9 @@ class TodayService {
     executeProjectRegisterService(projectRequest) {
         this.setUpAxiosInterceptors();
         return axios.post('http://localhost:8080/api/v1/projects/register', {
-            projectRequest
+            projectId: projectRequest.projectId,
+            projectName: projectRequest.projectName,
+            taskDtoSet: projectRequest.taskDtoSet
         }, {
             headers: {
                 'Content-Type': 'application/json'
