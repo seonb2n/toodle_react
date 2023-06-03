@@ -54,7 +54,7 @@ function Login() {
             .then((response) => {
                 console.log(response);
                 AuthenticationService.registerSuccessfulLoginForJwt(userEmail, response.data.jwtToken);
-                window.location.href = "/postit";
+                window.location.href = "/today";
             }).catch(() => {
                 setIsLoginFailed(true);
         })
