@@ -8,7 +8,6 @@ import {useEffect, useState} from "react";
 import TodayService from "../service/TodayService";
 import ProjectDto from "../dto/ProjectDto";
 import EditTask from "./edit/editTask";
-import TaskDto from "../dto/TaskDto";
 
 function Today() {
     const todo1 = {
@@ -103,7 +102,9 @@ function Today() {
                     {
                         projectDtoList.map(project => (
                             project.taskDtoSet.map(task => (
-                                <TodayCard importance={task.importance} pjtName={project.projectName}
+                                <TodayCard importance={task.importance}
+                                           pjtName={project.projectName}
+                                           pjtColor={project.projectColor}
                                            startAt={task.startAt} endAt={task.endAt}
                                            taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}
                                            onEditEvent={onShowEditTodayBtnClick}/>

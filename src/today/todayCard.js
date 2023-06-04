@@ -8,6 +8,7 @@ import AddActionInput from "../common/addActionInput";
 function TodayCard(props) {
     const importance = props.importance;
     const pjtName = props.pjtName;
+    const pjtColor = props.pjtColor;
     const taskName = props.taskName;
     const startAt = props.startAt;
     const endAt = props.endAt;
@@ -54,14 +55,17 @@ function TodayCard(props) {
 
     return (
         <div className="flexCenter ml10 mr10">
-            <div className="rad16 bgLightPurple card_wrapper w270 h360">
+            <div className="rad16 card_wrapper w270 h360"
+                 style={{background: pjtColor}}>
                 <div className="h100p ml15 mr15">
                     <div className="w100p h70">
-                        <div className="mt15 w50 h50 bgPurple rad10 flexCenterAlignHorizon floatL">
+                        <div className="mt15 w50 h50 rad10 flexCenterAlignHorizon floatL"
+                             style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
                             <img src={impImgRes}></img>
                         </div>
 
-                        <div onClick={onEditBtn} className="mt15 w50 h25 bgMidPurple floatR rad16 flexCenter fs12p">
+                        <div onClick={onEditBtn} className="mt15 w50 h25 floatR rad16 flexCenter fs12p"
+                             style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
                             <img src="img/today/ic_task_edit.png"/>
                             수정
                         </div>
