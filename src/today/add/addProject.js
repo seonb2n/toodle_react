@@ -39,7 +39,7 @@ function AddProject(props) {
     };
 
     // 색상 정하는 부분
-    const [color, setColor] = useState("#0054FF");
+    const [projectColor, setProjectColor] = useState("#0054FF");
 
     let colorSetArr = [];
     colorSetArr[0] = "#007cff";
@@ -66,9 +66,8 @@ function AddProject(props) {
     ]);
 
     const onSetColorClick = (e) => {
-        e.preventDefault();
-        const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`;
-        setColor(rgba2hex(e.target.style.backgroundColor));
+        console.log(e);
+        setProjectColor(e);
     }
 
     const onTaskCancelInputBtnClick = (e) => {
@@ -131,10 +130,10 @@ function AddProject(props) {
     useEffect(() => {
         let tmpClickedArr = []
         for (let i = 0; i < colorSetArr.length; i++) {
-            tmpClickedArr[i] = color === colorSetArr[i];
+            tmpClickedArr[i] = projectColor === colorSetArr[i];
         }
         setIsClickedArr(tmpClickedArr);
-    }, [color])
+    }, [projectColor])
 
     const onAddProjectBtnClick = () => {
         const projectName = document.getElementById("projectNameInputId").value;
@@ -142,10 +141,10 @@ function AddProject(props) {
         const startPjtDate = new Date(startDate);
         const endPjtDate = new Date(endDate);
         const taskDtoSet = taskList;
-        const projectDto = new ProjectDto({projectId, projectName, taskDtoSet})
-        console.log(projectDto);
+        const projectDto = new ProjectDto({projectId, projectName, projectColor, taskDtoSet})
         TodayService.executeProjectRegisterService(projectDto);
     }
+
 
     const [actionList, setActionList] = useState([]);
     const addTaskActionInputId = "addTaskActionInputId";
@@ -218,36 +217,36 @@ function AddProject(props) {
                 </div>
                 <div>
                     <div className="flex">
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[0])}>
                             <SetColorDiv color={colorSetArr[0]} isClicked={isClickedArr[0]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[1])}>
                             <SetColorDiv color={colorSetArr[1]} isClicked={isClickedArr[1]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[2])}>
                             <SetColorDiv color={colorSetArr[2]} isClicked={isClickedArr[2]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[3])}>
                             <SetColorDiv color={colorSetArr[3]} isClicked={isClickedArr[3]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[4])}>
                             <SetColorDiv color={colorSetArr[4]} isClicked={isClickedArr[4]}/>
                         </div>
                     </div>
                     <div className="flex">
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[5])}>
                             <SetColorDiv color={colorSetArr[5]} isClicked={isClickedArr[5]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[6])}>
                             <SetColorDiv color={colorSetArr[6]} isClicked={isClickedArr[6]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[7])}>
                             <SetColorDiv color={colorSetArr[7]} isClicked={isClickedArr[7]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[8])}>
                             <SetColorDiv color={colorSetArr[8]} isClicked={isClickedArr[8]}/>
                         </div>
-                        <div onClick={onSetColorClick}>
+                        <div onClick={() => onSetColorClick(colorSetArr[9])}>
                             <SetColorDiv color={colorSetArr[9]} isClicked={isClickedArr[9]}/>
                         </div>
                     </div>

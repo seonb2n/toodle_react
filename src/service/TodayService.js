@@ -17,9 +17,11 @@ class TodayService {
 
     executeProjectRegisterService(projectRequest) {
         this.setUpAxiosInterceptors();
+        debugger;
         return axios.post(this.API_SERVER_URL + '/api/v1/projects/register', {
             projectId: projectRequest.projectId,
             projectName: projectRequest.projectName,
+            projectColor: projectRequest.projectColor,
             taskDtoSet: projectRequest.taskDtoSet
         }, {
             headers: {
