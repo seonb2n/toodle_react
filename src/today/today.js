@@ -17,7 +17,7 @@ function Today() {
         TodayService.executeTodayGetService()
             .then((response) => {
                 const projectDtoList = response.data.projectResponse.projectDtoList;
-                const postItContentDtoList = response.data.todayPostItResponse.contentDtoList;
+                const postItContentDtoList = response.data.todayPostItResponse.todayPostItContentDtoList;
                 let projectList = [];
                 projectDtoList.map(projectDto => (
                     projectList.push(new ProjectDto(projectDto))
@@ -25,8 +25,8 @@ function Today() {
                 setProjectDtoList(projectList);
 
                 let postItList = [];
-                postItContentDtoList.map(postItContentDtoList => (
-                    postItList.push(new TodayPostItDto(postItContentDtoList))
+                postItContentDtoList.map(postItContentDto => (
+                    postItList.push(new TodayPostItDto(postItContentDto))
                 ))
                 setPostItDtoList(postItContentDtoList);
             }).catch(() => {
@@ -78,7 +78,8 @@ function Today() {
             <div className="today_detail_quick_menu">
                 {
                     postItDtoList.map(postItDto => (
-                        <TodayQuickPostIt img={postItDto.imgUrl} content={postItDto.content}/>
+                        <TodayQuickPostIt img={postItDto.imgUrl} content={postItDto.content}
+                                          key={TodayService.generateUUID()}/>
                     ))
                 }
 
