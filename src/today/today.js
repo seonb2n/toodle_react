@@ -7,36 +7,28 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TodayService from "../service/TodayService";
 import ProjectDto from "../dto/ProjectDto";
+import TodayPostItDto from "../dto/TodayPostItDto";
 import EditTask from "./edit/editTask";
 
 function Today() {
-    const todo1 = {
-        id: 1,
-        content: "로그인 버튼 시안 제작",
-        done: false
-    };
-    const todo2 = {
-        id: 2,
-        content: "모바일 메인 페이지 제작",
-        done: false
-    };
-    const todo3 = {
-        id: 3,
-        content: "포스트잇 페이지 제작",
-        done: true
-    };
-    const todoList = [todo1, todo2, todo3]
-
     const [projectDtoList, setProjectDtoList] = useState([]);
+    const [postItDtoList, setPostItDtoList] = useState([]);
     useEffect(() => {
-        TodayService.executeProjectGetService()
+        TodayService.executeTodayGetService()
             .then((response) => {
-                const projectDtoList = response.data.projectDtoList;
+                const projectDtoList = response.data.projectResponse.projectDtoList;
+                const postItContentDtoList = response.data.todayPostItResponse.contentDtoList;
                 let projectList = [];
                 projectDtoList.map(projectDto => (
                     projectList.push(new ProjectDto(projectDto))
                 ))
                 setProjectDtoList(projectList);
+
+                let postItList = [];
+                postItContentDtoList.map(postItContentDtoList => (
+                    postItList.push(new TodayPostItDto(postItContentDtoList))
+                ))
+                setPostItDtoList(postItContentDtoList);
             }).catch(() => {
         })
     }, []);
@@ -84,8 +76,11 @@ function Today() {
                 </Link>
             </div>
             <div className="today_detail_quick_menu">
-                <TodayQuickPostIt img="ic_quick_postit_ex.png" content="비타민"/>
-                <TodayQuickPostIt img="ic_quick_postit_ex.png" content="비타민 챙겨먹기"/>
+                {
+                    postItDtoList.map(postItDto => (
+                        <TodayQuickPostIt img={postItDto.imgUrl} content={postItDto.content}/>
+                    ))
+                }
 
             </div>
 

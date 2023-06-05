@@ -10,6 +10,11 @@ class TodayService {
         this.API_SERVER_URL = IPSetService.API_IP;
     }
 
+    executeTodayGetService() {
+        this.setUpAxiosInterceptors();
+        return axios.get(this.API_SERVER_URL + '/api/v1/today');
+    }
+
     executeProjectGetService() {
         this.setUpAxiosInterceptors();
         return axios.get(this.API_SERVER_URL + '/api/v1/projects');
@@ -17,7 +22,6 @@ class TodayService {
 
     executeProjectRegisterService(projectRequest) {
         this.setUpAxiosInterceptors();
-        debugger;
         return axios.post(this.API_SERVER_URL + '/api/v1/projects/register', {
             projectId: projectRequest.projectId,
             projectName: projectRequest.projectName,
