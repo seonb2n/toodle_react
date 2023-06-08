@@ -65,6 +65,9 @@ function Today() {
         setEditPageVisible(false);
     }
 
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date(startTime.getTime() + (1 * 60 * 60 * 1000)));
+
     return (
         <div className="today_body">
             <div className="today_detail_header">
@@ -90,7 +93,7 @@ function Today() {
 
                 </div>
                 <div className="today_detail_card_top_time">
-                    <TodayTime time="1700" startTime="17:00" endTime="18:00"/>
+                    <TodayTime time="19:00" startTime={timeFormatter(startTime)} endTime={timeFormatter(endTime)}/>
                 </div>
 
                 <div className="scroll_view">
@@ -177,6 +180,19 @@ function Today() {
             </div>
         </div>
     )
+}
+
+function timeFormatter(currentTime) {
+// 시간과 분 가져오기
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+
+// 시간과 분을 두 자리 숫자로 변환
+    const formattedHours = ("0" + hours).slice(-2);
+    const formattedMinutes = ("0" + minutes).slice(-2);
+
+// 시간을 HH:mm 형식으로 조합
+    return formattedHours + ":" + formattedMinutes;
 }
 
 export default Today;

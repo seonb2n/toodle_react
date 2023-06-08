@@ -2,8 +2,8 @@ import "../css/base.css";
 import "./todayTime.css"
 
 function TodayTime(props) {
-    const time = +props.time;
-    const imgRes = "img/today/" + ((time > 1800) ? "ic_moon_30.png" : "ic_sun_30.png");
+    const time = props.time;
+    const imgRes = "img/today/" + ((time > '18:00') ? "ic_moon_30.png" : "ic_sun_30.png");
     const txtRes = props.startTime + "-" + props.endTime;
 
     return (<div>
