@@ -4,6 +4,7 @@ import {useState} from "react";
 import TodayService from "../service/TodayService";
 import ActionDto from "../dto/ActionDto";
 import AddActionInput from "../common/addActionInput";
+import ColorConverter from "../common/colorConverter";
 
 function TodayCard(props) {
     const importance = props.importance;
@@ -71,7 +72,7 @@ function TodayCard(props) {
                         </div>
                     </div>
 
-                    <div className="mt15 fc_pp fBold">
+                    <div className="mt15 fBold" style={{color: ColorConverter.changeHexColorShade(pjtColor, -0.6)}}>
                         {pjtName}
                     </div>
 
