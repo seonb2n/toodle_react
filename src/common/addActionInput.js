@@ -7,6 +7,7 @@ export default function AddActionInput(props) {
     const setActionListState = props.setActionListState;
     const myInputId = props.myInputId;
 
+
     const onAddToDoBtn = (event) => {
         const newId = TodayService.generateUUID();
         const content = document.getElementById(myInputId).value;

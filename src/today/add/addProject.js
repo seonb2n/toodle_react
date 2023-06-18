@@ -113,6 +113,9 @@ function AddProject(props) {
         setSelectedTaskName("");
         setSelectedTaskImportance("MEDIUM");
         setTaskEndDay(1);
+
+        //프로젝트 추가하기 초기화해야 함
+        document.getElementById("taskInput").value = "";
     }
 
     const onSelectTaskImportanceBtnClick = (importance) => {
