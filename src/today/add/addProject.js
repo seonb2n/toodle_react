@@ -42,16 +42,16 @@ function AddProject(props) {
     const [projectColor, setProjectColor] = useState("#0054FF");
 
     let colorSetArr = [];
-    colorSetArr[0] = "#007cff";
-    colorSetArr[1] = "#ff8600";
-    colorSetArr[2] = "#00cb48";
-    colorSetArr[3] = "#ff3a30";
-    colorSetArr[4] = "#43e4c0";
-    colorSetArr[5] = "#5d5ce6";
-    colorSetArr[6] = "#fe2987";
-    colorSetArr[7] = "#db6aff";
-    colorSetArr[8] = "#407190";
-    colorSetArr[9] = "#fec912";
+    colorSetArr[0] = "#80bcff";
+    colorSetArr[1] = "#ffc180";
+    colorSetArr[2] = "#5bb97b";
+    colorSetArr[3] = "#ff8e89";
+    colorSetArr[4] = "#7cd5ba";
+    colorSetArr[5] = "#9595df";
+    colorSetArr[6] = "#ff98c4";
+    colorSetArr[7] = "#eeaeff";
+    colorSetArr[8] = "#9eafc1";
+    colorSetArr[9] = "#ffedab";
     const [isClickedArr, setIsClickedArr] = useState([
         true,
         false,
