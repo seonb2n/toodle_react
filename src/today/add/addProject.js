@@ -10,6 +10,7 @@ import TodayService from "../../service/TodayService";
 import AddActionInput from "../../common/addActionInput";
 import AddAction from "./addAction";
 import ProjectDto from "../../dto/ProjectDto";
+import {ToastNotification} from "../../common/toastNotification";
 
 
 function AddProject(props) {
@@ -138,12 +139,19 @@ function AddProject(props) {
         setIsClickedArr(tmpClickedArr);
     }, [projectColor])
 
+
+    const [projectNameNullState, setProjectNameNullState] = useState(false);
+
     const onAddProjectBtnClick = () => {
         const projectName = document.getElementById("projectNameInputId").value;
         const projectId = TodayService.generateUUID();
         const startPjtDate = new Date(startDate);
         const endPjtDate = new Date(endDate);
         const taskDtoSet = taskList;
+
+        if (projectName === undefined || projectName === "") {
+            return setProjectNameNullState(true);
+        }
         const projectDto = new ProjectDto({projectId, projectName, projectColor, taskDtoSet})
         TodayService.executeProjectRegisterService(projectDto);
     }
@@ -432,7 +440,11 @@ function AddProject(props) {
                                             myInputId={addTaskActionInputId}/>
                         </div>
                     </div>
-
+                    {
+                        projectNameNullState === true ? (
+                            <ToastNotification setToastState={setProjectNameNullState} content="프로젝트 명은 필수입니다!"/>
+                        ) : null
+                    }
 
                 </div>
 
