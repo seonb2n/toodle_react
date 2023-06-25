@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import todayData from "../reducer/todayData";
+import todayData from "./slice/todayData";
 
 const rootReducer = combineReducers({
     todayData
