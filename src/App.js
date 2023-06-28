@@ -11,6 +11,7 @@ import SignUpEmail from "./login/sighUp/signUpEmail";
 import SignUpNickName from "./login/sighUp/signUpNickName";
 import SignUpSetDate from "./login/sighUp/signUpSetDate";
 import NaverLoginRedirect from "./login/NaverLoginRedirect";
+import NotFoundPage from "./common/404Page";
 
 function App() {
     return <BrowserRouter>
@@ -26,7 +27,8 @@ function App() {
             <Route path="/postit" element={<PostItList />} />
             <Route path="/addProjectPeriod" element={<AddProjectPeriod />} />
             <Route path="/addProject" element={<AddProject />} />
-            <Route path="/oauth2/naver/redirect/" element={<NaverLoginRedirect />}/>
+            <Route path="/oauth2/naver/redirect/" element={<NaverLoginRedirect/>}/>
+            <Route path="/*" element={<NotFoundPage/>}/>
         </Routes>
     </BrowserRouter>
 }
