@@ -53,7 +53,7 @@ function SignUpSetDate() {
                    navigate('/postit')
                }
                else {
-                   console.log(response);
+                   //console.log(response);
                }
             });
     }

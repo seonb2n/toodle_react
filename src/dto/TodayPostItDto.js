@@ -4,8 +4,8 @@ class TodayPostItDto {
     imgUrl;
 
     constructor({imgUrl, content}) {
-        console.log(imgUrl);
-        console.log(content);
+        // console.log(imgUrl);
+        // console.log(content);
         this.content = content;
         if (imgUrl !== undefined) {
             this.imgUrl = imgUrl;

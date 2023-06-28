@@ -33,7 +33,6 @@ function PostItList() {
         PostItService.executePostItGetService()
             .then((response) => {
                 const postItListPageDto = response.data;
-                console.log(postItListPageDto);
                 let postItCategoryDtos = [];
                 postItListPageDto.postItCategoryDtoList.map(postItCategoryDto => (
                     postItCategoryDtos.push(new PostItCategoryDto(postItCategoryDto))
@@ -76,7 +75,7 @@ function PostItList() {
             "isDone": false,
         }
         document.getElementById("postItContentInput").value = "";
-        console.log(postItDto);
+        // console.log(postItDto);
         setPostItList([...postItList, postItDto]);
     }
 
