@@ -32,7 +32,7 @@ function PasswordReset() {
 
         AuthenticationService.changeUserPassword(userEmail)
             .then((response ) => {
-                console.log(response);
+                // console.log(response);
                 navigate('/passwordResetResult', {});
             }).catch(() => {
                 setErrorShown(true);

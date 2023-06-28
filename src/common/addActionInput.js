@@ -11,7 +11,7 @@ export default function AddActionInput(props) {
     const onAddToDoBtn = (event) => {
         const newId = TodayService.generateUUID();
         const content = document.getElementById(myInputId).value;
-        console.log(myInputId);
+        // console.log(myInputId);
         if (!content) {
             alert("값을 입력해야 추가할 수 있습니다.")
         } else {

@@ -14,7 +14,7 @@ function TodayCard(props) {
     const startAt = props.startAt;
     const endAt = props.endAt;
     const taskId = props.taskId;
-    console.log(props);
+    // console.log(props);
     const [toDoList, setToDoList] = useState(props.toDoList);
 
     let impImgRes = "img/today/ic_importance_low_black.png"
