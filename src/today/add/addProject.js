@@ -439,7 +439,6 @@ function AddProject(props) {
                             <AddActionInput actionListState={actionList} setActionListState={setActionList}
                                             myInputId={addTaskActionInputId}/>
                         </div>
-                        npm
                     </div>
                     {
                         projectNameNullState === true ? (

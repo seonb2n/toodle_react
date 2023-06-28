@@ -13,6 +13,8 @@ function TodayCard(props) {
     const taskName = props.taskName;
     const startAt = props.startAt;
     const endAt = props.endAt;
+    const taskId = props.taskId;
+    console.log(props);
     const [toDoList, setToDoList] = useState(props.toDoList);
 
     let impImgRes = "img/today/ic_importance_low_black.png"
@@ -84,12 +86,14 @@ function TodayCard(props) {
                         <div className="mt20">
                             {
                                 toDoList.map(todo => (
-                                    <TodayTodoSection content={todo.content} key={todo.actionId} completed={todo.isDone}/>
+                                    <TodayTodoSection content={todo.content} key={todo.actionId}
+                                                      completed={todo.isDone}/>
                                 ))
                             }
                         </div>
                     </div>
-                        <AddActionInput actionListState={toDoList} setActionListState={setToDoList} myInputId={"todayCard"+props.taskId} />
+                    <AddActionInput actionListState={toDoList} setActionListState={setToDoList}
+                                    myInputId={"todayCard" + taskId}/>
                 </div>
             </div>
         </div>

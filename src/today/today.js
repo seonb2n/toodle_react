@@ -105,6 +105,7 @@ function Today() {
                                            pjtName={project.projectName}
                                            pjtColor={project.projectColor}
                                            startAt={task.startAt} endAt={task.endAt}
+                                           taskId={task.taskId}
                                            taskName={task.content} toDoList={task.actionDtoSet} key={task.taskId}
                                            onEditEvent={onShowEditTodayBtnClick}/>
                             ))
